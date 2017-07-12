@@ -1,0 +1,88 @@
+{
+  "name": "extract-files",
+  "version": "1.0.0",
+  "description": "Reversibly extracts files from an object tree.",
+  "license": "MIT",
+  "author": {
+    "name": "Jayden Seric",
+    "email": "me@jaydenseric.com",
+    "url": "http://jaydenseric.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jaydenseric/extract-files.git"
+  },
+  "homepage": "https://github.com/jaydenseric/extract-files#readme",
+  "bugs": "https://github.com/jaydenseric/extract-files/issues",
+  "keywords": [
+    "extract",
+    "file",
+    "files"
+  ],
+  "dependencies": {
+    "babel-runtime": "^6.23.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.2.0",
+    "eslint-plugin-prettier": "^2.1.2",
+    "husky": "^0.14.3",
+    "lint-staged": "^4.0.1",
+    "prettier": "^1.5.2",
+    "rollup": "^0.45.1",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-watch": "^4.0.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "prebuild": "npm run lint",
+    "build": "rollup --config",
+    "prepublishOnly": "npm run build",
+    "precommit": "lint-staged"
+  },
+  "main": "dist/extract-files.js",
+  "module": "dist/extract-files.module.js",
+  "files": [
+    "src",
+    "dist"
+  ],
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2017,
+      "ecmaFeatures": {
+        "experimentalObjectRestSpread": true
+      }
+    },
+    "env": {
+      "es6": true,
+      "node": true,
+      "browser": true
+    },
+    "extends": [
+      "eslint:recommended"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "semi": false,
+          "singleQuote": true
+        }
+      ]
+    }
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  }
+}
