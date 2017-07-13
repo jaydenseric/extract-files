@@ -1,4 +1,11 @@
 /**
+ * Checks a node is an enumerable object.
+ * @param {*} node - A node to check.
+ * @returns {Boolean} Is the node an enumerable object.
+ */
+export const isObject = node => typeof node === 'object' && node !== null
+
+/**
  * A file extraction.
  * @typedef {Object} ExtractedFile
  * @property {String} path - Original location in the object tree.
@@ -13,43 +20,42 @@
  */
 export function extractFiles(tree, treePath = '') {
   const files = []
+  const recurse = (node, nodePath) => {
+    // Iterate enumerable properties of the node
+    Object.keys(node).forEach(key => {
+      // Skip non-object
+      if (!isObject(node[key])) return
 
-  // Recursively extracts files from an object tree
-  function recurse(node, path, parent, key) {
-    // Skip non-object
-    if (typeof node !== 'object' || node === null) return
+      const path = `${nodePath}.${key}`
 
-    // Is the node a file?
-    if (
-      // A File
-      (typeof File !== 'undefined' && node instanceof File) ||
-      // A ReactNativeFile
-      node instanceof ReactNativeFile
-    ) {
-      // Extract the file and it's object tree path
-      files.push({ path, file: node })
+      if (
+        // Node is a File
+        (typeof File !== 'undefined' && node[key] instanceof File) ||
+        // Node is a ReactNativeFile
+        node[key] instanceof ReactNativeFile
+      ) {
+        // Extract the file and it's object tree path
+        files.push({ path, file: node[key] })
 
-      // Delete the file. Array items must be deleted without reindexing to
-      // allow repopulation in a reverse operation.
-      delete parent[key]
+        // Delete the file. Array items must be deleted without reindexing to
+        // allow repopulation in a reverse operation.
+        delete node[key]
 
-      // No further checks or recursion
-      return
-    }
+        // No further checks or recursion
+        return
+      }
 
-    // Is the node a FileList?
-    if (typeof FileList !== 'undefined' && node instanceof FileList)
-      // Convert read-only FileList to an array for manipulation
-      parent[key] = Array.from(node)
+      if (typeof FileList !== 'undefined' && node[key] instanceof FileList)
+        // Convert read-only FileList to an array for manipulation
+        node[key] = Array.from(node[key])
 
-    // Recurse into child nodes
-    Object.keys(node).forEach(key =>
-      recurse(node[key], `${path}.${key}`, node, key)
-    )
+      // Recurse into child node
+      recurse(node[key], path)
+    })
   }
 
   // Recurse object tree
-  recurse(tree, treePath)
+  if (isObject(tree)) recurse(tree, treePath)
 
   return files
 }
