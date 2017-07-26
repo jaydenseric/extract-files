@@ -1,6 +1,6 @@
 # extract-files change log
 
-## next
+## 2.0.0
 
 - Updated dependencies.
 - Extracted file paths no longer begin with `.` when no tree path is passed to `extractFiles`.
