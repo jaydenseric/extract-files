@@ -26,7 +26,7 @@ export function extractFiles(tree, treePath = '') {
       // Skip non-object
       if (!isObject(node[key])) return
 
-      const path = `${nodePath}.${key}`
+      const path = `${nodePath}${key}`
 
       if (
         // Node is a File
@@ -50,12 +50,17 @@ export function extractFiles(tree, treePath = '') {
         node[key] = Array.from(node[key])
 
       // Recurse into child node
-      recurse(node[key], path)
+      recurse(node[key], `${path}.`)
     })
   }
 
-  // Recurse object tree
-  if (isObject(tree)) recurse(tree, treePath)
+  if (isObject(tree))
+    // Recurse object tree
+    recurse(
+      tree,
+      // If a tree path was provided, append a dot
+      treePath === '' ? treePath : `${treePath}.`
+    )
 
   return files
 }

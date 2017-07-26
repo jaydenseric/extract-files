@@ -3,6 +3,7 @@
 ## next
 
 - Updated dependencies.
+- Extracted file paths no longer begin with `.` when no tree path is passed to `extractFiles`.
 
 ## 1.1.0
 
