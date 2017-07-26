@@ -1,5 +1,9 @@
 # extract-files change log
 
+## next
+
+- Updated dependencies.
+
 ## 1.1.0
 
 - Updated dependencies.
