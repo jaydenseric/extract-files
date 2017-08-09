@@ -98,7 +98,7 @@ export class ReactNativeFile {
    * Creates an array of file instances.
    * @param {ReactNativeFileObject[]} files
    * @example
-   * const files = ReactNativeFile.list({
+   * const files = ReactNativeFile.list([{
    *   uri: uriFromCameraRoll1,
    *   type: 'image/jpeg',
    *   name: 'photo-1.jpg'
@@ -106,7 +106,7 @@ export class ReactNativeFile {
    *   uri: uriFromCameraRoll2,
    *   type: 'image/jpeg',
    *   name: 'photo-2.jpg'
-   * })
+   * }])
    */
   static list = files => files.map(file => new ReactNativeFile(file))
 }
