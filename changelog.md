@@ -2,6 +2,7 @@
 
 ## next
 
+- Updated dependencies.
 - Fixed incorrect usage example code for `ReactNativeFile.list`, via [#1](https://github.com/jaydenseric/extract-files/pull/1).
 
 ## 2.0.0
