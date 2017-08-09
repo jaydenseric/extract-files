@@ -1,6 +1,6 @@
 # extract-files change log
 
-## next
+## 2.0.1
 
 - Updated dependencies.
 - Fixed incorrect usage example code for `ReactNativeFile.list`, via [#1](https://github.com/jaydenseric/extract-files/pull/1).
