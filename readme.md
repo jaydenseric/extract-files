@@ -58,7 +58,7 @@ const tree = {
     type: 'image/jpeg',
     name: 'photo.jpg'
   }),
-  multipleFiles: ReactNativeFile.list({
+  multipleFiles: ReactNativeFile.list([{
     uri: uriFromCameraRoll1,
     type: 'image/jpeg',
     name: 'photo-1.jpg'
@@ -66,7 +66,7 @@ const tree = {
     uri: uriFromCameraRoll2,
     type: 'image/jpeg',
     name: 'photo-2.jpg'
-  })
+  }])
 }
 
 const files = extractFiles(tree, 'tree')
