@@ -21,44 +21,44 @@ export const isObject = node => typeof node === 'object' && node !== null
 export function extractFiles(tree, treePath = '') {
   const files = []
   const recurse = (node, nodePath) => {
-    // Iterate enumerable properties of the node
+    // Iterate enumerable properties of the node.
     Object.keys(node).forEach(key => {
-      // Skip non-object
+      // Skip non-object.
       if (!isObject(node[key])) return
 
       const path = `${nodePath}${key}`
 
       if (
-        // Node is a File
+        // Node is a File.
         (typeof File !== 'undefined' && node[key] instanceof File) ||
-        // Node is a ReactNativeFile
+        // Node is a ReactNativeFile.
         node[key] instanceof ReactNativeFile
       ) {
-        // Extract the file and it's object tree path
+        // Extract the file and it's object tree path.
         files.push({ path, file: node[key] })
 
         // Delete the file. Array items must be deleted without reindexing to
         // allow repopulation in a reverse operation.
         delete node[key]
 
-        // No further checks or recursion
+        // No further checks or recursion.
         return
       }
 
       if (typeof FileList !== 'undefined' && node[key] instanceof FileList)
-        // Convert read-only FileList to an array for manipulation
+        // Convert read-only FileList to an array for manipulation.
         node[key] = Array.from(node[key])
 
-      // Recurse into child node
+      // Recurse into child node.
       recurse(node[key], `${path}.`)
     })
   }
 
   if (isObject(tree))
-    // Recurse object tree
+    // Recurse object tree.
     recurse(
       tree,
-      // If a tree path was provided, append a dot
+      // If a tree path was provided, append a dot.
       treePath === '' ? treePath : `${treePath}.`
     )
 
