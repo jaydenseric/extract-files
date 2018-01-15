@@ -1,6 +1,6 @@
 {
   "name": "extract-files",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Reversibly extracts files from an object tree.",
   "license": "MIT",
   "author": {
