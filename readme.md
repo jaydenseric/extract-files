@@ -55,15 +55,18 @@ const tree = {
     type: 'image/jpeg',
     name: 'photo.jpg'
   }),
-  multipleFiles: ReactNativeFile.list([{
-    uri: uriFromCameraRoll1,
-    type: 'image/jpeg',
-    name: 'photo-1.jpg'
-  }, {
-    uri: uriFromCameraRoll2,
-    type: 'image/jpeg',
-    name: 'photo-2.jpg'
-  }])
+  multipleFiles: ReactNativeFile.list([
+    {
+      uri: uriFromCameraRoll1,
+      type: 'image/jpeg',
+      name: 'photo-1.jpg'
+    },
+    {
+      uri: uriFromCameraRoll2,
+      type: 'image/jpeg',
+      name: 'photo-2.jpg'
+    }
+  ])
 }
 
 const files = extractFiles(tree, 'tree')
@@ -81,12 +84,13 @@ import tree from './tree'
 const files = extractFiles(tree, 'tree')
 const treePath = objectPath(tree)
 
-files.forEach(({path, file}) => treePath.set(path, file))
+files.forEach(({ path, file }) => treePath.set(path, file))
 ```
 
 `FileList` instances in an original tree become arrays when reassembled.
 
 ## Support
 
-- [> 2%](http://browserl.ist/?q=%3E+2%25) market share browsers.
-- React Native.
+* Node.js v6.10+, see `package.json` `engines`.
+* [Browsers >1% usage](http://browserl.ist/?q=%3E1%25), see `package.json` `browserslist`.
+* React Native.

@@ -19,39 +19,51 @@
     "file",
     "files"
   ],
+  "files": [
+    "lib",
+    "!lib/test.*"
+  ],
+  "main": "lib",
+  "module": "lib/index.mjs",
+  "engines": {
+    "node": ">=6.10"
+  },
+  "browserslist": ">1%",
   "dependencies": {
-    "babel-runtime": "^6.25.0"
+    "@babel/runtime": "^7.0.0-beta.37"
   },
   "devDependencies": {
-    "ava": "^0.21.0",
-    "babel-eslint": "^7.2.3",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "eslint": "^4.4.1",
-    "eslint-plugin-prettier": "^2.1.2",
+    "@babel/cli": "^7.0.0-beta.37",
+    "@babel/core": "^7.0.0-beta.37",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.37",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.37",
+    "@babel/preset-env": "^7.0.0-beta.37",
+    "ava": "^0.24.0",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
+    "eslint-plugin-prettier": "^2.4.0",
     "husky": "^0.14.3",
-    "prettier": "^1.5.2",
-    "rollup": "^0.45.2",
-    "rollup-plugin-babel": "^3.0.1",
-    "rollup-watch": "^4.3.1"
+    "lint-staged": "^6.0.0",
+    "prettier": "^1.10.2",
+    "rimraf": "^2.6.2"
   },
   "scripts": {
-    "lint": "eslint .",
-    "buildtest": "rollup --config rollup.config.test.js",
-    "test": "ava test/bundle.js",
-    "build": "rollup --config",
-    "prebuildtest": "npm run lint",
-    "pretest": "npm run buildtest",
-    "prebuild": "npm run test",
-    "prepublishOnly": "npm run build",
-    "precommit": "npm test"
+    "build": "rimraf lib && npm run build:js && npm run build:mjs && prettier --write 'lib/**/*.{js,mjs}'",
+    "build:js": "babel src --out-dir lib",
+    "build:mjs": "MODULE=true babel src --out-dir lib --keep-file-extension",
+    "lint": "eslint . --ext js,mjs",
+    "fix": "npm run lint -- --fix && prettier --write '**/*.md'",
+    "pretest": "npm run build",
+    "test": "ava lib/test.js --serial --verbose",
+    "precommit": "lint-staged",
+    "prepublishOnly": "npm run lint && npm run build && npm run test"
   },
-  "main": "dist/extract-files.js",
-  "module": "dist/extract-files.module.js",
-  "files": [
-    "src",
-    "dist"
+  "lint-staged": {
+    "*.mjs": "eslint"
+  },
+  "eslintIgnore": [
+    "!.babelrc.js",
+    "lib"
   ],
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -74,13 +86,16 @@
       "prettier"
     ],
     "rules": {
-      "prettier/prettier": [
+      "curly": [
         "error",
-        {
-          "semi": false,
-          "singleQuote": true
-        }
-      ]
+        "multi"
+      ],
+      "prettier/prettier": "error"
     }
+  },
+  "prettier": {
+    "proseWrap": "never",
+    "semi": false,
+    "singleQuote": true
   }
 }

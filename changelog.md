@@ -2,25 +2,39 @@
 
 ## Next
 
+* Updated dependencies.
+* Updated Prettier and ESLint config.
+* Prettier formats distribution code as well as source code, along with the readme and changelog.
+* No more source maps; Prettier does not support them.
+* Added a clean step to builds.
+* Renamed `dist` directory to `lib`.
+* Modular project structure that works better for native ESM.
+* Module files now have `.mjs` extension.
+* Using Babel directly instead of Rollup.
+* Smarter Babel config with `.babelrc.js`.
+* Using `babel-preset-env` to handle polyfills so only required ones are included for supported environments.
+* Target Node.js v6.10+ for transpilation and polyfills via `package.json` `engines`.
+* Support [browsers with >1% global usage](http://browserl.ist/?q=%3E1%25) (was >2%).
+* Updated the readme support section.
 * Added links to readme badges.
 
 ## 2.0.1
 
-- Updated dependencies.
-- Fixed incorrect usage example code for `ReactNativeFile.list`, via [#1](https://github.com/jaydenseric/extract-files/pull/1).
+* Updated dependencies.
+* Fixed incorrect usage example code for `ReactNativeFile.list`, via [#1](https://github.com/jaydenseric/extract-files/pull/1).
 
 ## 2.0.0
 
-- Updated dependencies.
-- Extracted file paths no longer begin with `.` when no tree path is passed to `extractFiles`.
+* Updated dependencies.
+* Extracted file paths no longer begin with `.` when no tree path is passed to `extractFiles`.
 
 ## 1.1.0
 
-- Updated dependencies.
-- Added tests.
-- Removed `lint-staged`, linting and tests now run on commit.
-- Fixed `extractFiles` bugs by using logic that worked in [`apollo-upload-client@5`](https://github.com/jaydenseric/apollo-upload-client/tree/v5.0.0).
+* Updated dependencies.
+* Added tests.
+* Removed `lint-staged`, linting and tests now run on commit.
+* Fixed `extractFiles` bugs by using logic that worked in [`apollo-upload-client@5`](https://github.com/jaydenseric/apollo-upload-client/tree/v5.0.0).
 
 ## 1.0.0
 
-- Initial release.
+* Initial release.
