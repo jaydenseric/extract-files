@@ -1,5 +1,9 @@
 # extract-files change log
 
+## Next
+
+* Added links to readme badges.
+
 ## 2.0.1
 
 - Updated dependencies.

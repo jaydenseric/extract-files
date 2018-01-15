@@ -1,9 +1,6 @@
 # extract-files
 
-![npm version](https://img.shields.io/npm/v/extract-files.svg?style=flat-square)
-![Licence](https://img.shields.io/npm/l/extract-files.svg?style=flat-square)
-![Github issues](https://img.shields.io/github/issues/jaydenseric/extract-files.svg?style=flat-square)
-![Github stars](https://img.shields.io/github/stars/jaydenseric/extract-files.svg?style=flat-square)
+[![npm version](https://img.shields.io/npm/v/extract-files.svg)](https://npm.im/extract-files) ![Licence](https://img.shields.io/npm/l/extract-files.svg) [![Github issues](https://img.shields.io/github/issues/jaydenseric/extract-files.svg)](https://github.com/jaydenseric/extract-files/issues) [![Github stars](https://img.shields.io/github/stars/jaydenseric/extract-files.svg)](https://github.com/jaydenseric/extract-files/stargazers)
 
 Reversibly extracts files from an object tree.
 
