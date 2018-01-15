@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 2.1.0
 
 * Updated dependencies.
 * Updated Prettier and ESLint config.
