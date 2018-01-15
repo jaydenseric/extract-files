@@ -47,7 +47,7 @@ export function extractFiles(tree, treePath = '') {
 
       if (typeof FileList !== 'undefined' && node[key] instanceof FileList)
         // Convert read-only FileList to an array for manipulation.
-        node[key] = Array.from(node[key])
+        node[key] = Array.prototype.slice.call(node[key])
 
       // Recurse into child node.
       recurse(node[key], `${path}.`)

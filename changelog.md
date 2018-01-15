@@ -12,7 +12,9 @@
 * Module files now have `.mjs` extension.
 * Using Babel directly instead of Rollup.
 * Smarter Babel config with `.babelrc.js`.
-* Using `babel-preset-env` to handle polyfills so only required ones are included for supported environments.
+* Reduced bundle size, fixing [#3](https://github.com/jaydenseric/extract-files/issues/3):
+  * Using `babel-preset-env` to handle polyfills so only required ones are included for supported environments.
+  * Using `Array.prototype.slice.call` to convert `FileList` instances to arrays instead of `Array.from` which requires a lot of polyfills.
 * Target Node.js v6.10+ for transpilation and polyfills via `package.json` `engines`.
 * Support [browsers with >1% global usage](http://browserl.ist/?q=%3E1%25) (was >2%).
 * Updated the readme support section.
