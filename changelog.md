@@ -1,4 +1,4 @@
-# extract-files change log
+# extract-files changelog
 
 ## Next
 
