@@ -1,5 +1,10 @@
 # extract-files changelog
 
+## Next
+
+* Setup Travis to test using the latest stable Node.js version and the oldest supported in `package.json` `engines` (v6.10).
+* Added a Travis readme badge.
+
 ## 2.1.0
 
 * Updated dependencies.
