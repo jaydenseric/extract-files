@@ -39,7 +39,7 @@ export function extractFiles(tree, treePath = '') {
 
         // Delete the file. Array items must be deleted without reindexing to
         // allow repopulation in a reverse operation.
-        delete node[key]
+        node[key] = null
 
         // No further checks or recursion.
         return

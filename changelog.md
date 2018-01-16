@@ -1,5 +1,9 @@
 # extract-files changelog
 
+## Next
+
+* Replace extracted files with `null` instead of deletion, fixing [#4](https://github.com/jaydenseric/extract-files/issues/4).
+
 ## 2.1.1
 
 * Setup Travis to test using the latest stable Node.js version and the oldest supported in `package.json` `engines` (v6.10).

@@ -21,7 +21,8 @@ function mock() {
     modifiedTree: {
       a: null,
       b: {
-        bb: [undefined, undefined]
+        ba: null,
+        bb: [null, null]
       },
       c: {
         ca: '',
