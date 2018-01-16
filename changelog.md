@@ -2,6 +2,7 @@
 
 ## Next
 
+* Updated dependencies.
 * Replace extracted files with `null` instead of deletion, fixing [#4](https://github.com/jaydenseric/extract-files/issues/4).
 
 ## 2.1.1
