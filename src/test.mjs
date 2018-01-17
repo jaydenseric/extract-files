@@ -1,5 +1,5 @@
 import test from 'ava'
-import { isObject, extractFiles, ReactNativeFile } from '.'
+import extractFiles, { isObject, ReactNativeFile } from '.'
 
 function mock() {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })

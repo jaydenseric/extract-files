@@ -19,7 +19,7 @@ npm install extract-files
 `extractFiles` accepts a tree object to extract files from, along with an optional tree path to prefix file paths:
 
 ```js
-import { extractFiles } from 'extract-files'
+import extractFiles from 'extract-files'
 import tree from './tree'
 
 const files = extractFiles(tree, 'tree')
@@ -47,7 +47,7 @@ Extracted files are an array:
 React Native [polyfills FormData](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js) under the hood and objects with the properties `uri`, `type` and `name` substitute `window.File`. It would be risky to assume all objects with those properties in a tree are files. Use `ReactNativeFile` instances within a tree to explicitly mark files:
 
 ```js
-import { extractFiles, ReactNativeFile } from 'extract-files'
+import extractFiles, { ReactNativeFile } from 'extract-files'
 
 const tree = {
   singleFile: new ReactNativeFile({
@@ -77,7 +77,7 @@ const files = extractFiles(tree)
 `object-path` can be used to loop and reinsert the extracted files:
 
 ```js
-import { extractFiles } from 'extract-files'
+import extractFiles from 'extract-files'
 import objectPath from 'object-path'
 import tree from './tree'
 

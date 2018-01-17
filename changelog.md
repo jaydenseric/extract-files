@@ -3,6 +3,7 @@
 ## Next
 
 * Updated dependencies.
+* The `extractFiles` function is now the default export.
 * Replace extracted files with `null` instead of deletion, fixing [#4](https://github.com/jaydenseric/extract-files/issues/4).
 * Simplified npm scripts.
 

@@ -18,7 +18,7 @@ export const isObject = node => typeof node === 'object' && node !== null
  * @param {string} [treePath=''] - Optional tree path to prefix file paths.
  * @returns {ExtractedFile[]} Extracted files.
  */
-export function extractFiles(tree, treePath = '') {
+export default function extractFiles(tree, treePath = '') {
   const files = []
   const recurse = (node, nodePath) => {
     // Iterate enumerable properties of the node.
