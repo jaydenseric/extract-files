@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 3.0.0
 
 * Updated dependencies.
 * The `extractFiles` function is now the default export.
