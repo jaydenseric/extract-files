@@ -2,9 +2,9 @@
 
 [![npm version](https://img.shields.io/npm/v/extract-files.svg)](https://npm.im/extract-files) ![Licence](https://img.shields.io/npm/l/extract-files.svg) [![Github issues](https://img.shields.io/github/issues/jaydenseric/extract-files.svg)](https://github.com/jaydenseric/extract-files/issues) [![Github stars](https://img.shields.io/github/stars/jaydenseric/extract-files.svg)](https://github.com/jaydenseric/extract-files/stargazers) [![Travis status](https://img.shields.io/travis/jaydenseric/extract-files.svg)](https://travis-ci.org/jaydenseric/extract-files)
 
-Reversibly extracts files from an object tree.
+Reversibly extracts files from a tree object.
 
-Files are extracted along with their object path to allow reassembly. Extracted files are removed from the tree. Array item files are removed without reindexing the array to simplify reassembly.
+Files are extracted along with their object path to allow reassembly and are replaced with `null` in the original tree.
 
 Files may be [`File`](https://developer.mozilla.org/en/docs/Web/API/File) and [`ReactNativeFile`](https://github.com/jaydenseric/extract-files#react-native) instances. [`FileList`](https://developer.mozilla.org/en/docs/Web/API/FileList) instances are converted to arrays and the items are extracted as `File` instances.
 
@@ -12,11 +12,11 @@ Files may be [`File`](https://developer.mozilla.org/en/docs/Web/API/File) and [`
 
 Install with [npm](https://npmjs.com):
 
-```
+```shell
 npm install extract-files
 ```
 
-`extractFiles` accepts an object tree to extract files from, along with an optional tree path to prefix file paths:
+`extractFiles` accepts a tree object to extract files from, along with an optional tree path to prefix file paths:
 
 ```js
 import { extractFiles } from 'extract-files'
@@ -40,7 +40,7 @@ Extracted files are an array:
 }]
 ```
 
-`extractFiles` will return an empty array if the object tree is `null` or not an object. The top tree node must not be a file.
+`extractFiles` will return an empty array if the tree is not an object or `null`. The tree itself must not be a file.
 
 ### React Native
 
@@ -69,7 +69,7 @@ const tree = {
   ])
 }
 
-const files = extractFiles(tree, 'tree')
+const files = extractFiles(tree)
 ```
 
 ### Reassembly
@@ -81,7 +81,7 @@ import { extractFiles } from 'extract-files'
 import objectPath from 'object-path'
 import tree from './tree'
 
-const files = extractFiles(tree, 'tree')
+const files = extractFiles(tree)
 const treePath = objectPath(tree)
 
 files.forEach(({ path, file }) => treePath.set(path, file))
