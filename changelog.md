@@ -1,5 +1,9 @@
 # extract-files changelog
 
+## 3.1.0
+
+* Added support for [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) types.
+
 ## 3.0.0
 
 * Updated dependencies.
