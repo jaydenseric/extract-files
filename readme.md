@@ -6,7 +6,7 @@ Reversibly extracts files from a tree object.
 
 Files are extracted along with their object path to allow reassembly and are replaced with `null` in the original tree.
 
-Files may be [`File`](https://developer.mozilla.org/en/docs/Web/API/File), [`Blob`]('https://developer.mozilla.org/en/docs/Web/API/Blob') and [`ReactNativeFile`](https://github.com/jaydenseric/extract-files#react-native) instances. [`FileList`](https://developer.mozilla.org/en/docs/Web/API/FileList) instances are converted to arrays and the items are extracted as `File` instances.
+Files may be [`File`](https://developer.mozilla.org/en/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) and [`ReactNativeFile`](https://github.com/jaydenseric/extract-files#react-native) instances. [`FileList`](https://developer.mozilla.org/en/docs/Web/API/FileList) instances are converted to arrays and the items are extracted as `File` instances.
 
 ## Usage
 
