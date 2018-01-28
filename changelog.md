@@ -2,6 +2,7 @@
 
 ## Next
 
+* Updated dependencies.
 * Added support for [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) types.
 
 ## 3.0.0
