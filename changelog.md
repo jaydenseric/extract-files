@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 3.1.0
 
 * Updated dependencies.
 * Added support for [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) types, via [#5](https://github.com/jaydenseric/extract-files/pull/5).
