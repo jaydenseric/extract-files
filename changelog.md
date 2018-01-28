@@ -3,7 +3,7 @@
 ## Next
 
 * Updated dependencies.
-* Added support for [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) types.
+* Added support for [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) types, via [#5](https://github.com/jaydenseric/extract-files/pull/5).
 
 ## 3.0.0
 
