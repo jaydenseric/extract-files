@@ -4,12 +4,13 @@
 
 ### Minor
 
-- Refactored package scripts to use `prepare` to support installation via Git (e.g. `npm install jaydenseric/extract-files`).
 - Updated Babel, removing the `@babel/runtime` dependency.
+- Refactored package scripts to use `prepare` to support installation via Git (e.g. `npm install jaydenseric/extract-files`).
 
 ### Patch
 
 - Use [`tap`](https://npm.im/tap) instead of [`ava`](https://npm.im/ava). Tests no longer transpile on the fly, are faster and AVA no longer dictates the Babel version.
+- Added a package `test:size` script, using [`size-limit`](https://npm.im/size-limit) to guarantee < 500 byte ESM and CJS bundle sizes.
 - Removed the package clean script `rimraf` dev dependency in favour of native `rm -rf`.
 - Removed the package `fix` script.
 - Renamed the `MODULE` environment variable to `BABEL_ESM` to be more specific for the package `prepare:mjs` script.
