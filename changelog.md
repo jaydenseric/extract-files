@@ -8,6 +8,7 @@
 
 ### Patch
 
+- Use [`tap`](https://npm.im/tap) instead of [`ava`](https://npm.im/ava). Tests no longer transpile on the fly, are faster and AVA no longer dictates the Babel version.
 - Removed the package clean script `rimraf` dev dependency in favour of native `rm -rf`.
 - Removed the package `fix` script.
 - Renamed the `MODULE` environment variable to `BABEL_ESM` to be more specific for the package `prepare:mjs` script.

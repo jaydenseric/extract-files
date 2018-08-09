@@ -1,4 +1,4 @@
-import test from 'ava'
+import t from 'tap'
 import extractFiles, { isObject, ReactNativeFile } from '.'
 
 // eslint-disable-next-line require-jsdoc
@@ -35,20 +35,22 @@ function mock() {
   }
 }
 
-test('isObject identifies an enumerable object.', t => {
+t.test('isObject identifies an enumerable object.', t => {
   t.false(isObject(null))
   t.false(isObject(true))
   t.false(isObject(''))
   t.true(isObject({ foo: true }))
   t.true(isObject(['foo']))
+  t.end()
 })
 
-test('extractFiles handles a non-object tree.', t => {
+t.test('extractFiles handles a non-object tree.', t => {
   t.deepEqual(extractFiles(undefined), [])
   t.deepEqual(extractFiles(null), [])
+  t.end()
 })
 
-test('extractFiles extracts files from an object tree.', t => {
+t.test('extractFiles extracts files from an object tree.', t => {
   const { file, originalTree, modifiedTree } = mock()
   const files = extractFiles(originalTree)
 
@@ -67,25 +69,32 @@ test('extractFiles extracts files from an object tree.', t => {
     ],
     'Should return an array of the extracted files.'
   )
+
+  t.end()
 })
 
-test('extractFiles with a tree path extracts files from an object tree.', t => {
-  const { file, originalTree, modifiedTree } = mock()
-  const files = extractFiles(originalTree, 'treepath')
+t.test(
+  'extractFiles with a tree path extracts files from an object tree.',
+  t => {
+    const { file, originalTree, modifiedTree } = mock()
+    const files = extractFiles(originalTree, 'treepath')
 
-  t.deepEqual(
-    originalTree,
-    modifiedTree,
-    'Extracted files should be removed from the original object tree.'
-  )
+    t.deepEqual(
+      originalTree,
+      modifiedTree,
+      'Extracted files should be removed from the original object tree.'
+    )
 
-  t.deepEqual(
-    files,
-    [
-      { path: 'treepath.b.ba', file },
-      { path: 'treepath.b.bb.0', file },
-      { path: 'treepath.b.bb.1', file }
-    ],
-    'Should return an array of the extracted files.'
-  )
-})
+    t.deepEqual(
+      files,
+      [
+        { path: 'treepath.b.ba', file },
+        { path: 'treepath.b.bb.0', file },
+        { path: 'treepath.b.bb.1', file }
+      ],
+      'Should return an array of the extracted files.'
+    )
+
+    t.end()
+  }
+)
