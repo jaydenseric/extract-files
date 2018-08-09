@@ -2,6 +2,7 @@
 
 ## Next
 
+- Use [`eslint-config-env`](https://npm.im/eslint-config-env).
 - Use `.prettierignore` to leave `package.json` formatting to npm.
 - Compact package `repository` field.
 - HTTPS package author URL.
