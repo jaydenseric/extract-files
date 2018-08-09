@@ -1,6 +1,6 @@
 # extract-files
 
-[![npm version](https://img.shields.io/npm/v/extract-files.svg)](https://npm.im/extract-files) ![Licence](https://img.shields.io/npm/l/extract-files.svg) [![Github issues](https://img.shields.io/github/issues/jaydenseric/extract-files.svg)](https://github.com/jaydenseric/extract-files/issues) [![Github stars](https://img.shields.io/github/stars/jaydenseric/extract-files.svg)](https://github.com/jaydenseric/extract-files/stargazers) [![Travis status](https://img.shields.io/travis/jaydenseric/extract-files.svg)](https://travis-ci.org/jaydenseric/extract-files)
+[![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![Build status](https://travis-ci.org/jaydenseric/extract-files.svg?branch=master)](https://travis-ci.org/jaydenseric/extract-files)
 
 Reversibly extracts files from a tree object.
 
