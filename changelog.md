@@ -10,6 +10,7 @@
 
 - Removed the package clean script `rimraf` dev dependency in favour of native `rm -rf`.
 - Removed the package `fix` script.
+- Renamed the `MODULE` environment variable to `BABEL_ESM` to be more specific for the package `prepare:mjs` script.
 - Lint `.json`, `.yml` and `.md` files.
 - Use `.prettierignore` to leave `package.json` formatting to npm.
 - Use [`eslint-config-env`](https://npm.im/eslint-config-env).

@@ -12,7 +12,7 @@ module.exports = {
           node: node.substring(2) // Strip `>=`
         },
         shippedProposals: true,
-        modules: process.env.MODULE ? false : 'commonjs',
+        modules: process.env.BABEL_ESM ? false : 'commonjs',
         useBuiltIns: 'usage',
         loose: true
       }

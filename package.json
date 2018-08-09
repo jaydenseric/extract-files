@@ -50,7 +50,7 @@
   "scripts": {
     "prepare": "npm run prepare:clean && npm run prepare:mjs && npm run prepare:js && npm run prepare:prettier",
     "prepare:clean": "rm -rf lib",
-    "prepare:mjs": "MODULE=true babel src -d lib --keep-file-extension",
+    "prepare:mjs": "BABEL_ESM=1 babel src -d lib --keep-file-extension",
     "prepare:js": "babel src -d lib",
     "prepare:prettier": "prettier 'lib/**/*.{mjs,js}' --write",
     "test": "npm run test:eslint && npm run test:prettier && npm run test:ava",
