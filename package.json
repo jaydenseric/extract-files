@@ -36,12 +36,12 @@
     "@babel/plugin-transform-runtime": "^7.0.0-beta.38",
     "@babel/preset-env": "^7.0.0-beta.38",
     "ava": "^0.25.0",
-    "babel-eslint": "^8.2.1",
-    "eslint": "^4.16.0",
-    "eslint-plugin-prettier": "^2.5.0",
+    "babel-eslint": "^8.2.6",
+    "eslint": "^5.3.0",
+    "eslint-plugin-prettier": "^2.6.2",
     "husky": "^0.14.3",
-    "lint-staged": "^6.1.0",
-    "prettier": "^1.10.2",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.14.2",
     "rimraf": "^2.6.2"
   },
   "scripts": {
