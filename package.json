@@ -48,12 +48,12 @@
     "tap": "^12.0.1"
   },
   "scripts": {
-    "prepare": "npm run prepare:clean && npm run prepare:mjs & npm run prepare:js; wait && npm run prepare:prettier",
+    "prepare": "npm run prepare:clean && npm run prepare:mjs && npm run prepare:js && npm run prepare:prettier",
     "prepare:clean": "rm -rf lib",
     "prepare:mjs": "BABEL_ESM=1 babel src -d lib --keep-file-extension",
     "prepare:js": "babel src -d lib",
     "prepare:prettier": "prettier 'lib/**/*.{mjs,js}' --write",
-    "test": "npm run test:eslint & npm run test:prettier & npm run test:size & npm run test:mjs & npm run test:js; wait",
+    "test": "npm run test:eslint && npm run test:prettier && npm run test:size && npm run test:mjs && npm run test:js",
     "test:eslint": "eslint . --ext mjs,js",
     "test:prettier": "prettier '**/*.{json,yml,md}' -l",
     "test:size": "size-limit",
