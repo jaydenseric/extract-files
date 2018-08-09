@@ -4,6 +4,7 @@
 
 * Use `.prettierignore` to leave `package.json` formatting to npm.
 * Compact package `repository` field.
+* HTTPS package author URL.
 
 ## 3.1.0
 
