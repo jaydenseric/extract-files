@@ -3,6 +3,7 @@
 ## Next
 
 * Use `.prettierignore` to leave `package.json` formatting to npm.
+* Compact package `repository` field.
 
 ## 3.1.0
 
