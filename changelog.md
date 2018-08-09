@@ -8,7 +8,8 @@
 
 ### Patch
 
-- Removed package `fix` script.
+- Removed the package clean script `rimraf` dev dependency in favour of native `rm -rf`.
+- Removed the package `fix` script.
 - Lint `.json`, `.yml` and `.md` files.
 - Use `.prettierignore` to leave `package.json` formatting to npm.
 - Use [`eslint-config-env`](https://npm.im/eslint-config-env).
