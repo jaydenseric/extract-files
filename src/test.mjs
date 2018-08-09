@@ -1,6 +1,7 @@
 import test from 'ava'
 import extractFiles, { isObject, ReactNativeFile } from '.'
 
+// eslint-disable-next-line require-jsdoc
 function mock() {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
   return {

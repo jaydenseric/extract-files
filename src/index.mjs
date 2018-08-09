@@ -1,7 +1,7 @@
 /**
  * Checks a node is an enumerable object.
  * @param {*} node - A node to check.
- * @returns {Boolean} Is the node an enumerable object.
+ * @returns {boolean} Is the node an enumerable object.
  */
 export const isObject = node => typeof node === 'object' && node !== null
 
@@ -14,12 +14,18 @@ export const isObject = node => typeof node === 'object' && node !== null
 
 /**
  * Reversibly extracts files from an object tree.
- * @param {object} tree - An object tree to extract files from.
+ * @param {Object} tree - An object tree to extract files from.
  * @param {string} [treePath=''] - Optional tree path to prefix file paths.
  * @returns {ExtractedFile[]} Extracted files.
  */
 export default function extractFiles(tree, treePath = '') {
   const files = []
+
+  /**
+   * Recursively extracts files from a tree node.
+   * @param {Object} node Object tree node.
+   * @param {string} nodePath Object tree path.
+   */
   const recurse = (node, nodePath) => {
     // Iterate enumerable properties of the node.
     Object.keys(node).forEach(key => {
@@ -78,18 +84,16 @@ export default function extractFiles(tree, treePath = '') {
 
 /**
  * A React Native file.
+ * @param {ReactNativeFileObject} file A React Native FormData file object.
+ * @example
+ * const file = new ReactNativeFile({
+ *  uri: uriFromCameraRoll,
+ *  type: 'image/jpeg',
+ *  name: 'photo.jpg'
+ * })
  */
 export class ReactNativeFile {
-  /**
-   * Constructs a new file.
-   * @param {ReactNativeFileObject} file
-   * @example
-   * const file = new ReactNativeFile({
-   *  uri: uriFromCameraRoll,
-   *  type: 'image/jpeg',
-   *  name: 'photo.jpg'
-   * })
-   */
+  // eslint-disable-next-line require-jsdoc
   constructor({ uri, type, name }) {
     this.uri = uri
     this.type = type
@@ -97,8 +101,9 @@ export class ReactNativeFile {
   }
 
   /**
-   * Creates an array of file instances.
-   * @param {ReactNativeFileObject[]} files
+   * Creates an array of React Native file instances.
+   * @param {ReactNativeFileObject[]} files React Native FormData file objects.
+   * @returns {ReactNativeFile[]} Array of React Native file instances.
    * @example
    * const files = ReactNativeFile.list([{
    *   uri: uriFromCameraRoll1,
