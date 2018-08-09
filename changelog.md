@@ -1,5 +1,9 @@
 # extract-files changelog
 
+## Next
+
+* Use `.prettierignore` to leave `package.json` formatting to npm.
+
 ## 3.1.0
 
 * Updated dependencies.
