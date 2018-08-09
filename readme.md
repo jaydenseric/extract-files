@@ -91,6 +91,6 @@ files.forEach(({ path, file }) => treePath.set(path, file))
 
 ## Support
 
-* Node.js v6.10+, see `package.json` `engines`.
-* [Browsers >1% usage](http://browserl.ist/?q=%3E1%25), see `package.json` `browserslist`.
-* React Native.
+- Node.js v6.10+, see `package.json` `engines`.
+- [Browsers >1% usage](http://browserl.ist/?q=%3E1%25), see `package.json` `browserslist`.
+- React Native.
