@@ -5,6 +5,7 @@
 ### Minor
 
 - Refactored package scripts to use `prepare` to support installation via Git (e.g. `npm install jaydenseric/extract-files`).
+- Updated Babel, removing the `@babel/runtime` dependency.
 
 ### Patch
 

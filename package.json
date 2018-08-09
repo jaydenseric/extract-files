@@ -26,15 +26,11 @@
     "node": ">=6.10"
   },
   "browserslist": ">1%",
-  "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.38"
-  },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.38",
-    "@babel/core": "^7.0.0-beta.38",
-    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.38",
-    "@babel/plugin-transform-runtime": "^7.0.0-beta.38",
-    "@babel/preset-env": "^7.0.0-beta.38",
+    "@babel/cli": "^7.0.0-beta.56",
+    "@babel/core": "^7.0.0-beta.56",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.56",
+    "@babel/preset-env": "^7.0.0-beta.56",
     "babel-eslint": "^8.2.6",
     "eslint": "^5.3.0",
     "eslint-config-env": "^1.0.0",
@@ -65,7 +61,6 @@
     "*.{json,yml,md}": "prettier -l"
   },
   "eslintIgnore": [
-    "!.babelrc.js",
     "lib"
   ],
   "eslintConfig": {
