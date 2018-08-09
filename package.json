@@ -14,7 +14,9 @@
   "keywords": [
     "extract",
     "file",
-    "files"
+    "files",
+    "esm",
+    "mjs"
   ],
   "files": [
     "lib",

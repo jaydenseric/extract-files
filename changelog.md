@@ -20,6 +20,7 @@
 - Use [`eslint-config-env`](https://npm.im/eslint-config-env).
 - Compact package `repository` field.
 - HTTPS package author URL.
+- Added package keywords.
 - Replaced [shields.io](https://shields.io) readme badges with:
   - A [Badgen](https://badgen.net) npm version badge.
   - An official Travis badge that only tracks `master` branch.
