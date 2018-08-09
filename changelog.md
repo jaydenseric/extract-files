@@ -2,8 +2,16 @@
 
 ## Next
 
-- Use [`eslint-config-env`](https://npm.im/eslint-config-env).
+### Minor
+
+- Refactored package scripts to use `prepare` to support installation via Git (e.g. `npm install jaydenseric/extract-files`).
+
+### Patch
+
+- Removed package `fix` script.
+- Lint `.json`, `.yml` and `.md` files.
 - Use `.prettierignore` to leave `package.json` formatting to npm.
+- Use [`eslint-config-env`](https://npm.im/eslint-config-env).
 - Compact package `repository` field.
 - HTTPS package author URL.
 

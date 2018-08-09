@@ -49,18 +49,21 @@
     "rimraf": "^2.6.2"
   },
   "scripts": {
-    "build": "rimraf lib && npm run build:js && npm run build:mjs && prettier --write 'lib/**/*.{js,mjs}'",
-    "build:js": "babel src --out-dir lib",
-    "build:mjs": "MODULE=true babel src --out-dir lib --keep-file-extension",
-    "lint": "eslint . --ext js,mjs",
-    "fix": "npm run lint -- --fix && prettier --write '**/*.md'",
-    "pretest": "npm run lint && npm run build",
-    "test": "ava lib/test.js --serial --verbose",
-    "precommit": "lint-staged",
-    "prepublishOnly": "npm run test"
+    "prepare": "npm run prepare:clean && npm run prepare:mjs && npm run prepare:js && npm run prepare:prettier",
+    "prepare:clean": "rimraf lib",
+    "prepare:mjs": "MODULE=true babel src -d lib --keep-file-extension",
+    "prepare:js": "babel src -d lib",
+    "prepare:prettier": "prettier 'lib/**/*.{mjs,js}' --write",
+    "test": "npm run test:eslint && npm run test:prettier && npm run test:ava",
+    "test:eslint": "eslint . --ext mjs,js",
+    "test:prettier": "prettier '**/*.{json,yml,md}' -l",
+    "test:ava": "ava lib/test.js --serial --verbose",
+    "prepublishOnly": "npm run prepare && npm test",
+    "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*.mjs": "eslint"
+    "*.{mjs,js}": "eslint",
+    "*.{json,yml,md}": "prettier -l"
   },
   "eslintIgnore": [
     "!.babelrc.js",
@@ -73,7 +76,7 @@
   },
   "prettier": {
     "proseWrap": "never",
-    "semi": false,
-    "singleQuote": true
+    "singleQuote": true,
+    "semi": false
   }
 }
