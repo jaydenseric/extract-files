@@ -43,14 +43,12 @@ files.forEach(({ path, file }) => treePath.set(path, file))
 
 - [class ReactNativeFile](#class-reactnativefile)
   - [Examples](#examples)
-  - [ReactNativeFile instance method list](#reactnativefile-instance-method-list)
-    - [Examples](#examples-1)
 - [function extractFiles](#function-extractfiles)
-  - [Examples](#examples-2)
+  - [Examples](#examples-1)
 - [type ExtractedFile](#type-extractedfile)
 - [type ObjectPath](#type-objectpath)
   - [See](#see)
-  - [Examples](#examples-3)
+  - [Examples](#examples-2)
 - [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
   - [See](#see-1)
 
@@ -72,35 +70,6 @@ _An extractable file in React Native._
 >   name: 'a.jpg',
 >   type: 'image/jpeg'
 > })
-> ```
-
-#### ReactNativeFile instance method list
-
-Creates an array of [`ReactNativeFile`](#class-reactnativefile) instances.
-
-| Parameter | Type                                                                                                                                              | Description                    |
-| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------- |
-| `files`   | [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ReactNativeFileSubstitute](#type-reactnativefilesubstitute)> | React Native file substitutes. |
-
-**Returns:** [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ReactNativeFile](#class-reactnativefile)> — Array of React Native files.
-
-##### Examples
-
-_Bulk [`ReactNativeFile`](#class-reactnativefile) creation._
-
-> ```js
-> const files = ReactNativeFile.list([
->   {
->     uri: uriFromCameraRollA,
->     name: 'a.jpg',
->     type: 'image/jpeg'
->   },
->   {
->     uri: uriFromCameraRollB,
->     name: 'b.jpg',
->     type: 'image/jpeg'
->   }
-> ])
 > ```
 
 ### function extractFiles

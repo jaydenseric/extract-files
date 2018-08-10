@@ -165,28 +165,4 @@ export class ReactNativeFile {
     this.name = name
     this.type = type
   }
-
-  /**
-   * Creates an array of [`ReactNativeFile`]{@link ReactNativeFile} instances.
-   * @kind function
-   * @name ReactNativeFile#list
-   * @param {ReactNativeFileSubstitute[]} files React Native file substitutes.
-   * @returns {ReactNativeFile[]} Array of React Native files.
-   * @example <caption>Bulk [`ReactNativeFile`]{@link ReactNativeFile} creation.</caption>
-   * ```js
-   * const files = ReactNativeFile.list([
-   *   {
-   *     uri: uriFromCameraRollA,
-   *     name: 'a.jpg',
-   *     type: 'image/jpeg'
-   *   },
-   *   {
-   *     uri: uriFromCameraRollB,
-   *     name: 'b.jpg',
-   *     type: 'image/jpeg'
-   *   }
-   * ])
-   * ```
-   */
-  static list = files => files.map(file => new ReactNativeFile(file))
 }

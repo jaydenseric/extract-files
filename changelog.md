@@ -2,6 +2,10 @@
 
 ## Next
 
+### Major
+
+- Removed the `ReactNativeFile` static function `list`. It added surface area to the API and is easy to do manually anyway.
+
 ### Minor
 
 - Updated Babel, removing the `@babel/runtime` dependency.
