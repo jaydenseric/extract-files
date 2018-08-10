@@ -9,6 +9,7 @@
 
 ### Patch
 
+- Use [`jsdoc-md`](https://npm.im/jsdoc-md) to generate readme API docs from source JSDoc, which has been much improved.
 - Use [`tap`](https://npm.im/tap) instead of [`ava`](https://npm.im/ava). Tests no longer transpile on the fly, are faster and AVA no longer dictates the Babel version.
 - Tests run against the actual dist `.mjs` and `.js` files in both native ESM (`--experimental-modules`) and CJS environments.
 - Added a package `test:size` script, using [`size-limit`](https://npm.im/size-limit) to guarantee < 500 byte ESM and CJS bundle sizes.

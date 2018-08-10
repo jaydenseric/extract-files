@@ -2,11 +2,7 @@
 
 [![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![Build status](https://travis-ci.org/jaydenseric/extract-files.svg?branch=master)](https://travis-ci.org/jaydenseric/extract-files)
 
-Reversibly extracts files from a tree object.
-
-Files are extracted along with their object path to allow reassembly and are replaced with `null` in the original tree.
-
-Files may be [`File`](https://developer.mozilla.org/en/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) and [`ReactNativeFile`](https://github.com/jaydenseric/extract-files#react-native) instances. [`FileList`](https://developer.mozilla.org/en/docs/Web/API/FileList) instances are converted to arrays and the items are extracted as `File` instances.
+Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances, with [object paths](#type-objectpath), from an object tree and replaces them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
 
 ## Usage
 
@@ -16,65 +12,11 @@ Install with [npm](https://npmjs.com):
 npm install extract-files
 ```
 
-`extractFiles` accepts a tree object to extract files from, along with an optional tree path to prefix file paths:
-
-```js
-import extractFiles from 'extract-files'
-import tree from './tree'
-
-const files = extractFiles(tree, 'tree')
-```
-
-Extracted files are an array:
-
-```js
-[{
-  path: 'tree.foo',
-  file: /* File or Blob instance */
-}, {
-  path: 'tree.bar.0',
-  file: /* File or Blob instance */
-}, {
-  path: 'tree.bar.1',
-  file: /* File or Blob instance */
-}]
-```
-
-`extractFiles` will return an empty array if the tree is not an object or `null`. The tree itself must not be a file.
-
-### React Native
-
-React Native [polyfills FormData](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js) under the hood and objects with the properties `uri`, `type` and `name` substitute `window.File`. It would be risky to assume all objects with those properties in a tree are files. Use `ReactNativeFile` instances within a tree to explicitly mark files:
-
-```js
-import extractFiles, { ReactNativeFile } from 'extract-files'
-
-const tree = {
-  singleFile: new ReactNativeFile({
-    uri: uriFromCameraRoll,
-    type: 'image/jpeg',
-    name: 'photo.jpg'
-  }),
-  multipleFiles: ReactNativeFile.list([
-    {
-      uri: uriFromCameraRoll1,
-      type: 'image/jpeg',
-      name: 'photo-1.jpg'
-    },
-    {
-      uri: uriFromCameraRoll2,
-      type: 'image/jpeg',
-      name: 'photo-2.jpg'
-    }
-  ])
-}
-
-const files = extractFiles(tree)
-```
+See the [`extractFiles`](#function-extractfiles) documentation to get started.
 
 ### Reassembly
 
-`object-path` can be used to loop and reinsert the extracted files:
+Loop and reinsert the extracted files using [`object-path`](https://npm.im/object-path):
 
 ```js
 import extractFiles from 'extract-files'
@@ -87,10 +29,162 @@ const treePath = objectPath(tree)
 files.forEach(({ path, file }) => treePath.set(path, file))
 ```
 
-`FileList` instances in an original tree become arrays when reassembled.
+[`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances in the original tree become [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays when reassembled.
 
 ## Support
 
-- Node.js v6.10+, see `package.json` `engines`.
-- [Browsers >1% usage](http://browserl.ist/?q=%3E1%25), see `package.json` `browserslist`.
-- React Native.
+- Node.js v6.10+
+- [Browsers >1% usage](http://browserl.ist/?q=%3E1%25)
+- React Native
+
+## API
+
+### Table of contents
+
+- [class ReactNativeFile](#class-reactnativefile)
+  - [Examples](#examples)
+  - [ReactNativeFile instance method list](#reactnativefile-instance-method-list)
+    - [Examples](#examples-1)
+- [function extractFiles](#function-extractfiles)
+  - [Examples](#examples-2)
+- [type ExtractedFile](#type-extractedfile)
+- [type ObjectPath](#type-objectpath)
+  - [See](#see)
+  - [Examples](#examples-3)
+- [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
+  - [See](#see-1)
+
+### class ReactNativeFile
+
+Used to mark a [React Native `window.File` substitute](#type-reactnativefilesubstitute) in an object tree for [`extractFiles`](#function-extractfiles). It’s too risky to assume all objects with `uri`, `type` and `name` properties are files to extract.
+
+| Parameter | Type                                                         | Description                     |
+| :-------- | :----------------------------------------------------------- | :------------------------------ |
+| `file`    | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A React Native file substitute. |
+
+#### Examples
+
+_An extractable file in React Native._
+
+> ```js
+> const file = new ReactNativeFile({
+>   uri: uriFromCameraRoll,
+>   name: 'a.jpg',
+>   type: 'image/jpeg'
+> })
+> ```
+
+#### ReactNativeFile instance method list
+
+Creates an array of [`ReactNativeFile`](#class-reactnativefile) instances.
+
+| Parameter | Type                                                                                                                                              | Description                    |
+| :-------- | :------------------------------------------------------------------------------------------------------------------------------------------------ | :----------------------------- |
+| `files`   | [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ReactNativeFileSubstitute](#type-reactnativefilesubstitute)> | React Native file substitutes. |
+
+**Returns:** [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ReactNativeFile](#class-reactnativefile)> — Array of React Native files.
+
+##### Examples
+
+_Bulk [`ReactNativeFile`](#class-reactnativefile) creation._
+
+> ```js
+> const files = ReactNativeFile.list([
+>   {
+>     uri: uriFromCameraRollA,
+>     name: 'a.jpg',
+>     type: 'image/jpeg'
+>   },
+>   {
+>     uri: uriFromCameraRollB,
+>     name: 'b.jpg',
+>     type: 'image/jpeg'
+>   }
+> ])
+> ```
+
+### function extractFiles
+
+Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances from an object tree along with their object paths and replaces them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are converted to `File` instance arrays.
+
+| Parameter  | Type                                                                                       | Description                                                               |
+| :--------- | :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------ |
+| `tree`     | [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)         | An object tree to extract files from. The tree itself must not be a file. |
+| `treePath` | [string](https://developer.mozilla.org/javascript/reference/global_objects/string)? = `''` | Optional object tree path to prefix file paths.                           |
+
+**Returns:** [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ExtractedFile](#type-extractedfile)> — Extracted files or an empty array if the tree is not an enumerable object.
+
+#### Examples
+
+_Extracting files._
+
+> The following:
+>
+> ```js
+> import extractFiles from 'extract-files'
+>
+> console.log(
+>   extractFiles(
+>     {
+>       a: new File(['a'], 'a.txt', { type: 'text/plain' }),
+>       b: {
+>         c: [new File(['b'], 'b.txt', { type: 'text/plain' })]
+>       }
+>     },
+>     'prefix'
+>   )
+> )
+> ```
+>
+> Logs:
+>
+>     [{
+>       path: 'prefix.a',
+>       file: [object File]
+>     }, {
+>       path: 'prefix.b.c.0',
+>       file: [object File]
+>     }]
+
+### type ExtractedFile
+
+An extracted file.
+
+**Type:** [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)
+
+| Property | Type                                                      | Description                                          |
+| :------- | :-------------------------------------------------------- | :--------------------------------------------------- |
+| `path`   | [ObjectPath](#type-objectpath)                            | Object path to the file in the original object tree. |
+| `file`   | File \| Blob \| [ReactNativeFile](#class-reactnativefile) | The extracted file.                                  |
+
+### type ObjectPath
+
+String notation for the path to a node in an object tree.
+
+**Type:** [String](https://developer.mozilla.org/javascript/reference/global_objects/string)
+
+#### See
+
+- [`object-path` on npm](https://npm.im/object-path).
+
+#### Examples
+
+_Object path is property `a`, array index `0`, object property `b`._
+
+>     a.0.b
+
+### type ReactNativeFileSubstitute
+
+A React Native `window.File` substitute when using `FormData`.
+
+**Type:** [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)
+
+| Property | Type                                                                                | Description        |
+| :------- | :---------------------------------------------------------------------------------- | :----------------- |
+| `uri`    | [String](https://developer.mozilla.org/javascript/reference/global_objects/string)  | Filesystem path.   |
+| `name`   | [String](https://developer.mozilla.org/javascript/reference/global_objects/string)? | File name.         |
+| `type`   | [String](https://developer.mozilla.org/javascript/reference/global_objects/string)? | File content type. |
+
+#### See
+
+- [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js#L34).

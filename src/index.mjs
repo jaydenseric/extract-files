@@ -1,30 +1,98 @@
 /**
- * Checks a node is an enumerable object.
- * @param {*} node - A node to check.
- * @returns {boolean} Is the node an enumerable object.
- */
-export const isObject = node => typeof node === 'object' && node !== null
-
-/**
- * A file extraction.
- * @typedef {Object} ExtractedFile
- * @property {String} path - Original location in the object tree.
- * @property {String} file - The actual file.
+ * A React Native `window.File` substitute when using `FormData`.
+ * @kind typedef
+ * @name ReactNativeFileSubstitute
+ * @type {Object}
+ * @see [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js#L34).
+ * @prop {String} uri Filesystem path.
+ * @prop {String} [name] File name.
+ * @prop {String} [type] File content type.
  */
 
 /**
- * Reversibly extracts files from an object tree.
- * @param {Object} tree - An object tree to extract files from.
- * @param {string} [treePath=''] - Optional tree path to prefix file paths.
- * @returns {ExtractedFile[]} Extracted files.
+ * String notation for the path to a node in an object tree.
+ * @kind typedef
+ * @name ObjectPath
+ * @type {String}
+ * @see [`object-path` on npm](https://npm.im/object-path).
+ * @example <caption>Object path is property `a`, array index `0`, object property `b`.</caption>
+ * ```
+ * a.0.b
+ * ```
+ */
+
+/**
+ * An extracted file.
+ * @kind typedef
+ * @name ExtractedFile
+ * @type {Object}
+ * @prop {ObjectPath} path Object path to the file in the original object tree.
+ * @prop {File|Blob|ReactNativeFile} file The extracted file.
+ */
+
+/**
+ * Checks a value is an enumerable object.
+ * @kind function
+ * @name isObject
+ * @param {*} value A value to check.
+ * @returns {boolean} Is the value an enumerable object.
+ * @ignore
+ */
+export const isObject = value => typeof value === 'object' && value !== null
+
+/**
+ * Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file),
+ * [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and
+ * [`ReactNativeFile`]{@link ReactNativeFile} instances from an object tree
+ * along with their object paths and replaces them with `null`.
+ * [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances
+ * are converted to `File` instance arrays.
+ * @kind function
+ * @name extractFiles
+ * @param {Object} tree An object tree to extract files from. The tree itself must not be a file.
+ * @param {string} [treePath=''] Optional object tree path to prefix file paths.
+ * @returns {ExtractedFile[]} Extracted files or an empty array if the tree is not an enumerable object.
+ * @example <caption>Extracting files.</caption>
+ * The following:
+ *
+ * ```js
+ * import extractFiles from 'extract-files'
+ *
+ * console.log(
+ *   extractFiles(
+ *     {
+ *       a: new File(['a'], 'a.txt', { type: 'text/plain' }),
+ *       b: {
+ *         c: [new File(['b'], 'b.txt', { type: 'text/plain' })]
+ *       }
+ *     },
+ *     'prefix'
+ *   )
+ * )
+ * ```
+ *
+ * Logs:
+ *
+ * ```
+ * [{
+ *   path: 'prefix.a',
+ *   file: [object File]
+ * }, {
+ *   path: 'prefix.b.c.0',
+ *   file: [object File]
+ * }]
+ * ```
  */
 export default function extractFiles(tree, treePath = '') {
   const files = []
 
   /**
-   * Recursively extracts files from a tree node.
+   * Recursively extracts files from an object tree node.
+   * @kind function
+   * @name extractFiles~recurse
    * @param {Object} node Object tree node.
-   * @param {string} nodePath Object tree path.
+   * @param {ObjectPath} nodePath Object tree node path.
+   * @ignore
    */
   const recurse = (node, nodePath) => {
     // Iterate enumerable properties of the node.
@@ -66,7 +134,7 @@ export default function extractFiles(tree, treePath = '') {
     // Recurse object tree.
     recurse(
       tree,
-      // If a tree path was provided, append a dot.
+      // If an object tree path was provided, append a dot.
       treePath === '' ? treePath : `${treePath}.`
     )
 
@@ -74,46 +142,51 @@ export default function extractFiles(tree, treePath = '') {
 }
 
 /**
- * A React Native FormData file object.
- * @see {@link https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js#L34}
- * @typedef {Object} ReactNativeFileObject
- * @property {String} uri - File system path.
- * @property {String} [type] - File content type.
- * @property {String} [name] - File name.
- */
-
-/**
- * A React Native file.
- * @param {ReactNativeFileObject} file A React Native FormData file object.
- * @example
+ * Used to mark a [React Native `window.File` substitute]{@link ReactNativeFileSubstitute}
+ * in an object tree for [`extractFiles`]{@link extractFiles}. It’s too risky to
+ * assume all objects with `uri`, `type` and `name` properties are files to
+ * extract.
+ * @kind class
+ * @name ReactNativeFile
+ * @param {ReactNativeFileSubstitute} file A React Native file substitute.
+ * @example <caption>An extractable file in React Native.</caption>
+ * ```js
  * const file = new ReactNativeFile({
- *  uri: uriFromCameraRoll,
- *  type: 'image/jpeg',
- *  name: 'photo.jpg'
+ *   uri: uriFromCameraRoll,
+ *   name: 'a.jpg',
+ *   type: 'image/jpeg'
  * })
+ * ```
  */
 export class ReactNativeFile {
   // eslint-disable-next-line require-jsdoc
-  constructor({ uri, type, name }) {
+  constructor({ uri, name, type }) {
     this.uri = uri
-    this.type = type
     this.name = name
+    this.type = type
   }
 
   /**
-   * Creates an array of React Native file instances.
-   * @param {ReactNativeFileObject[]} files React Native FormData file objects.
-   * @returns {ReactNativeFile[]} Array of React Native file instances.
-   * @example
-   * const files = ReactNativeFile.list([{
-   *   uri: uriFromCameraRoll1,
-   *   type: 'image/jpeg',
-   *   name: 'photo-1.jpg'
-   * }, {
-   *   uri: uriFromCameraRoll2,
-   *   type: 'image/jpeg',
-   *   name: 'photo-2.jpg'
-   * }])
+   * Creates an array of [`ReactNativeFile`]{@link ReactNativeFile} instances.
+   * @kind function
+   * @name ReactNativeFile#list
+   * @param {ReactNativeFileSubstitute[]} files React Native file substitutes.
+   * @returns {ReactNativeFile[]} Array of React Native files.
+   * @example <caption>Bulk [`ReactNativeFile`]{@link ReactNativeFile} creation.</caption>
+   * ```js
+   * const files = ReactNativeFile.list([
+   *   {
+   *     uri: uriFromCameraRollA,
+   *     name: 'a.jpg',
+   *     type: 'image/jpeg'
+   *   },
+   *   {
+   *     uri: uriFromCameraRollB,
+   *     name: 'b.jpg',
+   *     type: 'image/jpeg'
+   *   }
+   * ])
+   * ```
    */
   static list = files => files.map(file => new ReactNativeFile(file))
 }
