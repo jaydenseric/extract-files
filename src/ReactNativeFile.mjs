@@ -1,5 +1,6 @@
 /**
- * A React Native `File` substitute when using `FormData`.
+ * A React Native [`File`](https://developer.mozilla.org/docs/web/api/file)
+ * substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
  * @kind typedef
  * @name ReactNativeFileSubstitute
  * @type {Object}
@@ -16,7 +17,7 @@
  * extract.
  * @kind class
  * @name ReactNativeFile
- * @param {ReactNativeFileSubstitute} file A React Native file substitute.
+ * @param {ReactNativeFileSubstitute} file A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute.
  * @example <caption>An extractable file in React Native.</caption>
  * ```js
  * import { ReactNativeFile } from 'extract-files'

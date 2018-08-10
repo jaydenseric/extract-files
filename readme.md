@@ -56,9 +56,9 @@ files.forEach(({ path, file }) => treePath.set(path, file))
 
 Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute) in an object tree for [`extractFiles`](#function-extractfiles). It’s too risky to assume all objects with `uri`, `type` and `name` properties are files to extract.
 
-| Parameter | Type                                                         | Description                     |
-| :-------- | :----------------------------------------------------------- | :------------------------------ |
-| `file`    | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A React Native file substitute. |
+| Parameter | Type                                                         | Description                                                                          |
+| :-------- | :----------------------------------------------------------- | :----------------------------------------------------------------------------------- |
+| `file`    | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute. |
 
 #### Examples
 
@@ -148,7 +148,7 @@ _Object path is property `a`, array index `0`, object property `b`._
 
 ### type ReactNativeFileSubstitute
 
-A React Native `File` substitute when using `FormData`.
+A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
 
 **Type:** [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)
 
