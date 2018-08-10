@@ -37,18 +37,18 @@ function mock() {
   }
 }
 
-t.test('isObject identifies an enumerable object.', t => {
-  t.false(isObject(null))
-  t.false(isObject(true))
-  t.false(isObject(''))
-  t.true(isObject({ foo: true }))
-  t.true(isObject(['foo']))
+t.test('isObject only identifies an enumerable object.', t => {
+  t.false(isObject(null), 'Null.')
+  t.false(isObject(true), 'Boolean.')
+  t.false(isObject(''), 'String.')
+  t.true(isObject({ foo: true }), 'Object.')
+  t.true(isObject(['']), 'Array.')
   t.end()
 })
 
 t.test('extractFiles handles a non-object tree.', t => {
-  t.deepEqual(extractFiles(undefined), [])
-  t.deepEqual(extractFiles(null), [])
+  t.deepEqual(extractFiles(undefined), [], 'Undefined.')
+  t.deepEqual(extractFiles(null), [], 'Null.')
   t.end()
 })
 
@@ -59,7 +59,7 @@ t.test('extractFiles extracts files from an object tree.', t => {
   t.deepEqual(
     originalTree,
     modifiedTree,
-    'Extracted files should be removed from the original object tree.'
+    'Files removed from original object tree.'
   )
 
   t.deepEqual(
@@ -69,7 +69,7 @@ t.test('extractFiles extracts files from an object tree.', t => {
       { path: 'b.bb.0', file },
       { path: 'b.bb.1', file }
     ],
-    'Should return an array of the extracted files.'
+    'Returns array of extracted files.'
   )
 
   t.end()
@@ -84,7 +84,7 @@ t.test(
     t.deepEqual(
       originalTree,
       modifiedTree,
-      'Extracted files should be removed from the original object tree.'
+      'Files removed from original object tree.'
     )
 
     t.deepEqual(
@@ -94,7 +94,7 @@ t.test(
         { path: 'treepath.b.bb.0', file },
         { path: 'treepath.b.bb.1', file }
       ],
-      'Should return an array of the extracted files.'
+      'Returns array of extracted files.'
     )
 
     t.end()
