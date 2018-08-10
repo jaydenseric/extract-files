@@ -96,9 +96,11 @@ _Extracting files._
 >   extractFiles(
 >     {
 >       a: new File(['a'], 'a.txt', { type: 'text/plain' }),
->       b: {
->         c: [new File(['b'], 'b.txt', { type: 'text/plain' })]
->       }
+>       b: [
+>         {
+>           c: new File(['b'], 'b.txt', { type: 'text/plain' })
+>         }
+>       ]
 >     },
 >     'prefix'
 >   )
@@ -111,7 +113,7 @@ _Extracting files._
 >       path: 'prefix.a',
 >       file: [object File]
 >     }, {
->       path: 'prefix.b.c.0',
+>       path: 'prefix.b.0.c',
 >       file: [object File]
 >     }]
 
