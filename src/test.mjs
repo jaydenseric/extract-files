@@ -1,5 +1,7 @@
 import t from 'tap'
-import extractFiles, { isObject, ReactNativeFile } from '.'
+import { isObject } from './isObject'
+import { extractFiles } from './extractFiles'
+import { ReactNativeFile } from './ReactNativeFile'
 
 // eslint-disable-next-line require-jsdoc
 function mock() {

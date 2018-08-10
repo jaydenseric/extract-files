@@ -4,7 +4,9 @@
 
 ### Major
 
-- Removed the `ReactNativeFile` static function `list`. It added surface area to the API and is easy to do manually anyway.
+- `extractFiles` is a named export again, and there is no longer a default export; mixed named and default exports causes native ESM and CJS interoperability issues.
+- `isObject` is no longer exported. It was not a documented API anyway.
+- Removed the `ReactNativeFile` static function `list`. It added surface area to the API and bundles and is simple to do manually.
 
 ### Minor
 

@@ -19,7 +19,7 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 Loop and reinsert the extracted files using [`object-path`](https://npm.im/object-path):
 
 ```js
-import extractFiles from 'extract-files'
+import { extractFiles } from 'extract-files'
 import objectPath from 'object-path'
 import tree from './tree'
 
@@ -65,6 +65,8 @@ Used to mark a [React Native `window.File` substitute](#type-reactnativefilesubs
 _An extractable file in React Native._
 
 > ```js
+> import { ReactNativeFile } from 'extract-files'
+>
 > const file = new ReactNativeFile({
 >   uri: uriFromCameraRoll,
 >   name: 'a.jpg',
@@ -90,7 +92,7 @@ _Extracting files._
 > The following:
 >
 > ```js
-> import extractFiles from 'extract-files'
+> import { extractFiles } from 'extract-files'
 >
 > console.log(
 >   extractFiles(
