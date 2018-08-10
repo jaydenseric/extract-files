@@ -54,7 +54,7 @@ files.forEach(({ path, file }) => treePath.set(path, file))
 
 ### class ReactNativeFile
 
-Used to mark a [React Native `window.File` substitute](#type-reactnativefilesubstitute) in an object tree for [`extractFiles`](#function-extractfiles). It’s too risky to assume all objects with `uri`, `type` and `name` properties are files to extract.
+Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute) in an object tree for [`extractFiles`](#function-extractfiles). It’s too risky to assume all objects with `uri`, `type` and `name` properties are files to extract.
 
 | Parameter | Type                                                         | Description                     |
 | :-------- | :----------------------------------------------------------- | :------------------------------ |
@@ -76,12 +76,12 @@ _An extractable file in React Native._
 
 ### function extractFiles
 
-Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances from an object tree along with their object paths and replaces them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are converted to `File` instance arrays.
+Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances, with [object paths](#type-objectpath), from an object tree and replaces them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
 
 | Parameter  | Type                                                                                       | Description                                                               |
 | :--------- | :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------ |
 | `tree`     | [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)         | An object tree to extract files from. The tree itself must not be a file. |
-| `treePath` | [string](https://developer.mozilla.org/javascript/reference/global_objects/string)? = `''` | Optional object tree path to prefix file paths.                           |
+| `treePath` | [string](https://developer.mozilla.org/javascript/reference/global_objects/string)? = `''` | Optional object tree path to prefix file object tree paths.               |
 
 **Returns:** [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ExtractedFile](#type-extractedfile)> — Extracted files or an empty array if the tree is not an enumerable object.
 
@@ -148,7 +148,7 @@ _Object path is property `a`, array index `0`, object property `b`._
 
 ### type ReactNativeFileSubstitute
 
-A React Native `window.File` substitute when using `FormData`.
+A React Native `File` substitute when using `FormData`.
 
 **Type:** [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)
 

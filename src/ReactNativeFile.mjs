@@ -1,5 +1,5 @@
 /**
- * A React Native `window.File` substitute when using `FormData`.
+ * A React Native `File` substitute when using `FormData`.
  * @kind typedef
  * @name ReactNativeFileSubstitute
  * @type {Object}
@@ -10,7 +10,7 @@
  */
 
 /**
- * Used to mark a [React Native `window.File` substitute]{@link ReactNativeFileSubstitute}
+ * Used to mark a [React Native `File` substitute]{@link ReactNativeFileSubstitute}
  * in an object tree for [`extractFiles`]{@link extractFiles}. It’s too risky to
  * assume all objects with `uri`, `type` and `name` properties are files to
  * extract.

@@ -24,15 +24,16 @@ import { ReactNativeFile } from './ReactNativeFile'
 
 /**
  * Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file),
- * [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and
- * [`ReactNativeFile`]{@link ReactNativeFile} instances from an object tree
- * along with their object paths and replaces them with `null`.
- * [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances
- * are converted to `File` instance arrays.
+ * [`Blob`](https://developer.mozilla.org/docs/web/api/blob)
+ * and [`ReactNativeFile`]{@link ReactNativeFile} instances, with
+ * [object paths]{@link ObjectPath}, from an object tree and replaces them with
+ * `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist)
+ * instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file)
+ * instance arrays.
  * @kind function
  * @name extractFiles
  * @param {Object} tree An object tree to extract files from. The tree itself must not be a file.
- * @param {string} [treePath=''] Optional object tree path to prefix file paths.
+ * @param {string} [treePath=''] Optional object tree path to prefix file object tree paths.
  * @returns {ExtractedFile[]} Extracted files or an empty array if the tree is not an enumerable object.
  * @example <caption>Extracting files.</caption>
  * The following:
