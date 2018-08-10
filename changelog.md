@@ -20,6 +20,7 @@
 - Use `.prettierignore` to leave `package.json` formatting to npm.
 - Use [`eslint-config-env`](https://npm.im/eslint-config-env).
 - Compact package `repository` field.
+- Updated package description.
 - HTTPS package author URL.
 - Added package keywords.
 - Replaced [shields.io](https://shields.io) readme badges with:

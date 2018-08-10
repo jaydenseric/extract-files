@@ -1,7 +1,7 @@
 {
   "name": "extract-files",
   "version": "3.1.0",
-  "description": "Reversibly extracts files from an object tree.",
+  "description": "Reversibly extracts File, Blob and ReactNativeFile instances, with object paths, from an object tree and replaces them with null. FileList instances are treated as File instance arrays.",
   "license": "MIT",
   "author": {
     "name": "Jayden Seric",
@@ -15,6 +15,11 @@
     "extract",
     "file",
     "files",
+    "File",
+    "FileList",
+    "Blob",
+    "react",
+    "native",
     "esm",
     "mjs"
   ],
