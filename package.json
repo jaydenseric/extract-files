@@ -1,6 +1,6 @@
 {
   "name": "extract-files",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Reversibly extracts File, Blob and ReactNativeFile instances, with object paths, from an object tree and replaces them with null. FileList instances are treated as File instance arrays.",
   "license": "MIT",
   "author": {
