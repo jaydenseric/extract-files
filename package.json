@@ -66,8 +66,12 @@
     "test:size": "size-limit",
     "test:mjs": "if-ver -ge 8.5 || exit 0; node --experimental-modules --no-warnings lib/test | tap-mocha-reporter spec",
     "test:js": "node lib/test | tap-mocha-reporter spec",
-    "prepublishOnly": "npm run prepare && npm test",
-    "precommit": "lint-staged"
+    "prepublishOnly": "npm run prepare && npm test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "lint-staged": {
     "*.{mjs,js}": "eslint",
