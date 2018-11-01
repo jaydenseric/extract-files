@@ -8,6 +8,14 @@
  * @prop {String} uri Filesystem path.
  * @prop {String} [name] File name.
  * @prop {String} [type] File content type.
+ * @example <caption>A camera roll file.</caption>
+ * ```js
+ * {
+ *   uri: uriFromCameraRoll,
+ *   name: 'a.jpg',
+ *   type: 'image/jpeg'
+ * }
+ * ```
  */
 
 /**

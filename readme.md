@@ -51,6 +51,7 @@ files.forEach(({ path, file }) => treePath.set(path, file))
   - [Examples](#examples-2)
 - [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
   - [See](#see-1)
+  - [Examples](#examples-3)
 
 ### class ReactNativeFile
 
@@ -161,3 +162,15 @@ A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substit
 #### See
 
 - [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js#L34).
+
+#### Examples
+
+_A camera roll file._
+
+> ```js
+> {
+>   uri: uriFromCameraRoll,
+>   name: 'a.jpg',
+>   type: 'image/jpeg'
+> }
+> ```
