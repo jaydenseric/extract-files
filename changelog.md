@@ -13,6 +13,7 @@
 - Updated package scripts and config for the new [`husky`](https://npm.im/husky) version.
 - Removed the package `module` field. Webpack by default resolves extensionless paths the same way Node.js in `--experimental-modules` mode does; `.mjs` files are preferred. Tools misconfigured or unable to resolve `.mjs` can get confused when `module` points to an `.mjs` ESM file and they attempt to resolve named imports from `.js` CJS files.
 - Added a `ReactNativeFileSubstitute` type example.
+- Move JSDoc typedefs to the end of files to make it quicker to find the code.
 
 ## 4.0.0
 

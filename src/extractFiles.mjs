@@ -2,27 +2,6 @@ import { isObject } from './isObject'
 import { ReactNativeFile } from './ReactNativeFile'
 
 /**
- * String notation for the path to a node in an object tree.
- * @kind typedef
- * @name ObjectPath
- * @type {String}
- * @see [`object-path` on npm](https://npm.im/object-path).
- * @example <caption>Object path is property `a`, array index `0`, object property `b`.</caption>
- * ```
- * a.0.b
- * ```
- */
-
-/**
- * An extracted file.
- * @kind typedef
- * @name ExtractedFile
- * @type {Object}
- * @prop {ObjectPath} path Object path to the file in the original object tree.
- * @prop {File|Blob|ReactNativeFile} file The extracted file.
- */
-
-/**
  * Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file),
  * [`Blob`](https://developer.mozilla.org/docs/web/api/blob)
  * and [`ReactNativeFile`]{@link ReactNativeFile} instances, with
@@ -125,3 +104,24 @@ export function extractFiles(tree, treePath = '') {
 
   return files
 }
+
+/**
+ * String notation for the path to a node in an object tree.
+ * @kind typedef
+ * @name ObjectPath
+ * @type {String}
+ * @see [`object-path` on npm](https://npm.im/object-path).
+ * @example <caption>Object path is property `a`, array index `0`, object property `b`.</caption>
+ * ```
+ * a.0.b
+ * ```
+ */
+
+/**
+ * An extracted file.
+ * @kind typedef
+ * @name ExtractedFile
+ * @type {Object}
+ * @prop {ObjectPath} path Object path to the file in the original object tree.
+ * @prop {File|Blob|ReactNativeFile} file The extracted file.
+ */
