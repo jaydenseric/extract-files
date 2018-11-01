@@ -26,7 +26,7 @@
 
 - Updated Babel, removing the `@babel/runtime` dependency.
 - Refactored package scripts to use `prepare` to support installation via Git (e.g. `npm install jaydenseric/extract-files`).
-- Package [marked side-effect free](https://webpack.js.org/guides/tree-shaking/#mark-the-file-as-side-effect-free) for bundlers and tree-shaking.
+- Package [marked side-effect free](https://webpack.js.org/guides/tree-shaking#mark-the-file-as-side-effect-free) for bundlers and tree-shaking.
 
 ### Patch
 
