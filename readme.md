@@ -78,12 +78,12 @@ _An extractable file in React Native._
 
 Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances, with [object paths](#type-objectpath), from an object tree and replaces them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
 
-| Parameter  | Type                                                                                       | Description                                                               |
-| :--------- | :----------------------------------------------------------------------------------------- | :------------------------------------------------------------------------ |
-| `tree`     | [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)         | An object tree to extract files from. The tree itself must not be a file. |
-| `treePath` | [string](https://developer.mozilla.org/javascript/reference/global_objects/string)? = `''` | Optional object tree path to prefix file object tree paths.               |
+| Parameter  | Type                                    | Description                                                               |
+| :--------- | :-------------------------------------- | :------------------------------------------------------------------------ |
+| `tree`     | [Object](https://mdn.io/object)         | An object tree to extract files from. The tree itself must not be a file. |
+| `treePath` | [string](https://mdn.io/string)? = `''` | Optional object tree path to prefix file object tree paths.               |
 
-**Returns:** [Array](https://developer.mozilla.org/javascript/reference/global_objects/array)&lt;[ExtractedFile](#type-extractedfile)> — Extracted files or an empty array if the tree is not an enumerable object.
+**Returns:** [Array](https://mdn.io/array)&lt;[ExtractedFile](#type-extractedfile)> — Extracted files or an empty array if the tree is not an enumerable object.
 
 #### Examples
 
@@ -123,7 +123,7 @@ _Extracting files._
 
 An extracted file.
 
-**Type:** [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)
+**Type:** [Object](https://mdn.io/object)
 
 | Property | Type                                                      | Description                                          |
 | :------- | :-------------------------------------------------------- | :--------------------------------------------------- |
@@ -134,7 +134,7 @@ An extracted file.
 
 String notation for the path to a node in an object tree.
 
-**Type:** [String](https://developer.mozilla.org/javascript/reference/global_objects/string)
+**Type:** [String](https://mdn.io/string)
 
 #### See
 
@@ -150,13 +150,13 @@ _Object path is property `a`, array index `0`, object property `b`._
 
 A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
 
-**Type:** [Object](https://developer.mozilla.org/javascript/reference/global_objects/object)
+**Type:** [Object](https://mdn.io/object)
 
-| Property | Type                                                                                | Description        |
-| :------- | :---------------------------------------------------------------------------------- | :----------------- |
-| `uri`    | [String](https://developer.mozilla.org/javascript/reference/global_objects/string)  | Filesystem path.   |
-| `name`   | [String](https://developer.mozilla.org/javascript/reference/global_objects/string)? | File name.         |
-| `type`   | [String](https://developer.mozilla.org/javascript/reference/global_objects/string)? | File content type. |
+| Property | Type                             | Description        |
+| :------- | :------------------------------- | :----------------- |
+| `uri`    | [String](https://mdn.io/string)  | Filesystem path.   |
+| `name`   | [String](https://mdn.io/string)? | File name.         |
+| `type`   | [String](https://mdn.io/string)? | File content type. |
 
 #### See
 
