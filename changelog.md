@@ -15,6 +15,7 @@
 - Added a `ReactNativeFileSubstitute` type example.
 - Move JSDoc typedefs to the end of files to make it quicker to find the code.
 - Regenerated the readme API docs using the latest [`jsdoc-md`](https://npm.im/jsdoc-md) version.
+- Tests now log if the environment is CJS or ESM (`--experimental-modules`) and the `NODE_ENV`.
 
 ## 4.0.0
 
