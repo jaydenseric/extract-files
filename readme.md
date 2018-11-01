@@ -33,8 +33,8 @@ files.forEach(({ path, file }) => treePath.set(path, file))
 
 ## Support
 
-- Node.js v6.10+
-- [Browsers >1% usage](http://browserl.ist/?q=%3E1%25)
+- Node.js v6+
+- Browsers [`> 0.5%, not dead`](https://browserl.ist/?q=%3E+0.5%25%2C+not+dead)
 - React Native
 
 ## API
