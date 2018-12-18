@@ -1,5 +1,11 @@
 # extract-files changelog
 
+## Next
+
+### Patch
+
+- Updated dev dependencies.
+
 ## 4.1.0
 
 ### Minor
