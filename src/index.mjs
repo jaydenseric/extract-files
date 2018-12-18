@@ -1,5 +1,5 @@
-export * from './extractFiles'
-export * from './ReactNativeFile'
+export { extractFiles } from './extractFiles'
+export { ReactNativeFile } from './ReactNativeFile'
 
 /**
  * An extracted file.
