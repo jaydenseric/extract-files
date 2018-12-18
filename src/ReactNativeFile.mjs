@@ -25,23 +25,3 @@ export class ReactNativeFile {
     this.type = type
   }
 }
-
-/**
- * A React Native [`File`](https://developer.mozilla.org/docs/web/api/file)
- * substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
- * @kind typedef
- * @name ReactNativeFileSubstitute
- * @type {Object}
- * @see [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js#L34).
- * @prop {String} uri Filesystem path.
- * @prop {String} [name] File name.
- * @prop {String} [type] File content type.
- * @example <caption>A camera roll file.</caption>
- * ```js
- * {
- *   uri: uriFromCameraRoll,
- *   name: 'a.jpg',
- *   type: 'image/jpeg'
- * }
- * ```
- */

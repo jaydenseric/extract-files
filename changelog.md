@@ -5,6 +5,7 @@
 ### Patch
 
 - Updated dev dependencies.
+- Moved JSDoc type definitions into the index file.
 
 ## 4.1.0
 
