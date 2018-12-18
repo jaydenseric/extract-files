@@ -25,99 +25,141 @@ t.test('extractFiles handles a non-object tree.', t => {
   t.end()
 })
 
-t.test('extractFiles extracts files from an object tree.', t => {
+t.test('extractFiles handles an empty object tree.', t => {
+  t.deepEqual(extractFiles({}), [], 'Returns empty array.')
+  t.end()
+})
+
+t.test(
+  'extractFiles handles an object tree with various property types.',
+  t => {
+    const tree = {
+      a: '',
+      b: 1,
+      c: true,
+      d: null
+    }
+    const files = extractFiles(tree)
+
+    t.deepEqual(
+      tree,
+      {
+        a: '',
+        b: 1,
+        c: true,
+        d: null
+      },
+      'Unmodified tree.'
+    )
+
+    t.deepEqual(files, [], 'Returned array.')
+
+    t.end()
+  }
+)
+
+t.test('extractFiles extracts files from an array tree.', t => {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
-  const originalTree = {
-    a: null,
-    b: {
-      ba: file,
-      bb: [file, file]
-    },
-    c: {
-      ca: '',
-      cb: {
-        cba: true
+  const tree = [
+    file,
+    {
+      a: {
+        a: file,
+        b: [file, file]
       }
     }
-  }
-  const files = extractFiles(originalTree)
+  ]
+  const files = extractFiles(tree)
 
   t.deepEqual(
-    originalTree,
-    {
-      a: null,
-      b: {
-        ba: null,
-        bb: [null, null]
-      },
-      c: {
-        ca: '',
-        cb: {
-          cba: true
+    tree,
+    [
+      null,
+      {
+        a: {
+          a: null,
+          b: [null, null]
         }
       }
-    },
-    'Files removed from original object tree.'
+    ],
+    'Modified tree.'
   )
 
   t.deepEqual(
     files,
     [
-      { path: 'b.ba', file },
-      { path: 'b.bb.0', file },
-      { path: 'b.bb.1', file }
+      { path: '0', file },
+      { path: '1.a.a', file },
+      { path: '1.a.b.0', file },
+      { path: '1.a.b.1', file }
     ],
-    'Returns array of extracted files.'
+    'Returned array.'
+  )
+
+  t.end()
+})
+
+t.test('extractFiles extracts files from an object tree.', t => {
+  const file = new ReactNativeFile({ name: '', type: '', uri: '' })
+  const tree = {
+    a: {
+      a: file,
+      b: [file, file]
+    }
+  }
+  const files = extractFiles(tree)
+
+  t.deepEqual(
+    tree,
+    {
+      a: {
+        a: null,
+        b: [null, null]
+      }
+    },
+    'Modified tree.'
+  )
+
+  t.deepEqual(
+    files,
+    [{ path: 'a.a', file }, { path: 'a.b.0', file }, { path: 'a.b.1', file }],
+    'Returned array.'
   )
 
   t.end()
 })
 
 t.test(
-  'extractFiles with a tree path extracts files from an object tree.',
+  'extractFiles extracts files from an object tree with a tree path.',
   t => {
     const file = new ReactNativeFile({ name: '', type: '', uri: '' })
-    const originalTree = {
-      a: null,
-      b: {
-        ba: file,
-        bb: [file, file]
-      },
-      c: {
-        ca: '',
-        cb: {
-          cba: true
-        }
+    const tree = {
+      a: {
+        a: file,
+        b: [file, file]
       }
     }
-    const files = extractFiles(originalTree, 'treepath')
+    const files = extractFiles(tree, 'treepath')
 
     t.deepEqual(
-      originalTree,
+      tree,
       {
-        a: null,
-        b: {
-          ba: null,
-          bb: [null, null]
-        },
-        c: {
-          ca: '',
-          cb: {
-            cba: true
-          }
+        a: {
+          a: null,
+          b: [null, null]
         }
       },
-      'Files removed from original object tree.'
+      'Modified tree.'
     )
 
     t.deepEqual(
       files,
       [
-        { path: 'treepath.b.ba', file },
-        { path: 'treepath.b.bb.0', file },
-        { path: 'treepath.b.bb.1', file }
+        { path: 'treepath.a.a', file },
+        { path: 'treepath.a.b.0', file },
+        { path: 'treepath.a.b.1', file }
       ],
-      'Returns array of extracted files.'
+      'Returned array.'
     )
 
     t.end()
