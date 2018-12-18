@@ -1,6 +1,6 @@
 import t from 'tap'
-import { isObject } from './isObject'
 import { extractFiles } from './extractFiles'
+import { isObject } from './isObject'
 import { ReactNativeFile } from './ReactNativeFile'
 
 // eslint-disable-next-line no-console
