@@ -10,40 +10,6 @@ console.log(
   } library with ${process.env.NODE_ENV} NODE_ENV…\n\n`
 )
 
-// eslint-disable-next-line require-jsdoc
-function mock() {
-  const file = new ReactNativeFile({ name: '', type: '', uri: '' })
-  return {
-    file,
-    originalTree: {
-      a: null,
-      b: {
-        ba: file,
-        bb: [file, file]
-      },
-      c: {
-        ca: '',
-        cb: {
-          cba: true
-        }
-      }
-    },
-    modifiedTree: {
-      a: null,
-      b: {
-        ba: null,
-        bb: [null, null]
-      },
-      c: {
-        ca: '',
-        cb: {
-          cba: true
-        }
-      }
-    }
-  }
-}
-
 t.test('isObject only identifies an enumerable object.', t => {
   t.false(isObject(null), 'Null.')
   t.false(isObject(true), 'Boolean.')
@@ -60,12 +26,37 @@ t.test('extractFiles handles a non-object tree.', t => {
 })
 
 t.test('extractFiles extracts files from an object tree.', t => {
-  const { file, originalTree, modifiedTree } = mock()
+  const file = new ReactNativeFile({ name: '', type: '', uri: '' })
+  const originalTree = {
+    a: null,
+    b: {
+      ba: file,
+      bb: [file, file]
+    },
+    c: {
+      ca: '',
+      cb: {
+        cba: true
+      }
+    }
+  }
   const files = extractFiles(originalTree)
 
   t.deepEqual(
     originalTree,
-    modifiedTree,
+    {
+      a: null,
+      b: {
+        ba: null,
+        bb: [null, null]
+      },
+      c: {
+        ca: '',
+        cb: {
+          cba: true
+        }
+      }
+    },
     'Files removed from original object tree.'
   )
 
@@ -85,12 +76,37 @@ t.test('extractFiles extracts files from an object tree.', t => {
 t.test(
   'extractFiles with a tree path extracts files from an object tree.',
   t => {
-    const { file, originalTree, modifiedTree } = mock()
+    const file = new ReactNativeFile({ name: '', type: '', uri: '' })
+    const originalTree = {
+      a: null,
+      b: {
+        ba: file,
+        bb: [file, file]
+      },
+      c: {
+        ca: '',
+        cb: {
+          cba: true
+        }
+      }
+    }
     const files = extractFiles(originalTree, 'treepath')
 
     t.deepEqual(
       originalTree,
-      modifiedTree,
+      {
+        a: null,
+        b: {
+          ba: null,
+          bb: [null, null]
+        },
+        c: {
+          ca: '',
+          cb: {
+            cba: true
+          }
+        }
+      },
       'Files removed from original object tree.'
     )
 
