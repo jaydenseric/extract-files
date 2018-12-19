@@ -2,11 +2,21 @@
 
 ## Next
 
+### Major
+
+- `extractFiles` has a new return signature and no longer mutates the original input, fixing [#8](https://github.com/jaydenseric/extract-files/issues/8).
+
+### Minor
+
+- Files can now be used as the root value passed to `extractFiles`.
+
 ### Patch
 
 - Updated dev dependencies.
+- Updated package description.
 - Moved JSDoc type definitions into the index file.
 - Manually composed package exports instead of relying on `*`.
+- Improved tests.
 
 ## 4.1.0
 

@@ -11,6 +11,15 @@ export { ReactNativeFile } from './ReactNativeFile'
  */
 
 /**
+ * A result returned from [`extractFiles`]{@link extractFiles}.
+ * @kind typedef
+ * @name ExtractFilesResult
+ * @type {Object}
+ * @prop {*} clone Clone of the original input value with files recursively replaced with `null`.
+ * @prop {ExtractedFile[]} files Extracted files.
+ */
+
+/**
  * String notation for the path to a node in an object tree.
  * @kind typedef
  * @name ObjectPath

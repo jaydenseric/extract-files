@@ -1,38 +1,29 @@
-import { isObject } from './isObject'
 import { ReactNativeFile } from './ReactNativeFile'
 
 /**
- * Reversibly extracts [`File`](https://developer.mozilla.org/docs/web/api/file),
- * [`Blob`](https://developer.mozilla.org/docs/web/api/blob)
- * and [`ReactNativeFile`]{@link ReactNativeFile} instances, with
- * [object paths]{@link ObjectPath}, from an object tree and replaces them with
- * `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist)
- * instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file)
+ * Clones a value, recursively extracting
+ * [`File`](https://developer.mozilla.org/docs/web/api/file),
+ * [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and
+ * [`ReactNativeFile`]{@link ReactNativeFile} instances with their
+ * [object paths]{@link ObjectPath}, replacing them with `null`.
+ * [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances
+ * are treated as [`File`](https://developer.mozilla.org/docs/web/api/file)
  * instance arrays.
  * @kind function
  * @name extractFiles
- * @param {Object} tree An object tree to extract files from. The tree itself must not be a file.
- * @param {string} [treePath=''] Optional object tree path to prefix file object tree paths.
- * @returns {ExtractedFile[]} Extracted files or an empty array if the tree is not an enumerable object.
+ * @param {*} value Value (typically an object tree) to extract files from.
+ * @param {string} [path=''] Root path to prefix object paths for extracted files.
+ * @returns {ExtractFilesResult} Result.
  * @example <caption>Extracting files.</caption>
  * The following:
  *
  * ```js
  * import { extractFiles } from 'extract-files'
  *
- * console.log(
- *   extractFiles(
- *     {
- *       a: new File(['a'], 'a.txt', { type: 'text/plain' }),
- *       b: [
- *         {
- *           c: new File(['b'], 'b.txt', { type: 'text/plain' })
- *         }
- *       ]
- *     },
- *     'prefix'
- *   )
- * )
+ * const file1 = new File(['1'], '1.txt', { type: 'text/plain' })
+ * const file2 = new File(['2'], '2.txt', { type: 'text/plain' })
+ *
+ * console.log(extractFiles({ a: file1, b: [{ a: file2 }] }, 'prefix'))
  * ```
  *
  * Logs:
@@ -42,65 +33,53 @@ import { ReactNativeFile } from './ReactNativeFile'
  *   path: 'prefix.a',
  *   file: [object File]
  * }, {
- *   path: 'prefix.b.0.c',
+ *   path: 'prefix.b.0.a',
  *   file: [object File]
  * }]
  * ```
  */
-export function extractFiles(tree, treePath = '') {
+export function extractFiles(value, path = '') {
+  if (
+    (typeof File !== 'undefined' && value instanceof File) ||
+    (typeof Blob !== 'undefined' && value instanceof Blob) ||
+    value instanceof ReactNativeFile
+  )
+    return { clone: null, files: [{ path, file: value }] }
+
+  const prefix = path ? `${path}.` : ''
   const files = []
 
-  /**
-   * Recursively extracts files from an object tree node.
-   * @kind function
-   * @name extractFiles~recurse
-   * @param {Object} node Object tree node.
-   * @param {ObjectPath} nodePath Object tree node path.
-   * @ignore
-   */
-  const recurse = (node, nodePath) => {
-    // Iterate enumerable properties of the node.
-    Object.keys(node).forEach(key => {
-      // Skip non-object.
-      if (!isObject(node[key])) return
-
-      const path = `${nodePath}${key}`
-
-      if (
-        // Node is a File.
-        (typeof File !== 'undefined' && node[key] instanceof File) ||
-        // Node is a Blob.
-        (typeof Blob !== 'undefined' && node[key] instanceof Blob) ||
-        // Node is a ReactNativeFile.
-        node[key] instanceof ReactNativeFile
-      ) {
-        // Extract the file and it's object tree path.
-        files.push({ path, file: node[key] })
-
-        // Delete the file. Array items must be deleted without reindexing to
-        // allow repopulation in a reverse operation.
-        node[key] = null
-
-        // No further checks or recursion.
-        return
-      }
-
-      if (typeof FileList !== 'undefined' && node[key] instanceof FileList)
-        // Convert read-only FileList to an array for manipulation.
-        node[key] = Array.prototype.slice.call(node[key])
-
-      // Recurse into child node.
-      recurse(node[key], `${path}.`)
-    })
-  }
-
-  if (isObject(tree))
-    // Recurse object tree.
-    recurse(
-      tree,
-      // If an object tree path was provided, append a dot.
-      treePath === '' ? treePath : `${treePath}.`
+  if (typeof FileList !== 'undefined' && value instanceof FileList)
+    return Array.prototype.reduce.call(
+      value,
+      (result, file, i) => {
+        result.clone[i] = null
+        result.files.push({ path: `${prefix}${i}`, file })
+        return result
+      },
+      { clone: [], files }
     )
 
-  return files
+  if (Array.isArray(value))
+    return value.reduce(
+      (result, child, i) => {
+        const { clone, files } = extractFiles(child, `${prefix}${i}`)
+        result.clone[i] = clone
+        result.files.push(...files)
+        return result
+      },
+      { clone: [], files }
+    )
+
+  if (value && typeof value == 'object') {
+    const clone = {}
+    for (const i in value) {
+      const result = extractFiles(value[i], `${prefix}${i}`)
+      clone[i] = result.clone
+      files.push(...result.files)
+    }
+    return { clone, files }
+  }
+
+  return { clone: value, files }
 }
