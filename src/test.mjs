@@ -16,7 +16,7 @@ t.test('Extracts a file value.', t => {
     extractFiles(file),
     {
       clone: null,
-      files: [{ path: '', file }]
+      files: new Map([[file, ['']]])
     },
     'Result.'
   )
@@ -49,7 +49,7 @@ t.test(
       extractFiles({ a: fileList }),
       {
         clone: { a: [null, null] },
-        files: [{ path: 'a.0', file: file1 }, { path: 'a.1', file: file2 }]
+        files: new Map([[file1, ['a.0']], [file2, ['a.1']]])
       },
       'Result.'
     )
@@ -70,7 +70,7 @@ t.test('Extracts a File instance in an object value.', t => {
     extractFiles({ a: file }),
     {
       clone: { a: null },
-      files: [{ path: 'a', file }]
+      files: new Map([[file, ['a']]])
     },
     'Result.'
   )
@@ -89,7 +89,7 @@ t.test('Extracts a Blob instance in an object value.', t => {
     extractFiles({ a: file }),
     {
       clone: { a: null },
-      files: [{ path: 'a', file }]
+      files: new Map([[file, ['a']]])
     },
     'Result.'
   )
@@ -106,7 +106,7 @@ t.test('Extracts a ReactNativeFile instance in an object value.', t => {
     extractFiles({ a: file }),
     {
       clone: { a: null },
-      files: [{ path: 'a', file }]
+      files: new Map([[file, ['a']]])
     },
     'Result.'
   )
@@ -121,7 +121,7 @@ t.test('Extracts files from an array value.', t => {
     extractFiles([file, file]),
     {
       clone: [null, null],
-      files: [{ path: '0', file }, { path: '1', file }]
+      files: new Map([[file, ['0', '1']]])
     },
     'Result.'
   )
@@ -136,7 +136,7 @@ t.test('Extracts files from a nested array value.', t => {
     extractFiles({ a: [file, file] }),
     {
       clone: { a: [null, null] },
-      files: [{ path: 'a.0', file }, { path: 'a.1', file }]
+      files: new Map([[file, ['a.0', 'a.1']]])
     },
     'Result.'
   )
@@ -151,7 +151,7 @@ t.test('Extracts files in an object value.', t => {
     extractFiles({ a: file, b: file }),
     {
       clone: { a: null, b: null },
-      files: [{ path: 'a', file }, { path: 'b', file }]
+      files: new Map([[file, ['a', 'b']]])
     },
     'Result.'
   )
@@ -166,7 +166,7 @@ t.test('Extracts files from a nested object value.', t => {
     extractFiles({ a: { a: file, b: file } }),
     {
       clone: { a: { a: null, b: null } },
-      files: [{ path: 'a.a', file }, { path: 'a.b', file }]
+      files: new Map([[file, ['a.a', 'a.b']]])
     },
     'Result.'
   )
@@ -181,7 +181,7 @@ t.test('Extracts files with a path.', t => {
     extractFiles({ a: [file, { a: file }] }, 'prefix'),
     {
       clone: { a: [null, { a: null }] },
-      files: [{ path: 'prefix.a.0', file }, { path: 'prefix.a.1.a', file }]
+      files: new Map([[file, ['prefix.a.0', 'prefix.a.1.a']]])
     },
     'Result.'
   )
@@ -192,19 +192,27 @@ t.test('Extracts files with a path.', t => {
 t.test('Handles an undefined value.', t => {
   t.strictDeepEqual(
     extractFiles(undefined),
-    { clone: undefined, files: [] },
+    { clone: undefined, files: new Map() },
     'Result.'
   )
   t.end()
 })
 
 t.test('Handles a null value.', t => {
-  t.strictDeepEqual(extractFiles(null), { clone: null, files: [] }, 'Result.')
+  t.strictDeepEqual(
+    extractFiles(null),
+    { clone: null, files: new Map() },
+    'Result.'
+  )
   t.end()
 })
 
 t.test('Handles an empty object value.', t => {
-  t.strictDeepEqual(extractFiles({}), { clone: {}, files: [] }, 'Result.')
+  t.strictDeepEqual(
+    extractFiles({}),
+    { clone: {}, files: new Map() },
+    'Result.'
+  )
   t.end()
 })
 
@@ -227,7 +235,7 @@ t.test('Handles an object value with various property types.', t => {
         e: null,
         f: undefined
       },
-      files: []
+      files: new Map()
     },
     'Result.'
   )

@@ -2,21 +2,19 @@ export { extractFiles } from './extractFiles'
 export { ReactNativeFile } from './ReactNativeFile'
 
 /**
- * An extracted file.
+ * An extractable file.
  * @kind typedef
- * @name ExtractedFile
- * @type {Object}
- * @prop {ObjectPath} path Object path to the file in the original object tree.
- * @prop {File|Blob|ReactNativeFile} file The extracted file.
+ * @name ExtractableFile
+ * @type {File|Blob|ReactNativeFile}
  */
 
 /**
- * A result returned from [`extractFiles`]{@link extractFiles}.
+ * What [`extractFiles`]{@link extractFiles} returns.
  * @kind typedef
  * @name ExtractFilesResult
  * @type {Object}
  * @prop {*} clone Clone of the original input value with files recursively replaced with `null`.
- * @prop {ExtractedFile[]} files Extracted files.
+ * @prop {Map<ExtractableFile,Array<ObjectPath>>} files Extracted files and their locations within the original value.
  */
 
 /**

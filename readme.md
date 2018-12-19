@@ -28,7 +28,7 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
   - [Examples](#examples)
 - [function extractFiles](#function-extractfiles)
   - [Examples](#examples-1)
-- [type ExtractedFile](#type-extractedfile)
+- [type ExtractableFile](#type-extractablefile)
 - [type ExtractFilesResult](#type-extractfilesresult)
 - [type ObjectPath](#type-objectpath)
   - [See](#see)
@@ -63,59 +63,66 @@ _An extractable file in React Native._
 
 Clones a value, recursively extracting [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
 
-| Parameter | Type                                    | Description                                             |
-| :-------- | :-------------------------------------- | :------------------------------------------------------ |
-| `value`   | \*                                      | Value (typically an object tree) to extract files from. |
-| `path`    | [string](https://mdn.io/string)? = `''` | Root path to prefix object paths for extracted files.   |
+| Parameter | Type                                   | Description                                             |
+| :-------- | :------------------------------------- | :------------------------------------------------------ |
+| `value`   | \*                                     | Value (typically an object tree) to extract files from. |
+| `path`    | [ObjectPath](#type-objectpath)? = `''` | Prefix for object paths for extracted files.            |
 
 **Returns:** [ExtractFilesResult](#type-extractfilesresult) — Result.
 
 #### Examples
 
-_Extracting files._
+_Extract files from an object._
 
-> The following:
+> For the following:
 >
 > ```js
 > import { extractFiles } from 'extract-files'
 >
 > const file1 = new File(['1'], '1.txt', { type: 'text/plain' })
 > const file2 = new File(['2'], '2.txt', { type: 'text/plain' })
+> const value = {
+>   a: file1,
+>   b: [file1, file2]
+> }
 >
-> console.log(extractFiles({ a: file1, b: [{ a: file2 }] }, 'prefix'))
+> const { clone, files } = extractFiles(value, 'prefix')
 > ```
 >
-> Logs:
+> `value` remains the same.
 >
->     [{
->       path: 'prefix.a',
->       file: [object File]
->     }, {
->       path: 'prefix.b.0.a',
->       file: [object File]
->     }]
+> `clone` is:
+>
+> ```js
+> {
+>   a: null,
+>   b: [null, null]
+> }
+> ```
+>
+> `files` is a [`Map`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
+>
+> | Key     | Value                        |
+> | :------ | :--------------------------- |
+> | `file1` | `['prefix.a', 'prefix.b.0']` |
+> | `file2` | `['prefix.b.1']`             |
 
-### type ExtractedFile
+### type ExtractableFile
 
-An extracted file.
+An extractable file.
 
-**Type:** [Object](https://mdn.io/object)
-
-| Property | Type                                                      | Description                                          |
-| :------- | :-------------------------------------------------------- | :--------------------------------------------------- |
-| `path`   | [ObjectPath](#type-objectpath)                            | Object path to the file in the original object tree. |
-| `file`   | File \| Blob \| [ReactNativeFile](#class-reactnativefile) | The extracted file.                                  |
+**Type:** File | Blob | [ReactNativeFile](#class-reactnativefile)
 
 ### type ExtractFilesResult
 
-A result returned from [`extractFiles`](#function-extractfiles).
+What [`extractFiles`](#function-extractfiles) returns.
 
 **Type:** [Object](https://mdn.io/object)
 
-| Property | Type                                                                   | Description                                                                    |
-| :------- | :--------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
-| `clone`  | \*                                                                     | Clone of the original input value with files recursively replaced with `null`. |
-| `files`  | [Array](https://mdn.io/array)&lt;[ExtractedFile](#type-extractedfile)> | Extracted files.                                                               |
+| Property | Type                                                                                                               | Description                                                                    |
+| :------- | :----------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
+| `clone`  | \*                                                                                                                 | Clone of the original input value with files recursively replaced with `null`. |
+| `files`  | Map&lt;[ExtractableFile](#type-extractablefile), [Array](https://mdn.io/array)&lt;[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value.                 |
 
 ### type ObjectPath
 
