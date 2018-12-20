@@ -17,6 +17,7 @@
 - Moved JSDoc type definitions into the index file.
 - Manually composed package exports instead of relying on `*`.
 - Improved tests.
+- Added a paragraph explaining the GraphQL use case to the readme.
 
 ## 4.1.0
 
