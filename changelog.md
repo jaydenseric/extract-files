@@ -4,7 +4,7 @@
 
 ### Major
 
-- `extractFiles` has a new return signature and no longer mutates the original input, fixing [#8](https://github.com/jaydenseric/extract-files/issues/8).
+- `extractFiles` has a new return signature and no longer mutates the original input, fixing [#8](https://github.com/jaydenseric/extract-files/issues/8). It returns an object with `clone`, a clone of the original input value with files recursively replaced with `null`, and `files`, a `Map` instance keying each extracted file to an array of object paths.
 
 ### Minor
 
