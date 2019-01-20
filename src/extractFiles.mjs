@@ -87,7 +87,11 @@ export function extractFiles(value, path = '') {
         result.files.forEach(addFile)
         return result.clone
       })
-    else if (value && typeof value == 'object') {
+    else if (
+      value &&
+      typeof value == 'object' &&
+      value.constructor === Object
+    ) {
       clone = {}
       for (const i in value) {
         const result = extractFiles(value[i], `${prefix}${i}`)
