@@ -224,7 +224,8 @@ t.test('Handles an object value with various property types.', t => {
       c: true,
       d: false,
       e: null,
-      f: undefined
+      f: undefined,
+      g: new Date(2019, 0, 20)
     }),
     {
       clone: {
@@ -233,7 +234,8 @@ t.test('Handles an object value with various property types.', t => {
         c: true,
         d: false,
         e: null,
-        f: undefined
+        f: undefined,
+        g: new Date(2019, 0, 20)
       },
       files: new Map()
     },
