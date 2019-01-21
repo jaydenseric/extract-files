@@ -5,6 +5,7 @@
 ### Patch
 
 - Instance (e.g. [`new Date()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)) references are copied to the clone instead of recursed as objects; fixing [jaydenseric/apollo-upload-client#138](https://github.com/jaydenseric/apollo-upload-client/issues/138) via [#9](https://github.com/jaydenseric/extract-files/pull/9).
+- Test more types of input.
 
 ## 5.0.0
 

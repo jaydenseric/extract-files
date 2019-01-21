@@ -207,6 +207,17 @@ t.test('Handles a null value.', t => {
   t.end()
 })
 
+t.test('Handles an instance value.', t => {
+  const dateInstance = new Date(2019, 0, 20)
+
+  t.strictDeepEqual(
+    extractFiles(dateInstance),
+    { clone: dateInstance, files: new Map() },
+    'Result.'
+  )
+  t.end()
+})
+
 t.test('Handles an empty object value.', t => {
   t.strictDeepEqual(
     extractFiles({}),
@@ -217,25 +228,49 @@ t.test('Handles an empty object value.', t => {
 })
 
 t.test('Handles an object value with various property types.', t => {
+  // eslint-disable-next-line require-jsdoc
+  const func = () => {}
+  const dateInstance = new Date(2019, 0, 20)
+  const numberInstance = new Number(1)
+  // eslint-disable-next-line require-jsdoc
+  class Class {
+    a = true
+  }
+  const classInstance = new Class()
+  const objectInstance = new Object()
+  objectInstance.a = true
+
   t.strictDeepEqual(
     extractFiles({
       a: '',
-      b: 1,
-      c: true,
-      d: false,
-      e: null,
-      f: undefined,
-      g: new Date(2019, 0, 20)
+      b: 'a',
+      c: 0,
+      d: 1,
+      e: true,
+      f: false,
+      g: null,
+      h: undefined,
+      i: func,
+      j: objectInstance,
+      k: classInstance,
+      l: numberInstance,
+      m: dateInstance
     }),
     {
       clone: {
         a: '',
-        b: 1,
-        c: true,
-        d: false,
-        e: null,
-        f: undefined,
-        g: new Date(2019, 0, 20)
+        b: 'a',
+        c: 0,
+        d: 1,
+        e: true,
+        f: false,
+        g: null,
+        h: undefined,
+        i: func,
+        j: objectInstance,
+        k: classInstance,
+        l: numberInstance,
+        m: dateInstance
       },
       files: new Map()
     },
