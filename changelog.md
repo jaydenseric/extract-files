@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 5.0.1
 
 ### Patch
 
