@@ -1,5 +1,6 @@
 export { extractFiles } from './extractFiles'
 export { ReactNativeFile } from './ReactNativeFile'
+export { isFileValue } from './isFileValue'
 
 /**
  * An extractable file.
@@ -26,6 +27,18 @@ export { ReactNativeFile } from './ReactNativeFile'
  * @example <caption>Object path is property `a`, array index `0`, object property `b`.</caption>
  * ```
  * a.0.b
+ * ```
+ */
+
+/**
+ * @kind typedef
+ * @name IsFileValueFunction
+ * @type {Function}
+ * @example <caption>A function that determines whether a value is a file or not.</caption>
+ * ```
+ * function isFileValue(value) {
+ *   return value instanceof File
+ * }
  * ```
  */
 

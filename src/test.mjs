@@ -1,5 +1,6 @@
 import t from 'tap'
 import { extractFiles } from './extractFiles'
+import { isFileValue } from './isFileValue'
 import { ReactNativeFile } from './ReactNativeFile'
 
 // eslint-disable-next-line no-console
@@ -8,6 +9,18 @@ console.log(
     process.execArgv.includes('--experimental-modules') ? 'ESM' : 'CJS'
   } library with ${process.env.NODE_ENV} NODE_ENV…\n\n`
 )
+
+t.test('isFileValue can determine that a value is a file', t => {
+  const file = new ReactNativeFile({ name: '', type: '', uri: '' })
+  t.equal(isFileValue(file), true)
+  t.end()
+})
+
+t.test('isFileValue can determine that a value is not a file', t => {
+  const notAFile = {}
+  t.equal(isFileValue(notAFile), false)
+  t.end()
+})
 
 t.test('Extracts a file value.', t => {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
@@ -273,6 +286,38 @@ t.test('Handles an object value with various property types.', t => {
         m: dateInstance
       },
       files: new Map()
+    },
+    'Result.'
+  )
+
+  t.end()
+})
+
+t.test('Allows overwriting isFileValue', t => {
+  // eslint-disable-next-line require-jsdoc
+  class CustomFile {}
+  // eslint-disable-next-line require-jsdoc
+  function newIsFileValue(value) {
+    return value instanceof CustomFile
+  }
+
+  const file = new CustomFile()
+  const file1 = new CustomFile()
+  const file2 = new CustomFile()
+
+  t.strictDeepEqual(
+    extractFiles({ a: file, b: [file1, { c: file2 }] }, '', newIsFileValue),
+    {
+      clone: {
+        a: null,
+        b: [
+          null,
+          {
+            c: null
+          }
+        ]
+      },
+      files: new Map([[file, ['a']], [file1, ['b.0']], [file2, ['b.1.c']]])
     },
     'Result.'
   )

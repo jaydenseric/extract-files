@@ -30,22 +30,25 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
   - [Examples](#examples)
 - [function extractFiles](#function-extractfiles)
   - [Examples](#examples-1)
+- [function isFileValue](#function-isfilevalue)
 - [type ExtractableFile](#type-extractablefile)
 - [type ExtractFilesResult](#type-extractfilesresult)
+- [type IsFileValueFunction](#type-isfilevaluefunction)
+  - [Examples](#examples-2)
 - [type ObjectPath](#type-objectpath)
   - [See](#see)
-  - [Examples](#examples-2)
+  - [Examples](#examples-3)
 - [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
   - [See](#see-1)
-  - [Examples](#examples-3)
+  - [Examples](#examples-4)
 
 ### class ReactNativeFile
 
 Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute) in an object tree for [`extractFiles`](#function-extractfiles). It’s too risky to assume all objects with `uri`, `type` and `name` properties are files to extract.
 
-| Parameter | Type                                                         | Description                                                                          |
-| :-------- | :----------------------------------------------------------- | :----------------------------------------------------------------------------------- |
-| `file`    | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute. |
+| Parameter | Type | Description |
+| :-- | :-- | :-- |
+| `file` | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute. |
 
 #### Examples
 
@@ -65,10 +68,11 @@ _An extractable file in React Native._
 
 Clones a value, recursively extracting [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
 
-| Parameter | Type                                   | Description                                             |
-| :-------- | :------------------------------------- | :------------------------------------------------------ |
-| `value`   | \*                                     | Value (typically an object tree) to extract files from. |
-| `path`    | [ObjectPath](#type-objectpath)? = `''` | Prefix for object paths for extracted files.            |
+| Parameter | Type | Description |
+| :-- | :-- | :-- |
+| `value` | \* | Value (typically an object tree) to extract files from. |
+| `path` | [ObjectPath](#type-objectpath)? = `''` | Prefix for object paths for extracted files. |
+| `isFileValue` | [IsFileValueFunction](#type-isfilevaluefunction)? = `isFileValue` | The function used for determining whether an input value is a file value or not. |
 
 **Returns:** [ExtractFilesResult](#type-extractfilesresult) — Result.
 
@@ -109,6 +113,16 @@ _Extract files from an object._
 > | `file1` | `['prefix.a', 'prefix.b.0']` |
 > | `file2` | `['prefix.b.1']`             |
 
+### function isFileValue
+
+[`IsFileValueFunction`](#type-isfilevaluefunction) for checking if a given value is a file.
+
+| Parameter | Type | Description                |
+| :-------- | :--- | :------------------------- |
+| `value`   | \*   | Value that will be checked |
+
+**Returns:** boolean — Result.
+
 ### type ExtractableFile
 
 An extractable file.
@@ -119,18 +133,30 @@ An extractable file.
 
 What [`extractFiles`](#function-extractfiles) returns.
 
-**Type:** [Object](https://mdn.io/object)
+**Type:** Object
 
-| Property | Type                                                                                                               | Description                                                                    |
-| :------- | :----------------------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------- |
-| `clone`  | \*                                                                                                                 | Clone of the original input value with files recursively replaced with `null`. |
-| `files`  | Map&lt;[ExtractableFile](#type-extractablefile), [Array](https://mdn.io/array)&lt;[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value.                 |
+| Property | Type | Description |
+| :-- | :-- | :-- |
+| `clone` | \* | Clone of the original input value with files recursively replaced with `null`. |
+| `files` | Map&lt;[ExtractableFile](#type-extractablefile), Array&lt;[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value. |
+
+### type IsFileValueFunction
+
+**Type:** Function
+
+#### Examples
+
+_A function that determines whether a value is a file or not._
+
+>     function isFileValue(value) {
+>       return value instanceof File
+>     }
 
 ### type ObjectPath
 
 String notation for the path to a node in an object tree.
 
-**Type:** [String](https://mdn.io/string)
+**Type:** String
 
 #### See
 
@@ -146,13 +172,13 @@ _Object path is property `a`, array index `0`, object property `b`._
 
 A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
 
-**Type:** [Object](https://mdn.io/object)
+**Type:** Object
 
-| Property | Type                             | Description        |
-| :------- | :------------------------------- | :----------------- |
-| `uri`    | [String](https://mdn.io/string)  | Filesystem path.   |
-| `name`   | [String](https://mdn.io/string)? | File name.         |
-| `type`   | [String](https://mdn.io/string)? | File content type. |
+| Property | Type    | Description        |
+| :------- | :------ | :----------------- |
+| `uri`    | String  | Filesystem path.   |
+| `name`   | String? | File name.         |
+| `type`   | String? | File content type. |
 
 #### See
 
