@@ -13,6 +13,7 @@
 - Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
 - Simplified the `prepublishOnly` script.
+- Ordered `plugins` before `presets` in Babel config as they run first.
 
 ## 5.0.1
 
