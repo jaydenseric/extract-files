@@ -2,6 +2,10 @@
 
 ## Next
 
+### Major
+
+- Updated Node.js support from v6+ to v8.5+.
+
 ### Patch
 
 - Updated dev dependencies.

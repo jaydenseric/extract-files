@@ -30,9 +30,9 @@
   "main": "lib",
   "sideEffects": false,
   "engines": {
-    "node": ">=6"
+    "node": ">=8.5"
   },
-  "browserslist": "> 0.5%, not dead, node 6",
+  "browserslist": "> 0.5%, not dead, node >= 8.5",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
@@ -48,7 +48,6 @@
     "eslint-plugin-node": "^9.1.0",
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.2",
-    "if-ver": "^1.1.0",
     "jsdoc-md": "^3.1.0",
     "lint-staged": "^9.2.1",
     "prettier": "^1.18.2",
@@ -65,7 +64,7 @@
     "test": "npm run test:eslint && npm run test:prettier && npm run test:mjs && npm run test:js && npm run test:size",
     "test:eslint": "eslint . --ext mjs,js",
     "test:prettier": "prettier '**/*.{json,yml,md}' -l",
-    "test:mjs": "if-ver -ge 8.5 || exit 0; node --experimental-modules --no-warnings lib/test | tap-mocha-reporter spec",
+    "test:mjs": "node --experimental-modules --no-warnings lib/test | tap-mocha-reporter spec",
     "test:js": "node lib/test | tap-mocha-reporter spec",
     "test:size": "size-limit",
     "prepublishOnly": "npm run prepare && npm test"
