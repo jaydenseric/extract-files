@@ -67,7 +67,7 @@
     "test:mjs": "node --experimental-modules --no-warnings lib/test | tap-mocha-reporter spec",
     "test:js": "node lib/test | tap-mocha-reporter spec",
     "test:size": "size-limit",
-    "prepublishOnly": "npm run prepare && npm test"
+    "prepublishOnly": "npm test"
   },
   "husky": {
     "hooks": {
