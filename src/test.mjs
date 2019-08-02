@@ -32,7 +32,6 @@ t.test(
 
     global.File = class File {}
     global.FileList = class FileList {
-      // eslint-disable-next-line require-jsdoc
       constructor(files) {
         files.forEach((file, i) => {
           this[i] = file
@@ -228,11 +227,9 @@ t.test('Handles an empty object value.', t => {
 })
 
 t.test('Handles an object value with various property types.', t => {
-  // eslint-disable-next-line require-jsdoc
   const func = () => {}
   const dateInstance = new Date(2019, 0, 20)
   const numberInstance = new Number(1)
-  // eslint-disable-next-line require-jsdoc
   class Class {
     a = true
   }

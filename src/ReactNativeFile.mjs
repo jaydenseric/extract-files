@@ -18,7 +18,6 @@
  * ```
  */
 export class ReactNativeFile {
-  // eslint-disable-next-line require-jsdoc
   constructor({ uri, name, type }) {
     this.uri = uri
     this.name = name

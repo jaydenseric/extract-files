@@ -9,6 +9,7 @@
 ### Patch
 
 - Updated dev dependencies.
+- Removed now redundant ESLint disable `require-jsdoc` comments.
 - Run size limit tests last in the package `test` script as they are the slowest.
 - Simplified the `prepublishOnly` script.
 
