@@ -10,6 +10,7 @@
 
 - Updated dev dependencies.
 - Removed now redundant ESLint disable `require-jsdoc` comments.
+- Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
 - Simplified the `prepublishOnly` script.
 

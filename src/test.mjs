@@ -2,13 +2,6 @@ import t from 'tap'
 import { extractFiles } from './extractFiles'
 import { ReactNativeFile } from './ReactNativeFile'
 
-// eslint-disable-next-line no-console
-console.log(
-  `Testing ${
-    process.execArgv.includes('--experimental-modules') ? 'ESM' : 'CJS'
-  } library with ${process.env.NODE_ENV} NODE_ENV…\n\n`
-)
-
 t.test('Extracts a file value.', t => {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
 
