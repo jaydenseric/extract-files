@@ -1,12 +1,6 @@
 [
   {
-    "name": "ESM",
     "path": "lib/index.mjs",
-    "limit": "500 B"
-  },
-  {
-    "name": "CJS",
-    "path": "lib/index.js",
     "limit": "500 B"
   }
 ]
