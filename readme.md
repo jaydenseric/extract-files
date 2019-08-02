@@ -18,7 +18,7 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 
 ## Support
 
-- Node.js v6+
+- Node.js v8.5+
 - Browsers [`> 0.5%, not dead`](https://browserl.ist/?q=%3E+0.5%25%2C+not+dead)
 - React Native
 
@@ -27,20 +27,13 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 ### Table of contents
 
 - [class ReactNativeFile](#class-reactnativefile)
-  - [Examples](#examples)
 - [function extractFiles](#function-extractfiles)
-  - [Examples](#examples-1)
 - [function isFileValue](#function-isfilevalue)
 - [type ExtractableFile](#type-extractablefile)
 - [type ExtractFilesResult](#type-extractfilesresult)
 - [type IsFileValueFunction](#type-isfilevaluefunction)
-  - [Examples](#examples-2)
 - [type ObjectPath](#type-objectpath)
-  - [See](#see)
-  - [Examples](#examples-3)
 - [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
-  - [See](#see-1)
-  - [Examples](#examples-4)
 
 ### class ReactNativeFile
 
@@ -63,6 +56,8 @@ _An extractable file in React Native._
 >   type: 'image/jpeg'
 > })
 > ```
+
+---
 
 ### function extractFiles
 
@@ -113,9 +108,11 @@ _Extract files from an object._
 > | `file1` | `['prefix.a', 'prefix.b.0']` |
 > | `file2` | `['prefix.b.1']`             |
 
+---
+
 ### function isFileValue
 
-[`IsFileValueFunction`](#type-isfilevaluefunction) for checking if a given value is a file.
+Default [`IsFileValueFunction`](#type-isfilevaluefunction) for checking if a given value is a file.
 
 | Parameter | Type | Description                |
 | :-------- | :--- | :------------------------- |
@@ -123,22 +120,28 @@ _Extract files from an object._
 
 **Returns:** boolean — Result.
 
+---
+
 ### type ExtractableFile
 
 An extractable file.
 
 **Type:** File | Blob | [ReactNativeFile](#class-reactnativefile)
 
+---
+
 ### type ExtractFilesResult
 
 What [`extractFiles`](#function-extractfiles) returns.
 
-**Type:** Object
+**Type:** object
 
 | Property | Type | Description |
 | :-- | :-- | :-- |
 | `clone` | \* | Clone of the original input value with files recursively replaced with `null`. |
 | `files` | Map&lt;[ExtractableFile](#type-extractablefile), Array&lt;[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value. |
+
+---
 
 ### type IsFileValueFunction
 
@@ -152,11 +155,13 @@ _A function that determines whether a value is a file or not._
 >       return value instanceof File
 >     }
 
+---
+
 ### type ObjectPath
 
 String notation for the path to a node in an object tree.
 
-**Type:** String
+**Type:** string
 
 #### See
 
@@ -168,17 +173,19 @@ _Object path is property `a`, array index `0`, object property `b`._
 
 >     a.0.b
 
+---
+
 ### type ReactNativeFileSubstitute
 
 A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
 
-**Type:** Object
+**Type:** object
 
 | Property | Type    | Description        |
 | :------- | :------ | :----------------- |
-| `uri`    | String  | Filesystem path.   |
-| `name`   | String? | File name.         |
-| `type`   | String? | File content type. |
+| `uri`    | string  | Filesystem path.   |
+| `name`   | string? | File name.         |
+| `type`   | string? | File content type. |
 
 #### See
 

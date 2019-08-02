@@ -1,5 +1,6 @@
 module.exports = {
   comments: false,
+  plugins: [['@babel/proposal-class-properties', { loose: true }]],
   presets: [
     [
       '@babel/env',
@@ -9,6 +10,5 @@ module.exports = {
         loose: true
       }
     ]
-  ],
-  plugins: [['@babel/proposal-class-properties', { loose: true }]]
+  ]
 }

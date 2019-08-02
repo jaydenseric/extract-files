@@ -3,13 +3,6 @@ import { extractFiles } from './extractFiles'
 import { isFileValue } from './isFileValue'
 import { ReactNativeFile } from './ReactNativeFile'
 
-// eslint-disable-next-line no-console
-console.log(
-  `Testing ${
-    process.execArgv.includes('--experimental-modules') ? 'ESM' : 'CJS'
-  } library with ${process.env.NODE_ENV} NODE_ENV…\n\n`
-)
-
 t.test('isFileValue can determine that a value is a file', t => {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
   t.equal(isFileValue(file), true)
@@ -45,7 +38,6 @@ t.test(
 
     global.File = class File {}
     global.FileList = class FileList {
-      // eslint-disable-next-line require-jsdoc
       constructor(files) {
         files.forEach((file, i) => {
           this[i] = file
@@ -241,11 +233,9 @@ t.test('Handles an empty object value.', t => {
 })
 
 t.test('Handles an object value with various property types.', t => {
-  // eslint-disable-next-line require-jsdoc
   const func = () => {}
   const dateInstance = new Date(2019, 0, 20)
   const numberInstance = new Number(1)
-  // eslint-disable-next-line require-jsdoc
   class Class {
     a = true
   }
@@ -294,9 +284,9 @@ t.test('Handles an object value with various property types.', t => {
 })
 
 t.test('Allows overwriting isFileValue', t => {
-  // eslint-disable-next-line require-jsdoc
   class CustomFile {}
-  // eslint-disable-next-line require-jsdoc
+
+  // eslint-disable-next-line jsdoc/require-jsdoc
   function newIsFileValue(value) {
     return value instanceof CustomFile
   }

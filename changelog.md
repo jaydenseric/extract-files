@@ -1,5 +1,24 @@
 # extract-files changelog
 
+## Next
+
+### Major
+
+- Updated Node.js support from v6+ to v8.5+.
+
+### Patch
+
+- Updated dev dependencies.
+- Removed now redundant ESLint disable `require-jsdoc` comments.
+- Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
+- Run size limit tests last in the package `test` script as they are the slowest.
+- Simplified the `prepublishOnly` script.
+- Ordered `plugins` before `presets` in Babel config as they run first.
+- Reduced the size of the published `package.json` by moving dev tool config to files.
+- Only target the root `lib` directory in `.gitignore` and `.eslintignore`.
+- Prevented ESLint from ignoring dotfiles.
+- Only bundle size limit test the ESM build.
+
 ## 5.0.1
 
 ### Patch
