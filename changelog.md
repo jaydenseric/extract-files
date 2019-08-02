@@ -14,6 +14,7 @@
 - Run size limit tests last in the package `test` script as they are the slowest.
 - Simplified the `prepublishOnly` script.
 - Ordered `plugins` before `presets` in Babel config as they run first.
+- Reduced the size of the published `package.json` by moving dev tool config to files.
 
 ## 5.0.1
 

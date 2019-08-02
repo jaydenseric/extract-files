@@ -67,39 +67,5 @@
     "test:tap": "tap lib/test.{mjs,js} --100",
     "test:size": "size-limit",
     "prepublishOnly": "npm test"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{mjs,js}": "eslint",
-    "*.{json,yml,md}": "prettier -l"
-  },
-  "eslintIgnore": [
-    "lib"
-  ],
-  "eslintConfig": {
-    "extends": [
-      "env"
-    ]
-  },
-  "prettier": {
-    "proseWrap": "never",
-    "singleQuote": true,
-    "semi": false
-  },
-  "size-limit": [
-    {
-      "name": "ESM",
-      "path": "lib/index.mjs",
-      "limit": "500 B"
-    },
-    {
-      "name": "CJS",
-      "path": "lib/index.js",
-      "limit": "500 B"
-    }
-  ]
+  }
 }
