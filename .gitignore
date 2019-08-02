@@ -2,5 +2,5 @@ node_modules
 package-lock.json
 npm-debug.log
 .DS_Store
-lib
+/lib
 .nyc_output

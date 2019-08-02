@@ -15,6 +15,7 @@
 - Simplified the `prepublishOnly` script.
 - Ordered `plugins` before `presets` in Babel config as they run first.
 - Reduced the size of the published `package.json` by moving dev tool config to files.
+- Only target the root `lib` directory in `.gitignore` and `.eslintignore`.
 
 ## 5.0.1
 
