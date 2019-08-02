@@ -5,6 +5,7 @@
 ### Patch
 
 - Updated dev dependencies.
+- Run size limit tests last in the package `test` script as they are the slowest.
 
 ## 5.0.1
 
