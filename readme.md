@@ -67,7 +67,7 @@ Clones a value, recursively extracting [`File`](https://developer.mozilla.org/do
 | :-- | :-- | :-- |
 | `value` | \* | Value (typically an object tree) to extract files from. |
 | `path` | [ObjectPath](#type-objectpath)? = `''` | Prefix for object paths for extracted files. |
-| `isFileValue` | [IsFileValueFunction](#type-isfilevaluefunction)? = `isFileValue` | The function used for determining whether an input value is a file value or not. |
+| `isFileValue` | [IsFileValueFunction](#type-isfilevaluefunction)? = [isFileValue](#function-isfilevalue) | The function used for determining whether an input value is a file value or not. |
 
 **Returns:** [ExtractFilesResult](#type-extractfilesresult) — Result.
 
