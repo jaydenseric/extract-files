@@ -1,4 +1,4 @@
-import { isFileValue as defaultIsFileValue } from './isFileValue'
+import { isExtractableFile as defaultIsFileValue } from './isExtractableFile'
 
 /**
  * Clones a value, recursively extracting
@@ -13,7 +13,7 @@ import { isFileValue as defaultIsFileValue } from './isFileValue'
  * @name extractFiles
  * @param {*} value Value (typically an object tree) to extract files from.
  * @param {ObjectPath} [path=''] Prefix for object paths for extracted files.
- * @param {IsFileValueFunction} [isFileValue=isFileValue] The function used for determining whether an input value is a file value or not.
+ * @param {ExtractableFileMatcher} [isExtractableFile=isExtractableFile] The function used to identify extractable files.
  * @returns {ExtractFilesResult} Result.
  * @example <caption>Extract files from an object.</caption>
  * For the following:
@@ -52,7 +52,7 @@ import { isFileValue as defaultIsFileValue } from './isFileValue'
 export function extractFiles(
   value,
   path = '',
-  isFileValue = defaultIsFileValue
+  isExtractableFile = defaultIsFileValue
 ) {
   let clone
   const files = new Map()
@@ -71,7 +71,7 @@ export function extractFiles(
     else files.set(file, paths)
   }
 
-  if (isFileValue(value)) {
+  if (isExtractableFile(value)) {
     clone = null
     addFile([path], value)
   } else {
@@ -84,14 +84,18 @@ export function extractFiles(
       })
     else if (Array.isArray(value))
       clone = value.map((child, i) => {
-        const result = extractFiles(child, `${prefix}${i}`, isFileValue)
+        const result = extractFiles(child, `${prefix}${i}`, isExtractableFile)
         result.files.forEach(addFile)
         return result.clone
       })
     else if (value && value.constructor === Object) {
       clone = {}
       for (const i in value) {
-        const result = extractFiles(value[i], `${prefix}${i}`, isFileValue)
+        const result = extractFiles(
+          value[i],
+          `${prefix}${i}`,
+          isExtractableFile
+        )
         result.files.forEach(addFile)
         clone[i] = result.clone
       }

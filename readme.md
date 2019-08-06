@@ -28,10 +28,10 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 
 - [class ReactNativeFile](#class-reactnativefile)
 - [function extractFiles](#function-extractfiles)
-- [function isFileValue](#function-isfilevalue)
+- [function isExtractableFile](#function-isextractablefile)
 - [type ExtractableFile](#type-extractablefile)
+- [type ExtractableFileMatcher](#type-extractablefilematcher)
 - [type ExtractFilesResult](#type-extractfilesresult)
-- [type IsFileValueFunction](#type-isfilevaluefunction)
 - [type ObjectPath](#type-objectpath)
 - [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
 
@@ -67,7 +67,7 @@ Clones a value, recursively extracting [`File`](https://developer.mozilla.org/do
 | :-- | :-- | :-- |
 | `value` | \* | Value (typically an object tree) to extract files from. |
 | `path` | [ObjectPath](#type-objectpath)? = `''` | Prefix for object paths for extracted files. |
-| `isFileValue` | [IsFileValueFunction](#type-isfilevaluefunction)? = [isFileValue](#function-isfilevalue) | The function used for determining whether an input value is a file value or not. |
+| `isExtractableFile` | [ExtractableFileMatcher](#type-extractablefilematcher)? = [isExtractableFile](#function-isextractablefile) | The function used to identify extractable files. |
 
 **Returns:** [ExtractFilesResult](#type-extractfilesresult) — Result.
 
@@ -110,15 +110,25 @@ _Extract files from an object._
 
 ---
 
-### function isFileValue
+### function isExtractableFile
 
-Default [`IsFileValueFunction`](#type-isfilevaluefunction) for checking if a given value is a file.
+Checks if a value is an [extractable file](#type-extractablefile).
 
-| Parameter | Type | Description                |
-| :-------- | :--- | :------------------------- |
-| `value`   | \*   | Value that will be checked |
+**Type:** [ExtractableFileMatcher](#type-extractablefilematcher)
 
-**Returns:** boolean — Result.
+| Parameter | Type | Description     |
+| :-------- | :--- | :-------------- |
+| `value`   | \*   | Value to check. |
+
+**Returns:** boolean — Is the file extractable.
+
+#### Examples
+
+_How to import._
+
+> ```js
+> import { isExtractableFile } from 'extract-files'
+> ```
 
 ---
 
@@ -127,6 +137,30 @@ Default [`IsFileValueFunction`](#type-isfilevaluefunction) for checking if a giv
 An extractable file.
 
 **Type:** File | Blob | [ReactNativeFile](#class-reactnativefile)
+
+---
+
+### type ExtractableFileMatcher
+
+A function that checks if a value is an extractable file.
+
+**Type:** Function
+
+#### See
+
+- [`isExtractableFile`](#function-isextractablefile) is the default extractable file matcher.
+
+#### Examples
+
+_How to check for the default exactable files, as well as a custom type of file._
+
+> ```js
+> import { isExtractableFile } from 'extract-files'
+>
+> const isExtractableFileEnhanced = value =>
+>   isExtractableFile(value) ||
+>   (typeof CustomFile !== 'undefined' && value instanceof CustomFile)
+> ```
 
 ---
 
@@ -140,20 +174,6 @@ What [`extractFiles`](#function-extractfiles) returns.
 | :-- | :-- | :-- |
 | `clone` | \* | Clone of the original input value with files recursively replaced with `null`. |
 | `files` | Map&lt;[ExtractableFile](#type-extractablefile), Array&lt;[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value. |
-
----
-
-### type IsFileValueFunction
-
-**Type:** Function
-
-#### Examples
-
-_A function that determines whether a value is a file or not._
-
->     function isFileValue(value) {
->       return value instanceof File
->     }
 
 ---
 

@@ -1,12 +1,28 @@
 export { extractFiles } from './extractFiles'
 export { ReactNativeFile } from './ReactNativeFile'
-export { isFileValue } from './isFileValue'
+export { isExtractableFile } from './isExtractableFile'
 
 /**
  * An extractable file.
  * @kind typedef
  * @name ExtractableFile
  * @type {File|Blob|ReactNativeFile}
+ */
+
+/**
+ * A function that checks if a value is an extractable file.
+ * @kind typedef
+ * @name ExtractableFileMatcher
+ * @type {Function}
+ * @see [`isExtractableFile`]{@link isExtractableFile} is the default extractable file matcher.
+ * @example <caption>How to check for the default exactable files, as well as a custom type of file.</caption>
+ * ```js
+ * import { isExtractableFile } from 'extract-files'
+ *
+ * const isExtractableFileEnhanced = value =>
+ *   isExtractableFile(value) ||
+ *   (typeof CustomFile !== 'undefined' && value instanceof CustomFile)
+ * ```
  */
 
 /**
@@ -27,18 +43,6 @@ export { isFileValue } from './isFileValue'
  * @example <caption>Object path is property `a`, array index `0`, object property `b`.</caption>
  * ```
  * a.0.b
- * ```
- */
-
-/**
- * @kind typedef
- * @name IsFileValueFunction
- * @type {Function}
- * @example <caption>A function that determines whether a value is a file or not.</caption>
- * ```
- * function isFileValue(value) {
- *   return value instanceof File
- * }
  * ```
  */
 
