@@ -31,9 +31,9 @@
   "main": "lib",
   "sideEffects": false,
   "engines": {
-    "node": ">=8.5"
+    "node": ">=8.10"
   },
-  "browserslist": "> 0.5%, not dead, node >= 8.5",
+  "browserslist": "Node >= 8.10, > 0.5%, not dead",
   "devDependencies": {
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",

@@ -4,7 +4,7 @@
 
 ### Major
 
-- Updated Node.js support from v6+ to v8.5+.
+- Updated Node.js support from v6+ to v8.10+.
 
 ### Minor
 
