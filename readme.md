@@ -1,6 +1,6 @@
 # extract-files
 
-[![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![Build status](https://travis-ci.org/jaydenseric/extract-files.svg?branch=master)](https://travis-ci.org/jaydenseric/extract-files)
+[![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![CI status](https://github.com/jaydenseric/extract-files/workflows/CI/badge.svg)](https://github.com/jaydenseric/extract-files/actions)
 
 Clones a value, recursively extracting [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
 
