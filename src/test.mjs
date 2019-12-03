@@ -41,7 +41,10 @@ t.test(
       extractFiles({ a: fileList }),
       {
         clone: { a: [null, null] },
-        files: new Map([[file1, ['a.0']], [file2, ['a.1']]])
+        files: new Map([
+          [file1, ['a.0']],
+          [file2, ['a.1']]
+        ])
       },
       'Result.'
     )
