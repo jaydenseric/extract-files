@@ -15,6 +15,7 @@
 ### Patch
 
 - Updated dev dependencies.
+- Replaced the [`size-limit`](https://npm.im/size-limit) dev dependency with [`@size-limit/preset-small-lib`](https://npm.im/@size-limit/preset-small-lib).
 - Removed now redundant ESLint disable `require-jsdoc` comments.
 - Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
