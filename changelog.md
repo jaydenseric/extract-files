@@ -6,6 +6,12 @@
 
 - Updated Node.js support from v6+ to v8.5+.
 
+### Minor
+
+- Setup [GitHub Sponsors funding](https://github.com/sponsors/jaydenseric):
+  - Added `.github/funding.yml` to display a sponsor button in GitHub.
+  - Added a `package.json` `funding` field to enable npm CLI funding features.
+
 ### Patch
 
 - Updated dev dependencies.
