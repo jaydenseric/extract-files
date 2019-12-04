@@ -26,6 +26,7 @@
 - Only target the root `lib` directory in `.gitignore` and `.eslintignore`.
 - Prevented ESLint from ignoring dotfiles.
 - Only bundle size limit test the ESM build.
+- Clarified that Opera Mini isn’t supported in the Browserslist queries and readme “Support” section.
 
 ## 5.0.1
 

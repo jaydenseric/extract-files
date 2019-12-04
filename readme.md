@@ -19,7 +19,7 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 ## Support
 
 - Node.js v8.10+
-- Browsers [`> 0.5%, not dead`](https://browserl.ist/?q=%3E+0.5%25%2C+not+dead)
+- Browsers [`> 0.5%, not OperaMini all, not dead`](https://browserl.ist/?q=%3E+0.5%25%2C+not+OperaMini+all%2C+not+dead)
 - React Native
 
 ## API
