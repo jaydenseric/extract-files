@@ -1,4 +1,4 @@
-import { isExtractableFile as defaultIsFileValue } from './isExtractableFile.mjs'
+import { isExtractableFile as defaultIsExtractableFile } from './isExtractableFile.mjs'
 
 /**
  * Clones a value, recursively extracting
@@ -52,7 +52,7 @@ import { isExtractableFile as defaultIsFileValue } from './isExtractableFile.mjs
 export function extractFiles(
   value,
   path = '',
-  isExtractableFile = defaultIsFileValue
+  isExtractableFile = defaultIsExtractableFile
 ) {
   let clone
   const files = new Map()
