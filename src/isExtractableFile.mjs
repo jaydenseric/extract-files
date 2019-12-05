@@ -6,7 +6,7 @@ import { ReactNativeFile } from './ReactNativeFile.mjs'
  * @name isExtractableFile
  * @type {ExtractableFileMatcher}
  * @param {*} value Value to check.
- * @returns {boolean} Is the file extractable.
+ * @returns {boolean} Is the value an [extractable file]{@link ExtractableFile}.
  * @example <caption>How to import.</caption>
  * ```js
  * import { isExtractableFile } from 'extract-files'

@@ -120,7 +120,7 @@ Checks if a value is an [extractable file](#type-extractablefile).
 | :-------- | :--- | :-------------- |
 | `value`   | \*   | Value to check. |
 
-**Returns:** boolean — Is the file extractable.
+**Returns:** boolean — Is the value an [extractable file](#type-extractablefile).
 
 #### Examples
 
@@ -145,6 +145,12 @@ An extractable file.
 A function that checks if a value is an extractable file.
 
 **Type:** Function
+
+| Parameter | Type | Description     |
+| :-------- | :--- | :-------------- |
+| `value`   | \*   | Value to check. |
+
+**Returns:** boolean — Is the value an extractable file.
 
 #### See
 
