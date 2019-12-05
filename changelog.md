@@ -8,6 +8,9 @@
 
 ### Minor
 
+- Added the ability to customize what are extractable files, fixing [#10](https://github.com/jaydenseric/extract-files/issues/10) via [#11](https://github.com/jaydenseric/extract-files/pull/11):
+  - Added a new third parameter to the `extractFiles` function, for specifying a custom extractable file matcher.
+  - Export a new `isExtractableFile` function that is used as the default extractable file matcher for the `extractFiles` function. This can be used in a custom extractable file matcher implementation to match the default extractable files, along with additional custom files.
 - Setup [GitHub Sponsors funding](https://github.com/sponsors/jaydenseric):
   - Added `.github/funding.yml` to display a sponsor button in GitHub.
   - Added a `package.json` `funding` field to enable npm CLI funding features.
