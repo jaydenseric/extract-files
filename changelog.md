@@ -22,6 +22,7 @@
 - Use GitHub Actions instead of Travis for CI.
 - Redid the test scripts and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
+- Only size limit test the ESM build.
 - Updated the package `test:tap` script to workaround a [`tap` bug](https://github.com/tapjs/node-tap/issues/624).
 - Simplified the `prepublishOnly` script.
 - Ordered `plugins` before `presets` in Babel config as they run first.
@@ -29,7 +30,6 @@
 - Only target the root `lib` directory in `.gitignore` and `.eslintignore`.
 - Removed `package-lock.json` from `.gitignore` and `.prettierignore` as it’s disabled in `.npmrc` anyway.
 - Prevented ESLint from ignoring dotfiles.
-- Only bundle size limit test the ESM build.
 - Clarified that Opera Mini isn’t supported in the Browserslist queries and readme “Support” section.
 
 ## 5.0.1
