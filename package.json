@@ -65,7 +65,7 @@
     "test": "npm run test:eslint && npm run test:prettier && npm run test:tap && npm run test:size",
     "test:eslint": "eslint . --ext mjs,js",
     "test:prettier": "prettier '**/*.{json,yml,md}' -l",
-    "test:tap": "tap lib/test.{mjs,js} --100",
+    "test:tap": "tap lib/test.{mjs,js} --100 -R classic",
     "test:size": "size-limit",
     "prepublishOnly": "npm test"
   }

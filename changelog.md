@@ -20,6 +20,7 @@
 - Use GitHub Actions instead of Travis for CI.
 - Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
+- Updated the package `test:tap` script to workaround a [`tap` bug](https://github.com/tapjs/node-tap/issues/624).
 - Simplified the `prepublishOnly` script.
 - Ordered `plugins` before `presets` in Babel config as they run first.
 - Reduced the size of the published `package.json` by moving dev tool config to files.
