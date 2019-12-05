@@ -31,7 +31,7 @@ t.test('`extractFiles` extracts a file value.', t => {
 })
 
 t.test(
-  '`extractFiles` extracts `File` instances from a FileList instance in an object value.',
+  '`extractFiles` extracts `File` instances from a `FileList` instance in an object value.',
   t => {
     const originalFile = global.File
     const originalFileList = global.FileList
@@ -295,7 +295,7 @@ t.test(
 t.test('`extractFiles` allows overriding `isExtractableFile`.', t => {
   class CustomFile {}
 
-  const isExtractableFileEnhanced = value => value instanceof CustomFile
+  const isExtractableFile = value => value instanceof CustomFile
 
   const file1 = new CustomFile()
   const file2 = new CustomFile()
@@ -308,7 +308,7 @@ t.test('`extractFiles` allows overriding `isExtractableFile`.', t => {
         b: [file2, { c: file3 }]
       },
       '',
-      isExtractableFileEnhanced
+      isExtractableFile
     ),
     {
       clone: {
