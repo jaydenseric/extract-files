@@ -27,6 +27,7 @@
 - Ordered `plugins` before `presets` in Babel config as they run first.
 - Reduced the size of the published `package.json` by moving dev tool config to files.
 - Only target the root `lib` directory in `.gitignore` and `.eslintignore`.
+- Removed `package-lock.json` from `.gitignore` and `.prettierignore` as it’s disabled in `.npmrc` anyway.
 - Prevented ESLint from ignoring dotfiles.
 - Only bundle size limit test the ESM build.
 - Clarified that Opera Mini isn’t supported in the Browserslist queries and readme “Support” section.
