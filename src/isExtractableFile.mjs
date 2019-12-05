@@ -1,4 +1,4 @@
-import { ReactNativeFile } from './ReactNativeFile'
+import { ReactNativeFile } from './ReactNativeFile.mjs'
 
 /**
  * Checks if a value is an [extractable file]{@link ExtractableFile}.

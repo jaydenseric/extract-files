@@ -4,20 +4,33 @@
 
 ### Major
 
-- Updated Node.js support from v6+ to v8.5+.
+- Updated Node.js support from v6+ to v8.10+.
+
+### Minor
+
+- Setup [GitHub Sponsors funding](https://github.com/sponsors/jaydenseric):
+  - Added `.github/funding.yml` to display a sponsor button in GitHub.
+  - Added a `package.json` `funding` field to enable npm CLI funding features.
 
 ### Patch
 
 - Updated dev dependencies.
+- Replaced the [`size-limit`](https://npm.im/size-limit) dev dependency with [`@size-limit/preset-small-lib`](https://npm.im/@size-limit/preset-small-lib).
+- Added a new [`babel-plugin-transform-require-extensions`](https://npm.im/babel-plugin-transform-require-extensions) dev dependency and ensured ESM import specifiers in both source and published `.mjs` files contain file names with extensions, which [are mandatory in the final Node.js ESM implementation](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions). Published CJS `.js` files now also have file extensions in `require` paths.
+- Added a package `module` field.
 - Removed now redundant ESLint disable `require-jsdoc` comments.
-- Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
+- Use GitHub Actions instead of Travis for CI.
+- Redid the test scripts and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
+- Only size limit test the ESM build.
+- Updated the package `test:tap` script to workaround a [`tap` bug](https://github.com/tapjs/node-tap/issues/624).
 - Simplified the `prepublishOnly` script.
 - Ordered `plugins` before `presets` in Babel config as they run first.
 - Reduced the size of the published `package.json` by moving dev tool config to files.
 - Only target the root `lib` directory in `.gitignore` and `.eslintignore`.
+- Removed `package-lock.json` from `.gitignore` and `.prettierignore` as it’s disabled in `.npmrc` anyway.
 - Prevented ESLint from ignoring dotfiles.
-- Only bundle size limit test the ESM build.
+- Clarified that Opera Mini isn’t supported in the Browserslist queries and readme “Support” section.
 
 ## 5.0.1
 

@@ -1,7 +1,7 @@
 import t from 'tap'
-import { extractFiles } from './extractFiles'
-import { isExtractableFile } from './isExtractableFile'
-import { ReactNativeFile } from './ReactNativeFile'
+import { extractFiles } from './extractFiles.mjs'
+import { isExtractableFile } from './isExtractableFile.mjs'
+import { ReactNativeFile } from './ReactNativeFile.mjs'
 
 t.test('`isExtractableFile` matches a file', t => {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
@@ -54,7 +54,10 @@ t.test(
       extractFiles({ a: fileList }),
       {
         clone: { a: [null, null] },
-        files: new Map([[file1, ['a.0']], [file2, ['a.1']]])
+        files: new Map([
+          [file1, ['a.0']],
+          [file2, ['a.1']]
+        ])
       },
       'Result.'
     )
@@ -312,7 +315,11 @@ t.test('`extractFiles` allows overriding `isExtractableFile`.', t => {
         a: null,
         b: [null, { c: null }]
       },
-      files: new Map([[file1, ['a']], [file2, ['b.0']], [file3, ['b.1.c']]])
+      files: new Map([
+        [file1, ['a']],
+        [file2, ['b.0']],
+        [file3, ['b.1.c']]
+      ])
     },
     'Result.'
   )

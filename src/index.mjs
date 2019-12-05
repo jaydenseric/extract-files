@@ -1,6 +1,6 @@
-export { extractFiles } from './extractFiles'
-export { ReactNativeFile } from './ReactNativeFile'
-export { isExtractableFile } from './isExtractableFile'
+export { extractFiles } from './extractFiles.mjs'
+export { ReactNativeFile } from './ReactNativeFile.mjs'
+export { isExtractableFile } from './isExtractableFile.mjs'
 
 /**
  * An extractable file.

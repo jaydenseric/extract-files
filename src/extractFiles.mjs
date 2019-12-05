@@ -1,4 +1,4 @@
-import { isExtractableFile as defaultIsFileValue } from './isExtractableFile'
+import { isExtractableFile as defaultIsFileValue } from './isExtractableFile.mjs'
 
 /**
  * Clones a value, recursively extracting
