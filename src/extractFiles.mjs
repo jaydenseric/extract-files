@@ -1,4 +1,4 @@
-import { ReactNativeFile } from './ReactNativeFile'
+import { ReactNativeFile } from './ReactNativeFile.mjs'
 
 /**
  * Clones a value, recursively extracting

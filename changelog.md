@@ -16,6 +16,7 @@
 
 - Updated dev dependencies.
 - Replaced the [`size-limit`](https://npm.im/size-limit) dev dependency with [`@size-limit/preset-small-lib`](https://npm.im/@size-limit/preset-small-lib).
+- Added a new [`babel-plugin-transform-require-extensions`](https://npm.im/babel-plugin-transform-require-extensions) dev dependency and ensured ESM import specifiers in both source and published `.mjs` files contain file names with extensions, which [are mandatory in the final Node.js ESM implementation](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions). Published CJS `.js` files now also have file extensions in `require` paths.
 - Removed now redundant ESLint disable `require-jsdoc` comments.
 - Use GitHub Actions instead of Travis for CI.
 - Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
