@@ -1,11 +1,30 @@
 export { extractFiles } from './extractFiles.mjs'
 export { ReactNativeFile } from './ReactNativeFile.mjs'
+export { isExtractableFile } from './isExtractableFile.mjs'
 
 /**
  * An extractable file.
  * @kind typedef
  * @name ExtractableFile
  * @type {File|Blob|ReactNativeFile}
+ */
+
+/**
+ * A function that checks if a value is an extractable file.
+ * @kind typedef
+ * @name ExtractableFileMatcher
+ * @type {Function}
+ * @param {*} value Value to check.
+ * @returns {boolean} Is the value an extractable file.
+ * @see [`isExtractableFile`]{@link isExtractableFile} is the default extractable file matcher.
+ * @example <caption>How to check for the default exactable files, as well as a custom type of file.</caption>
+ * ```js
+ * import { isExtractableFile } from 'extract-files'
+ *
+ * const isExtractableFileEnhanced = value =>
+ *   isExtractableFile(value) ||
+ *   (typeof CustomFile !== 'undefined' && value instanceof CustomFile)
+ * ```
  */
 
 /**

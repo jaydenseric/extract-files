@@ -1,4 +1,4 @@
-import { ReactNativeFile } from './ReactNativeFile.mjs'
+import { isExtractableFile as defaultIsExtractableFile } from './isExtractableFile.mjs'
 
 /**
  * Clones a value, recursively extracting
@@ -13,6 +13,7 @@ import { ReactNativeFile } from './ReactNativeFile.mjs'
  * @name extractFiles
  * @param {*} value Value (typically an object tree) to extract files from.
  * @param {ObjectPath} [path=''] Prefix for object paths for extracted files.
+ * @param {ExtractableFileMatcher} [isExtractableFile=isExtractableFile] The function used to identify extractable files.
  * @returns {ExtractFilesResult} Result.
  * @example <caption>Extract files from an object.</caption>
  * For the following:
@@ -48,7 +49,11 @@ import { ReactNativeFile } from './ReactNativeFile.mjs'
  * | `file1` | `['prefix.a', 'prefix.b.0']` |
  * | `file2` | `['prefix.b.1']`             |
  */
-export function extractFiles(value, path = '') {
+export function extractFiles(
+  value,
+  path = '',
+  isExtractableFile = defaultIsExtractableFile
+) {
   let clone
   const files = new Map()
 
@@ -66,11 +71,7 @@ export function extractFiles(value, path = '') {
     else files.set(file, paths)
   }
 
-  if (
-    (typeof File !== 'undefined' && value instanceof File) ||
-    (typeof Blob !== 'undefined' && value instanceof Blob) ||
-    value instanceof ReactNativeFile
-  ) {
+  if (isExtractableFile(value)) {
     clone = null
     addFile([path], value)
   } else {
@@ -83,14 +84,18 @@ export function extractFiles(value, path = '') {
       })
     else if (Array.isArray(value))
       clone = value.map((child, i) => {
-        const result = extractFiles(child, `${prefix}${i}`)
+        const result = extractFiles(child, `${prefix}${i}`, isExtractableFile)
         result.files.forEach(addFile)
         return result.clone
       })
     else if (value && value.constructor === Object) {
       clone = {}
       for (const i in value) {
-        const result = extractFiles(value[i], `${prefix}${i}`)
+        const result = extractFiles(
+          value[i],
+          `${prefix}${i}`,
+          isExtractableFile
+        )
         result.files.forEach(addFile)
         clone[i] = result.clone
       }
