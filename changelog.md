@@ -20,7 +20,7 @@
 - Added a package `module` field.
 - Removed now redundant ESLint disable `require-jsdoc` comments.
 - Use GitHub Actions instead of Travis for CI.
-- Redid the test scripts, added a `.nycrc.json` file for improved reporting and enforced 100% code coverage.
+- Redid the test scripts and enforced 100% code coverage.
 - Run size limit tests last in the package `test` script as they are the slowest.
 - Updated the package `test:tap` script to workaround a [`tap` bug](https://github.com/tapjs/node-tap/issues/624).
 - Simplified the `prepublishOnly` script.
