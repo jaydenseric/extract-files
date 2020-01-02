@@ -1,7 +1,7 @@
 import t from 'tap'
+import { ReactNativeFile } from './ReactNativeFile.mjs'
 import { extractFiles } from './extractFiles.mjs'
 import { isExtractableFile } from './isExtractableFile.mjs'
-import { ReactNativeFile } from './ReactNativeFile.mjs'
 
 t.test('`isExtractableFile` matches a file', t => {
   const file = new ReactNativeFile({ name: '', type: '', uri: '' })
