@@ -8,6 +8,8 @@
 
 ### Patch
 
+- Updated dev dependencies.
+- Removed the now redundant [`eslint-plugin-import-order-alphabetical`](https://npm.im/eslint-plugin-import-order-alphabetical) dev dependency.
 - Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
 
 ## 6.0.0
