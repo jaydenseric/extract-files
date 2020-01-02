@@ -6,6 +6,10 @@
 
 - Updated Node.js support from v8.10+ to v10+.
 
+### Patch
+
+- Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
+
 ## 6.0.0
 
 ### Major
