@@ -25,8 +25,7 @@
     "mjs"
   ],
   "files": [
-    "lib",
-    "!lib/test.*"
+    "lib"
   ],
   "main": "lib",
   "module": "lib/index.mjs",
@@ -43,6 +42,7 @@
     "@size-limit/preset-small-lib": "^2.2.4",
     "babel-eslint": "^10.0.2",
     "babel-plugin-transform-require-extensions": "^2.0.0",
+    "coverage-node": "^2.0.2",
     "eslint": "^6.8.0",
     "eslint-config-env": "^13.0.1",
     "eslint-config-prettier": "^6.9.0",
@@ -50,9 +50,10 @@
     "eslint-plugin-jsdoc": "^19.2.0",
     "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "hard-rejection": "^2.1.0",
     "jsdoc-md": "^5.0.0",
     "prettier": "^1.18.2",
-    "tap": "^14.10.5"
+    "test-director": "^3.0.0"
   },
   "scripts": {
     "prepare": "npm run prepare:clean && npm run prepare:mjs && npm run prepare:js && npm run prepare:jsdoc && npm run prepare:prettier",
@@ -61,10 +62,10 @@
     "prepare:js": "babel src -d lib",
     "prepare:jsdoc": "jsdoc-md",
     "prepare:prettier": "prettier 'lib/**/*.{mjs,js}' readme.md --write",
-    "test": "npm run test:eslint && npm run test:prettier && npm run test:tap && npm run test:size",
+    "test": "npm run test:eslint && npm run test:prettier && npm run test:api && npm run test:size",
     "test:eslint": "eslint . --ext mjs,js",
     "test:prettier": "prettier '**/*.{json,yml,md}' -l",
-    "test:tap": "tap lib/test.{mjs,js} --100 -R classic",
+    "test:api": "coverage-node -r hard-rejection/register test",
     "test:size": "size-limit",
     "prepublishOnly": "npm test"
   }

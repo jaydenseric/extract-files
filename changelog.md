@@ -5,12 +5,14 @@
 ### Major
 
 - Updated Node.js support from v8.10+ to v10+.
+- Replaced [`tap`](https://npm.im/tap) and [`nyc`](https://npm.im/nyc) with [`test-director`](https://npm.im/test-director), [`coverage-node`](https://npm.im/coverage-node) and [`hard-rejection`](https://npm.im/hard-rejection) to improve the dev experience and reduce the dev install size by ~78.8 MB. These new dev dependencies require Node.js v10+.
 
 ### Patch
 
 - Updated dev dependencies.
 - Removed the now redundant [`eslint-plugin-import-order-alphabetical`](https://npm.im/eslint-plugin-import-order-alphabetical) dev dependency.
 - Stop using [`husky`](https://npm.im/husky) and [`lint-staged`](https://npm.im/lint-staged).
+- More thorough tests.
 - Use strict mode for scripts.
 
 ## 6.0.0
