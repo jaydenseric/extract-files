@@ -25,7 +25,8 @@
     "mjs"
   ],
   "files": [
-    "lib"
+    "lib",
+    "!lib/test"
   ],
   "main": "lib",
   "module": "lib/index.mjs",
@@ -56,16 +57,17 @@
     "test-director": "^3.0.0"
   },
   "scripts": {
-    "prepare": "npm run prepare:clean && npm run prepare:mjs && npm run prepare:js && npm run prepare:jsdoc && npm run prepare:prettier",
+    "prepare": "npm run prepare:clean && npm run prepare:esm && npm run prepare:cjs && npm run prepare:jsdoc && npm run prepare:prettier",
     "prepare:clean": "rm -rf lib",
-    "prepare:mjs": "BABEL_ESM=1 babel src -d lib --keep-file-extension",
-    "prepare:js": "babel src -d lib",
+    "prepare:esm": "BABEL_ESM=1 babel src -d lib --keep-file-extension",
+    "prepare:cjs": "babel src -d lib",
     "prepare:jsdoc": "jsdoc-md",
     "prepare:prettier": "prettier 'lib/**/*.{mjs,js}' readme.md --write",
-    "test": "npm run test:eslint && npm run test:prettier && npm run test:api && npm run test:size",
+    "test": "npm run test:eslint && npm run test:prettier && npm run test:esm && npm run test:cjs && npm run test:size",
     "test:eslint": "eslint . --ext mjs,js",
     "test:prettier": "prettier '**/*.{json,yml,md}' -l",
-    "test:api": "coverage-node -r hard-rejection/register test",
+    "test:esm": "if node --input-type=module -e '' > /dev/null 2>&1; then coverage-node -r hard-rejection/register lib/test/index.mjs; fi",
+    "test:cjs": "coverage-node -r hard-rejection/register lib/test",
     "test:size": "size-limit",
     "prepublishOnly": "npm test"
   }

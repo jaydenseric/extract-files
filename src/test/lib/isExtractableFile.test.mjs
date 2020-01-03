@@ -1,10 +1,8 @@
-'use strict'
+import { strictEqual } from 'assert'
+import { ReactNativeFile } from '../../ReactNativeFile.mjs'
+import { isExtractableFile } from '../../isExtractableFile.mjs'
 
-const { strictEqual } = require('assert')
-const { ReactNativeFile } = require('../../lib/ReactNativeFile')
-const { isExtractableFile } = require('../../lib/isExtractableFile')
-
-module.exports = tests => {
+export default tests => {
   tests.add('`isExtractableFile` with a `File` instance.', () => {
     const original = global.File
     global.File = class File {}
