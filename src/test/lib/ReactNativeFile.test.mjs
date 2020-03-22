@@ -1,7 +1,7 @@
 import { strictEqual } from 'assert'
 import { ReactNativeFile } from '../../ReactNativeFile.mjs'
 
-export default tests => {
+export default (tests) => {
   tests.add('`ReactNativeFile`.', () => {
     const uri = '<uri>'
     const name = 'a.jpg'

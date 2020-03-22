@@ -2,7 +2,7 @@ import { strictEqual } from 'assert'
 import { ReactNativeFile } from '../../ReactNativeFile.mjs'
 import { isExtractableFile } from '../../isExtractableFile.mjs'
 
-export default tests => {
+export default (tests) => {
   tests.add('`isExtractableFile` with a `File` instance.', () => {
     const original = global.File
     global.File = class File {}

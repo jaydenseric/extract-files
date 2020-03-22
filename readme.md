@@ -53,7 +53,7 @@ _An extractable file in React Native._
 > const file = new ReactNativeFile({
 >   uri: uriFromCameraRoll,
 >   name: 'a.jpg',
->   type: 'image/jpeg'
+>   type: 'image/jpeg',
 > })
 > ```
 
@@ -84,7 +84,7 @@ _Extract files from an object._
 > const file2 = new File(['2'], '2.txt', { type: 'text/plain' })
 > const value = {
 >   a: file1,
->   b: [file1, file2]
+>   b: [file1, file2],
 > }
 >
 > const { clone, files } = extractFiles(value, 'prefix')
@@ -163,7 +163,7 @@ _How to check for the default exactable files, as well as a custom type of file.
 > ```js
 > import { isExtractableFile } from 'extract-files'
 >
-> const isExtractableFileEnhanced = value =>
+> const isExtractableFileEnhanced = (value) =>
 >   isExtractableFile(value) ||
 >   (typeof CustomFile !== 'undefined' && value instanceof CustomFile)
 > ```

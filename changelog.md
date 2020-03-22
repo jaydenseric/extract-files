@@ -4,6 +4,8 @@
 
 ### Patch
 
+- Updated dependencies.
+- Lint fixes for [`prettier`](https://npm.im/prettier) v2.
 - Improved the `ExtractableFileMatcher` JSDoc typedef.
 
 ## 7.0.0

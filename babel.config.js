@@ -4,7 +4,7 @@ module.exports = {
   comments: false,
   plugins: [
     ['@babel/proposal-class-properties', { loose: true }],
-    'transform-require-extensions'
+    'transform-require-extensions',
   ],
   presets: [
     [
@@ -12,8 +12,8 @@ module.exports = {
       {
         modules: process.env.BABEL_ESM ? false : 'commonjs',
         shippedProposals: true,
-        loose: true
-      }
-    ]
-  ]
+        loose: true,
+      },
+    ],
+  ],
 }

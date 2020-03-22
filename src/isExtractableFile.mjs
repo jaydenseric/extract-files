@@ -12,7 +12,7 @@ import { ReactNativeFile } from './ReactNativeFile.mjs'
  * import { isExtractableFile } from 'extract-files'
  * ```
  */
-export const isExtractableFile = value =>
+export const isExtractableFile = (value) =>
   (typeof File !== 'undefined' && value instanceof File) ||
   (typeof Blob !== 'undefined' && value instanceof Blob) ||
   value instanceof ReactNativeFile

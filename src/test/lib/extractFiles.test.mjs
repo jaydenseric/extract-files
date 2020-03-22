@@ -2,7 +2,7 @@ import { deepStrictEqual, strictEqual } from 'assert'
 import { ReactNativeFile } from '../../ReactNativeFile.mjs'
 import { extractFiles } from '../../extractFiles.mjs'
 
-export default tests => {
+export default (tests) => {
   for (const [name, value] of [
     ['undefined', null],
     ['null', null],
@@ -17,20 +17,20 @@ export default tests => {
     ['a function', () => {}],
     ['an `Object` instance', new Object()],
     ['a `Number` instance', new Number(1)],
-    ['a `Date` instance', new Date(2019, 0, 20)]
+    ['a `Date` instance', new Date(2019, 0, 20)],
   ])
     tests.add(`\`extractFiles\` with ${name}.`, () => {
       deepStrictEqual(extractFiles(value), {
         clone: value,
-        files: new Map()
+        files: new Map(),
       })
       deepStrictEqual(extractFiles({ a: value }), {
         clone: { a: value },
-        files: new Map()
+        files: new Map(),
       })
       deepStrictEqual(extractFiles([value]), {
         clone: [value],
-        files: new Map()
+        files: new Map(),
       })
     })
 
@@ -56,8 +56,8 @@ export default tests => {
       clone: [null, null],
       files: new Map([
         [file0, ['0']],
-        [file1, ['1']]
-      ])
+        [file1, ['1']],
+      ]),
     })
 
     global.File = originalFile
@@ -70,7 +70,7 @@ export default tests => {
     const file = new File()
     deepStrictEqual(extractFiles(file), {
       clone: null,
-      files: new Map([[file, ['']]])
+      files: new Map([[file, ['']]]),
     })
     global.File = original
   })
@@ -81,7 +81,7 @@ export default tests => {
     const file = new Blob()
     deepStrictEqual(extractFiles(file), {
       clone: null,
-      files: new Map([[file, ['']]])
+      files: new Map([[file, ['']]]),
     })
     global.Blob = original
   })
@@ -90,7 +90,7 @@ export default tests => {
     const file = new ReactNativeFile({ uri: '', name: '', type: '' })
     deepStrictEqual(extractFiles(file), {
       clone: null,
-      files: new Map([[file, ['']]])
+      files: new Map([[file, ['']]]),
     })
   })
 
@@ -101,7 +101,7 @@ export default tests => {
       const input = { a: file, b: file }
       deepStrictEqual(extractFiles(input), {
         clone: { a: null, b: null },
-        files: new Map([[file, ['a', 'b']]])
+        files: new Map([[file, ['a', 'b']]]),
       })
       strictEqual(input.a, file)
       strictEqual(input.b, file)
@@ -116,8 +116,8 @@ export default tests => {
       clone: { a: null, b: null },
       files: new Map([
         [fileA, ['a']],
-        [fileB, ['b']]
-      ])
+        [fileB, ['b']],
+      ]),
     })
     strictEqual(input.a, fileA)
     strictEqual(input.b, fileB)
@@ -128,7 +128,7 @@ export default tests => {
     const input = { a: { a: file } }
     deepStrictEqual(extractFiles(input), {
       clone: { a: { a: null } },
-      files: new Map([[file, ['a.a']]])
+      files: new Map([[file, ['a.a']]]),
     })
     strictEqual(input.a.a, file)
   })
@@ -140,7 +140,7 @@ export default tests => {
       const input = [file, file]
       deepStrictEqual(extractFiles(input), {
         clone: [null, null],
-        files: new Map([[file, ['0', '1']]])
+        files: new Map([[file, ['0', '1']]]),
       })
       strictEqual(input[0], file)
       strictEqual(input[0], file)
@@ -155,8 +155,8 @@ export default tests => {
       clone: [null, null],
       files: new Map([
         [file0, ['0']],
-        [file1, ['1']]
-      ])
+        [file1, ['1']],
+      ]),
     })
     strictEqual(input[0], file0)
     strictEqual(input[1], file1)
@@ -167,7 +167,7 @@ export default tests => {
     const input = [[file]]
     deepStrictEqual(extractFiles(input), {
       clone: [[null]],
-      files: new Map([[file, ['0.0']]])
+      files: new Map([[file, ['0.0']]]),
     })
     strictEqual(input[0][0], file)
   })
@@ -176,7 +176,7 @@ export default tests => {
     const file = new ReactNativeFile({ uri: '', name: '', type: '' })
     deepStrictEqual(extractFiles(file, 'prefix'), {
       clone: null,
-      files: new Map([[file, ['prefix']]])
+      files: new Map([[file, ['prefix']]]),
     })
   })
 
@@ -186,7 +186,7 @@ export default tests => {
       const file = new ReactNativeFile({ uri: '', name: '', type: '' })
       deepStrictEqual(extractFiles({ a: [file] }, 'prefix'), {
         clone: { a: [null] },
-        files: new Map([[file, ['prefix.a.0']]])
+        files: new Map([[file, ['prefix.a.0']]]),
       })
     }
   )
@@ -197,10 +197,10 @@ export default tests => {
       class CustomFile {}
       const file = new CustomFile()
       deepStrictEqual(
-        extractFiles(file, '', value => value instanceof CustomFile),
+        extractFiles(file, '', (value) => value instanceof CustomFile),
         {
           clone: null,
-          files: new Map([[file, ['']]])
+          files: new Map([[file, ['']]]),
         }
       )
     }
