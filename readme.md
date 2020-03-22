@@ -142,7 +142,7 @@ An extractable file.
 
 ### type ExtractableFileMatcher
 
-A function that checks if a value is an extractable file.
+A function that checks if a value is an [extractable file](#type-extractablefile).
 
 **Type:** Function
 
@@ -150,7 +150,7 @@ A function that checks if a value is an extractable file.
 | :-------- | :--- | :-------------- |
 | `value`   | \*   | Value to check. |
 
-**Returns:** boolean — Is the value an extractable file.
+**Returns:** boolean — Is the value an [extractable file](#type-extractablefile).
 
 #### See
 

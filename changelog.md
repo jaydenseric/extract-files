@@ -1,5 +1,11 @@
 # extract-files changelog
 
+## Next
+
+### Patch
+
+- Improved the `ExtractableFileMatcher` JSDoc typedef.
+
 ## 7.0.0
 
 ### Major

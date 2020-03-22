@@ -10,12 +10,12 @@ export { isExtractableFile } from './isExtractableFile.mjs'
  */
 
 /**
- * A function that checks if a value is an extractable file.
+ * A function that checks if a value is an [extractable file]{@link ExtractableFile}.
  * @kind typedef
  * @name ExtractableFileMatcher
  * @type {Function}
  * @param {*} value Value to check.
- * @returns {boolean} Is the value an extractable file.
+ * @returns {boolean} Is the value an [extractable file]{@link ExtractableFile}.
  * @see [`isExtractableFile`]{@link isExtractableFile} is the default extractable file matcher.
  * @example <caption>How to check for the default exactable files, as well as a custom type of file.</caption>
  * ```js
