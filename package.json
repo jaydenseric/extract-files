@@ -54,7 +54,7 @@
     "jsdoc-md": "^5.0.1",
     "prettier": "^2.0.2",
     "size-limit": "^4.4.1",
-    "test-director": "^3.0.1"
+    "test-director": "^4.0.0"
   },
   "scripts": {
     "prepare": "npm run prepare:clean && npm run prepare:esm && npm run prepare:cjs && npm run prepare:jsdoc && npm run prepare:prettier",
