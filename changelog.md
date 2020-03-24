@@ -9,6 +9,7 @@
 - Lint fixes for [`prettier`](https://npm.im/prettier) v2.
 - Ensure GitHub Actions run on pull request.
 - Improved the `ExtractableFileMatcher` JSDoc typedef.
+- Size limit test the published CJS files as well as the ESM.
 
 ## 7.0.0
 
