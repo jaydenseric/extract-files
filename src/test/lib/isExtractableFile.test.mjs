@@ -1,6 +1,5 @@
 import { strictEqual } from 'assert'
-import { ReactNativeFile } from '../../ReactNativeFile.mjs'
-import { isExtractableFile } from '../../isExtractableFile.mjs'
+import { ReactNativeFile, isExtractableFile } from '../../index.mjs'
 
 export default (tests) => {
   tests.add('`isExtractableFile` with a `File` instance.', () => {

@@ -1,4 +1,6 @@
-import { isExtractableFile as defaultIsExtractableFile } from './isExtractableFile.mjs'
+'use strict'
+
+const defaultIsExtractableFile = require('./isExtractableFile.js')
 
 /**
  * Clones a value, recursively extracting
@@ -49,7 +51,7 @@ import { isExtractableFile as defaultIsExtractableFile } from './isExtractableFi
  * | `file1` | `['prefix.a', 'prefix.b.0']` |
  * | `file2` | `['prefix.b.1']`             |
  */
-export function extractFiles(
+module.exports = function extractFiles(
   value,
   path = '',
   isExtractableFile = defaultIsExtractableFile

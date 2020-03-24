@@ -1,5 +1,5 @@
 import { strictEqual } from 'assert'
-import { ReactNativeFile } from '../../ReactNativeFile.mjs'
+import { ReactNativeFile } from '../../index.mjs'
 
 export default (tests) => {
   tests.add('`ReactNativeFile`.', () => {

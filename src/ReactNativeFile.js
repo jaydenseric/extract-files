@@ -1,3 +1,5 @@
+'use strict'
+
 /**
  * Used to mark a [React Native `File` substitute]{@link ReactNativeFileSubstitute}
  * in an object tree for [`extractFiles`]{@link extractFiles}. It’s too risky to
@@ -17,7 +19,7 @@
  * })
  * ```
  */
-export class ReactNativeFile {
+module.exports = class ReactNativeFile {
   constructor({ uri, name, type }) {
     this.uri = uri
     this.name = name

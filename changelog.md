@@ -2,6 +2,11 @@
 
 ## Next
 
+### Major
+
+- Added a [package `exports` field](https://nodejs.org/api/esm.html#esm_package_exports) to support native ESM in Node.js.
+- Some source and published files are now `.js` (CJS) instead of `.mjs` (ESM), so undocumented deep imports may no longer work. [This approach avoids the dual package hazard](https://nodejs.org/api/esm.html#esm_approach_1_use_an_es_module_wrapper).
+
 ### Patch
 
 - Updated dependencies.

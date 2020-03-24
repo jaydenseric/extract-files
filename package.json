@@ -28,9 +28,13 @@
     "lib",
     "!lib/test"
   ],
-  "main": "lib",
-  "module": "lib/index.mjs",
   "sideEffects": false,
+  "module": "lib/index.mjs",
+  "main": "lib",
+  "exports": {
+    "import": "./lib/index.mjs",
+    "require": "./lib/index.js"
+  },
   "engines": {
     "node": ">=10"
   },
@@ -59,8 +63,8 @@
   "scripts": {
     "prepare": "npm run prepare:clean && npm run prepare:esm && npm run prepare:cjs && npm run prepare:jsdoc && npm run prepare:prettier",
     "prepare:clean": "rm -rf lib",
-    "prepare:esm": "BABEL_ESM=1 babel src -d lib --keep-file-extension",
-    "prepare:cjs": "babel src -d lib",
+    "prepare:esm": "PREPARE_MODULE_TYPE=esm babel src -d lib --keep-file-extension",
+    "prepare:cjs": "PREPARE_MODULE_TYPE=cjs babel src -d lib",
     "prepare:jsdoc": "jsdoc-md",
     "prepare:prettier": "prettier 'lib/**/*.{mjs,js}' readme.md --write",
     "test": "npm run test:eslint && npm run test:prettier && npm run test:esm && npm run test:cjs && npm run test:size",
