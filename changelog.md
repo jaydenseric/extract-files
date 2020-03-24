@@ -5,6 +5,7 @@
 ### Patch
 
 - Updated dependencies.
+- Removed [`@babel/plugin-proposal-class-properties`](https://npm.im/@babel/plugin-proposal-class-properties) from dev dependencies and the Babel config.
 - Lint fixes for [`prettier`](https://npm.im/prettier) v2.
 - Ensure GitHub Actions run on pull request.
 - Improved the `ExtractableFileMatcher` JSDoc typedef.
