@@ -8,6 +8,7 @@
 - Improved the package `prepare:prettier` and `test:prettier` scripts.
 - Reordered the package `test:eslint` script args for consistency with `test:prettier`.
 - Configured Prettier option `semi` to the default, `true`.
+- Restructured the `src` directory so `lib` and `test` files are separate with their own `.babelrc.js` files.
 
 ## 8.0.0
 

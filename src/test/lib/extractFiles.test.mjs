@@ -1,5 +1,5 @@
 import { deepStrictEqual, strictEqual } from 'assert';
-import { ReactNativeFile, extractFiles } from '../../index.mjs';
+import { ReactNativeFile, extractFiles } from '../../lib/index.mjs';
 
 export default (tests) => {
   for (const [name, value] of [
