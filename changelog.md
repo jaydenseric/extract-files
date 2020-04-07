@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 8.1.0
 
 ### Minor
 
