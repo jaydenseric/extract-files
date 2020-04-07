@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * Used to mark a [React Native `File` substitute]{@link ReactNativeFileSubstitute}
@@ -21,8 +21,8 @@
  */
 module.exports = class ReactNativeFile {
   constructor({ uri, name, type }) {
-    this.uri = uri
-    this.name = name
-    this.type = type
+    this.uri = uri;
+    this.name = name;
+    this.type = type;
   }
-}
+};

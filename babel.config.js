@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 const config = {
   comments: false,
@@ -13,11 +13,11 @@ const config = {
       },
     ],
   ],
-}
+};
 
 if (process.env.PREPARE_MODULE_TYPE)
   config.ignore = [
     `./src/index.${process.env.PREPARE_MODULE_TYPE === 'esm' ? 'js' : 'mjs'}`,
-  ]
+  ];
 
-module.exports = config
+module.exports = config;

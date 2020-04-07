@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const ReactNativeFile = require('./ReactNativeFile.js')
+const ReactNativeFile = require('./ReactNativeFile.js');
 
 /**
  * Checks if a value is an [extractable file]{@link ExtractableFile}.
@@ -19,5 +19,5 @@ module.exports = function isExtractableFile(value) {
     (typeof File !== 'undefined' && value instanceof File) ||
     (typeof Blob !== 'undefined' && value instanceof Blob) ||
     value instanceof ReactNativeFile
-  )
-}
+  );
+};

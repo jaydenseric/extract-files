@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const defaultIsExtractableFile = require('./isExtractableFile.js')
+const defaultIsExtractableFile = require('./isExtractableFile.js');
 
 /**
  * Clones a value, recursively extracting
@@ -56,8 +56,8 @@ module.exports = function extractFiles(
   path = '',
   isExtractableFile = defaultIsExtractableFile
 ) {
-  let clone
-  const files = new Map()
+  let clone;
+  const files = new Map();
 
   /**
    * Adds a file to the extracted files map.
@@ -68,41 +68,41 @@ module.exports = function extractFiles(
    * @ignore
    */
   function addFile(paths, file) {
-    const storedPaths = files.get(file)
-    if (storedPaths) storedPaths.push(...paths)
-    else files.set(file, paths)
+    const storedPaths = files.get(file);
+    if (storedPaths) storedPaths.push(...paths);
+    else files.set(file, paths);
   }
 
   if (isExtractableFile(value)) {
-    clone = null
-    addFile([path], value)
+    clone = null;
+    addFile([path], value);
   } else {
-    const prefix = path ? `${path}.` : ''
+    const prefix = path ? `${path}.` : '';
 
     if (typeof FileList !== 'undefined' && value instanceof FileList)
       clone = Array.prototype.map.call(value, (file, i) => {
-        addFile([`${prefix}${i}`], file)
-        return null
-      })
+        addFile([`${prefix}${i}`], file);
+        return null;
+      });
     else if (Array.isArray(value))
       clone = value.map((child, i) => {
-        const result = extractFiles(child, `${prefix}${i}`, isExtractableFile)
-        result.files.forEach(addFile)
-        return result.clone
-      })
+        const result = extractFiles(child, `${prefix}${i}`, isExtractableFile);
+        result.files.forEach(addFile);
+        return result.clone;
+      });
     else if (value && value.constructor === Object) {
-      clone = {}
+      clone = {};
       for (const i in value) {
         const result = extractFiles(
           value[i],
           `${prefix}${i}`,
           isExtractableFile
-        )
-        result.files.forEach(addFile)
-        clone[i] = result.clone
+        );
+        result.files.forEach(addFile);
+        clone[i] = result.clone;
       }
-    } else clone = value
+    } else clone = value;
   }
 
-  return { clone, files }
-}
+  return { clone, files };
+};

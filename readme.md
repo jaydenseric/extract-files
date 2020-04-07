@@ -48,13 +48,13 @@ Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute)
 _An extractable file in React Native._
 
 > ```js
-> import { ReactNativeFile } from 'extract-files'
+> import { ReactNativeFile } from 'extract-files';
 >
 > const file = new ReactNativeFile({
 >   uri: uriFromCameraRoll,
 >   name: 'a.jpg',
 >   type: 'image/jpeg',
-> })
+> });
 > ```
 
 ---
@@ -78,16 +78,16 @@ _Extract files from an object._
 > For the following:
 >
 > ```js
-> import { extractFiles } from 'extract-files'
+> import { extractFiles } from 'extract-files';
 >
-> const file1 = new File(['1'], '1.txt', { type: 'text/plain' })
-> const file2 = new File(['2'], '2.txt', { type: 'text/plain' })
+> const file1 = new File(['1'], '1.txt', { type: 'text/plain' });
+> const file2 = new File(['2'], '2.txt', { type: 'text/plain' });
 > const value = {
 >   a: file1,
 >   b: [file1, file2],
-> }
+> };
 >
-> const { clone, files } = extractFiles(value, 'prefix')
+> const { clone, files } = extractFiles(value, 'prefix');
 > ```
 >
 > `value` remains the same.
@@ -127,7 +127,7 @@ Checks if a value is an [extractable file](#type-extractablefile).
 _How to import._
 
 > ```js
-> import { isExtractableFile } from 'extract-files'
+> import { isExtractableFile } from 'extract-files';
 > ```
 
 ---
@@ -161,11 +161,11 @@ A function that checks if a value is an [extractable file](#type-extractablefile
 _How to check for the default exactable files, as well as a custom type of file._
 
 > ```js
-> import { isExtractableFile } from 'extract-files'
+> import { isExtractableFile } from 'extract-files';
 >
 > const isExtractableFileEnhanced = (value) =>
 >   isExtractableFile(value) ||
->   (typeof CustomFile !== 'undefined' && value instanceof CustomFile)
+>   (typeof CustomFile !== 'undefined' && value instanceof CustomFile);
 > ```
 
 ---
