@@ -35,9 +35,9 @@
     "require": "./lib/index.js"
   },
   "engines": {
-    "node": ">=10"
+    "node": "10 - 12 || >= 13.7"
   },
-  "browserslist": "Node >= 10, > 0.5%, not OperaMini all, not dead",
+  "browserslist": "Node 10 - 12, Node >= 13.7, > 0.5%, not OperaMini all, not dead",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",

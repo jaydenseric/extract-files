@@ -18,7 +18,7 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 
 ## Support
 
-- Node.js v10+
+- Node.js `10 - 12 || >= 13.7`
 - Browsers [`> 0.5%, not OperaMini all, not dead`](https://browserl.ist/?q=%3E+0.5%25%2C+not+OperaMini+all%2C+not+dead)
 - React Native
 

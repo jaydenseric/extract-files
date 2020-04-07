@@ -5,6 +5,7 @@
 ### Patch
 
 - Updated dev dependencies.
+- Updated the package `engines.node` field to `10 - 12 || >= 13.7` to reflect the package `exports` related breaking changes in `extract-files@8.0.0`.
 - Improved the package `prepare:prettier` and `test:prettier` scripts.
 - Reordered the package `test:eslint` script args for consistency with `test:prettier`.
 - Configured Prettier option `semi` to the default, `true`.
