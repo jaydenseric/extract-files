@@ -31,8 +31,13 @@
   "module": "lib/index.mjs",
   "main": "lib",
   "exports": {
-    "import": "./lib/index.mjs",
-    "require": "./lib/index.js"
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    },
+    "./lib/": "./lib/",
+    "./package": "./package.json",
+    "./package.json": "./package.json"
   },
   "engines": {
     "node": "10 - 12 || >= 13.7"
