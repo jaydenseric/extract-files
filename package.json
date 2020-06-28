@@ -40,29 +40,29 @@
     "./package.json": "./package.json"
   },
   "engines": {
-    "node": "10 - 12 || >= 13.7"
+    "node": "^10.17.0 || ^12.0.0 || >= 13.7.0"
   },
-  "browserslist": "Node 10 - 12, Node >= 13.7, > 0.5%, not OperaMini all, not dead",
+  "browserslist": "Node 10.17 - 11 and Node < 11, Node 12 - 13 and Node < 13, Node >= 13.7, > 0.5%, not OperaMini all, not dead",
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@size-limit/preset-small-lib": "^4.4.5",
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@size-limit/preset-small-lib": "^4.5.2",
     "babel-eslint": "^10.1.0",
     "babel-plugin-transform-require-extensions": "^2.0.1",
-    "coverage-node": "^2.0.3",
-    "eslint": "^6.8.0",
-    "eslint-config-env": "^13.0.4",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-jsdoc": "^22.1.0",
+    "coverage-node": "^3.0.0",
+    "eslint": "^7.3.1",
+    "eslint-config-env": "^14.0.4",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsdoc": "^28.5.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-prettier": "^3.1.4",
     "hard-rejection": "^2.1.0",
-    "jsdoc-md": "^5.0.1",
-    "prettier": "^2.0.4",
-    "size-limit": "^4.4.5",
-    "test-director": "^4.0.0"
+    "jsdoc-md": "^7.0.0",
+    "prettier": "^2.0.5",
+    "size-limit": "^4.5.2",
+    "test-director": "^4.0.1"
   },
   "scripts": {
     "prepare": "npm run prepare:clean && npm run prepare:esm && npm run prepare:cjs && npm run prepare:jsdoc && npm run prepare:prettier",
