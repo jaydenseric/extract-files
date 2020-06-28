@@ -94,10 +94,10 @@ _Extract files from an object._
 >
 > `clone` is:
 >
-> ```js
+> ```json
 > {
->   a: null,
->   b: [null, null]
+>   "a": null,
+>   "b": [null, null]
 > }
 > ```
 >
@@ -222,9 +222,9 @@ A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substit
 _A camera roll file._
 
 > ```js
-> {
+> const fileSubstitute = {
 >   uri: uriFromCameraRoll,
 >   name: 'a.jpg',
->   type: 'image/jpeg'
-> }
+>   type: 'image/jpeg',
+> };
 > ```

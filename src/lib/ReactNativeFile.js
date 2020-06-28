@@ -10,13 +10,13 @@
  * @param {ReactNativeFileSubstitute} file A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute.
  * @example <caption>An extractable file in React Native.</caption>
  * ```js
- * import { ReactNativeFile } from 'extract-files'
+ * import { ReactNativeFile } from 'extract-files';
  *
  * const file = new ReactNativeFile({
  *   uri: uriFromCameraRoll,
  *   name: 'a.jpg',
- *   type: 'image/jpeg'
- * })
+ *   type: 'image/jpeg',
+ * });
  * ```
  */
 module.exports = class ReactNativeFile {

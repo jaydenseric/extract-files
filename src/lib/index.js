@@ -21,11 +21,11 @@ exports.isExtractableFile = require('./isExtractableFile.js');
  * @see [`isExtractableFile`]{@link isExtractableFile} is the default extractable file matcher.
  * @example <caption>How to check for the default exactable files, as well as a custom type of file.</caption>
  * ```js
- * import { isExtractableFile } from 'extract-files'
+ * import { isExtractableFile } from 'extract-files';
  *
- * const isExtractableFileEnhanced = value =>
+ * const isExtractableFileEnhanced = (value) =>
  *   isExtractableFile(value) ||
- *   (typeof CustomFile !== 'undefined' && value instanceof CustomFile)
+ *   (typeof CustomFile !== 'undefined' && value instanceof CustomFile);
  * ```
  */
 
@@ -62,10 +62,10 @@ exports.isExtractableFile = require('./isExtractableFile.js');
  * @prop {string} [type] File content type.
  * @example <caption>A camera roll file.</caption>
  * ```js
- * {
+ * const fileSubstitute = {
  *   uri: uriFromCameraRoll,
  *   name: 'a.jpg',
- *   type: 'image/jpeg'
- * }
+ *   type: 'image/jpeg',
+ * };
  * ```
  */

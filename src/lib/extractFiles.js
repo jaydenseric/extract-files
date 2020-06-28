@@ -21,26 +21,26 @@ const defaultIsExtractableFile = require('./isExtractableFile.js');
  * For the following:
  *
  * ```js
- * import { extractFiles } from 'extract-files'
+ * import { extractFiles } from 'extract-files';
  *
- * const file1 = new File(['1'], '1.txt', { type: 'text/plain' })
- * const file2 = new File(['2'], '2.txt', { type: 'text/plain' })
+ * const file1 = new File(['1'], '1.txt', { type: 'text/plain' });
+ * const file2 = new File(['2'], '2.txt', { type: 'text/plain' });
  * const value = {
  *   a: file1,
- *   b: [file1, file2]
- * }
+ *   b: [file1, file2],
+ * };
  *
- * const { clone, files } = extractFiles(value, 'prefix')
+ * const { clone, files } = extractFiles(value, 'prefix');
  * ```
  *
  * `value` remains the same.
  *
  * `clone` is:
  *
- * ```js
+ * ```json
  * {
- *   a: null,
- *   b: [null, null]
+ *   "a": null,
+ *   "b": [null, null]
  * }
  * ```
  *

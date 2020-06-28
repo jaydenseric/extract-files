@@ -1,5 +1,11 @@
 # extract-files changelog
 
+## Next
+
+### Patch
+
+- Improved JSDoc code examples.
+
 ## 8.1.0
 
 ### Minor
