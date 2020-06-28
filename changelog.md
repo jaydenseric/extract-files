@@ -9,6 +9,7 @@
 
 ### Patch
 
+- Removed Node.js v13 and added v14 to the versions tested in GitHub Actions.
 - Improved JSDoc code examples.
 - Updated EditorConfig.
 
