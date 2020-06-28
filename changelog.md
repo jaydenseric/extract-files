@@ -10,6 +10,7 @@
 ### Patch
 
 - Improved JSDoc code examples.
+- Updated EditorConfig.
 
 ## 8.1.0
 
