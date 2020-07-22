@@ -14,6 +14,7 @@
 - Improved JSDoc code examples.
 - Updated EditorConfig.
 - No longer transpile tests with Babel, or test ESM.
+- Simplified the Babel config and scripts, ensuring `.js` files are parsed as scripts.
 
 ## 8.1.0
 

@@ -1,0 +1,19 @@
+{
+  "comments": false,
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "modules": false,
+        "shippedProposals": true,
+        "loose": true
+      }
+    ]
+  ],
+  "overrides": [
+    {
+      "test": "**/*.js",
+      "sourceType": "script"
+    }
+  ]
+}
