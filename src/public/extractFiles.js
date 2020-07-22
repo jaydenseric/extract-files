@@ -17,6 +17,22 @@ const defaultIsExtractableFile = require('./isExtractableFile');
  * @param {ObjectPath} [path=''] Prefix for object paths for extracted files.
  * @param {ExtractableFileMatcher} [isExtractableFile=isExtractableFile] The function used to identify extractable files.
  * @returns {ExtractFilesResult} Result.
+ * @example <caption>Ways to `import`.</caption>
+ * ```js
+ * import { extractFiles } from 'extract-files';
+ * ```
+ *
+ * ```js
+ * import extractFiles from 'extract-files/public/extractFiles.js';
+ * ```
+ * @example <caption>Ways to `require`.</caption>
+ * ```js
+ * const { extractFiles } = require('extract-files');
+ * ```
+ *
+ * ```js
+ * const extractFiles = require('extract-files/public/extractFiles');
+ * ```
  * @example <caption>Extract files from an object.</caption>
  * For the following:
  *

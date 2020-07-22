@@ -17,6 +17,7 @@
 - No longer transpile tests with Babel, or test ESM.
 - Simplified the Babel config and scripts, ensuring `.js` files are parsed as scripts.
 - Removed unnecessary `.js` file extensions from `require` paths.
+- Documented all the ways to `import` and `require` the public API.
 
 ## 8.1.0
 
