@@ -13,6 +13,7 @@
 - Simplified the GitHub Actions CI config with the [`npm install-test`](https://docs.npmjs.com/cli/install-test.html) command.
 - Improved JSDoc code examples.
 - Updated EditorConfig.
+- No longer transpile tests with Babel, or test ESM.
 
 ## 8.1.0
 

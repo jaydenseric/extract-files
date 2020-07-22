@@ -1,7 +1,10 @@
-import { deepStrictEqual, strictEqual } from 'assert';
-import { ReactNativeFile, extractFiles } from '../../lib/index.mjs';
+'use strict';
 
-export default (tests) => {
+const { deepStrictEqual, strictEqual } = require('assert');
+const ReactNativeFile = require('../../lib/ReactNativeFile.js');
+const extractFiles = require('../../lib/extractFiles.js');
+
+module.exports = (tests) => {
   for (const [name, value] of [
     ['undefined', null],
     ['null', null],
