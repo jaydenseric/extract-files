@@ -19,6 +19,7 @@
 - Simplified the Babel config and scripts, ensuring `.js` files are parsed as scripts.
 - Removed unnecessary `.js` file extensions from `require` paths.
 - Documented all the ways to `import` and `require` the public API.
+- Tweaked the readme setup instructions.
 
 ## 8.1.0
 

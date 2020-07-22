@@ -6,9 +6,9 @@ Clones a value, recursively extracting [`File`](https://developer.mozilla.org/do
 
 Used by [GraphQL multipart request spec client implementations](https://github.com/jaydenseric/graphql-multipart-request-spec#implementations) such as [`graphql-react`](https://npm.im/graphql-react) and [`apollo-upload-client`](https://npm.im/apollo-upload-client).
 
-## Usage
+## Setup
 
-Install with [npm](https://npmjs.com):
+Install with [npm](https://npmjs.com/get-npm):
 
 ```shell
 npm install extract-files
