@@ -1,6 +1,6 @@
 {
   "name": "extract-files",
-  "version": "8.1.0",
+  "version": "9.0.0",
   "description": "Clones a value, recursively extracting File, Blob and ReactNativeFile instances with their object paths, replacing them with null. FileList instances are treated as File instance arrays.",
   "license": "MIT",
   "author": {
