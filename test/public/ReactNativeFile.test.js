@@ -1,7 +1,7 @@
 'use strict';
 
 const { strictEqual } = require('assert');
-const ReactNativeFile = require('../../public/ReactNativeFile.js');
+const ReactNativeFile = require('../../public/ReactNativeFile');
 
 module.exports = (tests) => {
   tests.add('`ReactNativeFile`.', () => {

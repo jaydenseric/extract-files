@@ -1,6 +1,6 @@
 'use strict';
 
-const defaultIsExtractableFile = require('./isExtractableFile.js');
+const defaultIsExtractableFile = require('./isExtractableFile');
 
 /**
  * Clones a value, recursively extracting

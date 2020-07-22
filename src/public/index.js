@@ -1,8 +1,8 @@
 'use strict';
 
-exports.ReactNativeFile = require('./ReactNativeFile.js');
-exports.extractFiles = require('./extractFiles.js');
-exports.isExtractableFile = require('./isExtractableFile.js');
+exports.ReactNativeFile = require('./ReactNativeFile');
+exports.extractFiles = require('./extractFiles');
+exports.isExtractableFile = require('./isExtractableFile');
 
 /**
  * An extractable file.
