@@ -4,8 +4,8 @@ const { TestDirector } = require('test-director');
 
 const tests = new TestDirector();
 
-require('./lib/ReactNativeFile.test.js')(tests);
-require('./lib/extractFiles.test.js')(tests);
-require('./lib/isExtractableFile.test.js')(tests);
+require('./public/ReactNativeFile.test.js')(tests);
+require('./public/extractFiles.test.js')(tests);
+require('./public/isExtractableFile.test.js')(tests);
 
 tests.run();

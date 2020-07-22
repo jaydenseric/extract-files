@@ -1,8 +1,8 @@
 'use strict';
 
 const { deepStrictEqual, strictEqual } = require('assert');
-const ReactNativeFile = require('../../lib/ReactNativeFile.js');
-const extractFiles = require('../../lib/extractFiles.js');
+const ReactNativeFile = require('../../public/ReactNativeFile.js');
+const extractFiles = require('../../public/extractFiles.js');
 
 module.exports = (tests) => {
   for (const [name, value] of [
