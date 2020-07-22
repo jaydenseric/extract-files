@@ -7,6 +7,7 @@
 - Updated Node.js support to `^10.17.0 || ^12.0.0 || >= 13.7.0`.
 - Updated dev dependencies, some of which require newer Node.js versions than previously supported.
 - Renamed the `lib` directory to `public`; existing deep import or require paths must be updated.
+- Removed the package `module` field.
 
 ### Patch
 

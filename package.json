@@ -28,7 +28,6 @@
     "public"
   ],
   "sideEffects": false,
-  "module": "public/index.mjs",
   "main": "public",
   "exports": {
     ".": {
