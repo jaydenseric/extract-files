@@ -1,22 +1,33 @@
 'use strict';
 
 const { strictEqual } = require('assert');
+const revertableGlobals = require('revertable-globals');
 const ReactNativeFile = require('../../public/ReactNativeFile');
 const isExtractableFile = require('../../public/isExtractableFile');
 
 module.exports = (tests) => {
   tests.add('`isExtractableFile` with a `File` instance.', () => {
-    const original = global.File;
-    global.File = class File {};
-    strictEqual(isExtractableFile(new File()), true);
-    global.File = original;
+    class File {}
+
+    const revertGlobals = revertableGlobals({ File });
+
+    try {
+      strictEqual(isExtractableFile(new File()), true);
+    } finally {
+      revertGlobals();
+    }
   });
 
   tests.add('`isExtractableFile` with a `Blob` instance.', () => {
-    const original = global.Blob;
-    global.Blob = class Blob {};
-    strictEqual(isExtractableFile(new Blob()), true);
-    global.Blob = original;
+    class Blob {}
+
+    const revertGlobals = revertableGlobals({ Blob });
+
+    try {
+      strictEqual(isExtractableFile(new Blob()), true);
+    } finally {
+      revertGlobals();
+    }
   });
 
   tests.add('`isExtractableFile` with a `ReactNativeFile` instance.', () => {

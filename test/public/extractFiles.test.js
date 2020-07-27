@@ -1,6 +1,7 @@
 'use strict';
 
 const { deepStrictEqual, strictEqual } = require('assert');
+const revertableGlobals = require('revertable-globals');
 const ReactNativeFile = require('../../public/ReactNativeFile');
 const extractFiles = require('../../public/extractFiles');
 
@@ -37,59 +38,72 @@ module.exports = (tests) => {
     });
 
   tests.add('`extractFiles` with a `FileList` instance.', () => {
-    const originalFile = global.File;
-    const originalFileList = global.FileList;
-
-    global.File = class File {};
-    global.FileList = class FileList {
+    class File {}
+    class FileList {
       constructor(files) {
         files.forEach((file, i) => {
           this[i] = file;
         });
         this.length = files.length;
       }
-    };
+    }
 
-    const file0 = new File();
-    const file1 = new File();
-    const fileList = new FileList([file0, file1]);
+    const revertGlobals = revertableGlobals({ File, FileList });
 
-    deepStrictEqual(extractFiles(fileList), {
-      clone: [null, null],
-      files: new Map([
-        [file0, ['0']],
-        [file1, ['1']],
-      ]),
-    });
+    try {
+      const file0 = new File();
+      const file1 = new File();
+      const fileList = new FileList([file0, file1]);
 
-    global.File = originalFile;
-    global.FileList = originalFileList;
+      deepStrictEqual(extractFiles(fileList), {
+        clone: [null, null],
+        files: new Map([
+          [file0, ['0']],
+          [file1, ['1']],
+        ]),
+      });
+    } finally {
+      revertGlobals();
+    }
   });
 
   tests.add('`extractFiles` with a `File` instance.', () => {
-    const original = global.File;
-    global.File = class File {};
-    const file = new File();
-    deepStrictEqual(extractFiles(file), {
-      clone: null,
-      files: new Map([[file, ['']]]),
-    });
-    global.File = original;
+    class File {}
+
+    const revertGlobals = revertableGlobals({ File });
+
+    try {
+      const file = new File();
+
+      deepStrictEqual(extractFiles(file), {
+        clone: null,
+        files: new Map([[file, ['']]]),
+      });
+    } finally {
+      revertGlobals();
+    }
   });
 
   tests.add('`extractFiles` with a `Blob` instance.', () => {
-    const original = global.Blob;
-    global.Blob = class Blob {};
-    const file = new Blob();
-    deepStrictEqual(extractFiles(file), {
-      clone: null,
-      files: new Map([[file, ['']]]),
-    });
-    global.Blob = original;
+    class Blob {}
+
+    const revertGlobals = revertableGlobals({ Blob });
+
+    try {
+      const file = new Blob();
+
+      deepStrictEqual(extractFiles(file), {
+        clone: null,
+        files: new Map([[file, ['']]]),
+      });
+    } finally {
+      revertGlobals();
+    }
   });
 
   tests.add('`extractFiles` with a `ReactNativeFile` instance.', () => {
     const file = new ReactNativeFile({ uri: '', name: '', type: '' });
+
     deepStrictEqual(extractFiles(file), {
       clone: null,
       files: new Map([[file, ['']]]),
@@ -101,6 +115,7 @@ module.exports = (tests) => {
     () => {
       const file = new ReactNativeFile({ uri: '', name: '', type: '' });
       const input = { a: file, b: file };
+
       deepStrictEqual(extractFiles(input), {
         clone: { a: null, b: null },
         files: new Map([[file, ['a', 'b']]]),
@@ -114,6 +129,7 @@ module.exports = (tests) => {
     const fileA = new ReactNativeFile({ uri: '', name: '', type: '' });
     const fileB = new ReactNativeFile({ uri: '', name: '', type: '' });
     const input = { a: fileA, b: fileB };
+
     deepStrictEqual(extractFiles(input), {
       clone: { a: null, b: null },
       files: new Map([
@@ -128,6 +144,7 @@ module.exports = (tests) => {
   tests.add('`extractFiles` with a nested object containing a file.', () => {
     const file = new ReactNativeFile({ uri: '', name: '', type: '' });
     const input = { a: { a: file } };
+
     deepStrictEqual(extractFiles(input), {
       clone: { a: { a: null } },
       files: new Map([[file, ['a.a']]]),
@@ -140,6 +157,7 @@ module.exports = (tests) => {
     () => {
       const file = new ReactNativeFile({ uri: '', name: '', type: '' });
       const input = [file, file];
+
       deepStrictEqual(extractFiles(input), {
         clone: [null, null],
         files: new Map([[file, ['0', '1']]]),
@@ -153,6 +171,7 @@ module.exports = (tests) => {
     const file0 = new ReactNativeFile({ uri: '', name: '', type: '' });
     const file1 = new ReactNativeFile({ uri: '', name: '', type: '' });
     const input = [file0, file1];
+
     deepStrictEqual(extractFiles(input), {
       clone: [null, null],
       files: new Map([
@@ -176,6 +195,7 @@ module.exports = (tests) => {
 
   tests.add('`extractFiles` with a second `path` parameter, file.', () => {
     const file = new ReactNativeFile({ uri: '', name: '', type: '' });
+
     deepStrictEqual(extractFiles(file, 'prefix'), {
       clone: null,
       files: new Map([[file, ['prefix']]]),
@@ -186,6 +206,7 @@ module.exports = (tests) => {
     '`extractFiles` with a second `path` parameter, file nested in an object and array.',
     () => {
       const file = new ReactNativeFile({ uri: '', name: '', type: '' });
+
       deepStrictEqual(extractFiles({ a: [file] }, 'prefix'), {
         clone: { a: [null] },
         files: new Map([[file, ['prefix.a.0']]]),
@@ -197,7 +218,9 @@ module.exports = (tests) => {
     '`extractFiles` with a third `isExtractableFile` parameter.',
     () => {
       class CustomFile {}
+
       const file = new CustomFile();
+
       deepStrictEqual(
         extractFiles(file, '', (value) => value instanceof CustomFile),
         {

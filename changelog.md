@@ -4,6 +4,7 @@
 
 ### Patch
 
+- Used [`revertable-globals`](https://npm.im/revertable-globals) to define globals per-test.
 - Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
 
 ## 9.0.0

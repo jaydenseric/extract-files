@@ -59,6 +59,7 @@
     "hard-rejection": "^2.1.0",
     "jsdoc-md": "^7.0.0",
     "prettier": "^2.0.5",
+    "revertable-globals": "^1.0.1",
     "size-limit": "^4.5.5",
     "test-director": "^4.0.1"
   },

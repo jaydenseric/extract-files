@@ -9,6 +9,7 @@ module.exports = (tests) => {
     const name = 'a.jpg';
     const type = 'image/jpeg';
     const file = new ReactNativeFile({ uri, name, type });
+
     strictEqual(file.uri, uri);
     strictEqual(file.name, name);
     strictEqual(file.type, type);
