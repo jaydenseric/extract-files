@@ -7,7 +7,7 @@ const extractFiles = require('../../public/extractFiles');
 
 module.exports = (tests) => {
   for (const [name, value] of [
-    ['undefined', null],
+    ['undefined', undefined],
     ['null', null],
     ['false', false],
     ['true', true],
