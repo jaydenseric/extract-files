@@ -141,6 +141,25 @@ module.exports = (tests) => {
     strictEqual(input.b, fileB);
   });
 
+  tests.add(
+    '`extractFiles` with an instance of a class containing a file.',
+    () => {
+      class RandomClass {
+        constructor(file) {
+          this.file = file;
+        }
+      }
+      const file = new ReactNativeFile({ uri: '', name: '', type: '' });
+      const input = new RandomClass(file);
+
+      deepStrictEqual(extractFiles(input), {
+        clone: { file: null },
+        files: new Map([[file, ['file']]]),
+      });
+      strictEqual(input.file, file);
+    }
+  );
+
   tests.add('`extractFiles` with a nested object containing a file.', () => {
     const file = new ReactNativeFile({ uri: '', name: '', type: '' });
     const input = { a: { a: file } };

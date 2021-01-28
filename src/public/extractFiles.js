@@ -106,7 +106,7 @@ module.exports = function extractFiles(
         result.files.forEach(addFile);
         return result.clone;
       });
-    else if (value && value.constructor === Object) {
+    else if (value && !builtInConstructors.includes(value.constructor)) {
       clone = {};
       for (const i in value) {
         const result = extractFiles(
@@ -122,3 +122,13 @@ module.exports = function extractFiles(
 
   return { clone, files };
 };
+
+const builtInConstructors = [
+  String,
+  Number,
+  Boolean,
+  Array,
+  RegExp,
+  Function,
+  Date,
+];
