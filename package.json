@@ -47,8 +47,8 @@
     "@babel/core": "^7.13.16",
     "@babel/eslint-parser": "^7.13.14",
     "@babel/preset-env": "^7.13.15",
-    "@size-limit/preset-small-lib": "^4.10.2",
     "coverage-node": "^4.0.0",
+    "esbuild": "^0.11.12",
     "eslint": "^7.24.0",
     "eslint-config-env": "^19.0.0",
     "eslint-config-prettier": "^8.2.0",
@@ -56,10 +56,10 @@
     "eslint-plugin-jsdoc": "^32.3.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.0",
+    "gzip-size": "^6.0.0",
     "jsdoc-md": "^9.1.1",
     "prettier": "^2.2.1",
     "revertable-globals": "^1.1.0",
-    "size-limit": "^4.10.2",
     "test-director": "^5.0.0"
   },
   "scripts": {
@@ -68,11 +68,10 @@
     "prepare:babel": "babel src -d . --keep-file-extension",
     "prepare:jsdoc": "jsdoc-md",
     "prepare:prettier": "prettier --write public readme.md",
-    "test": "npm run test:eslint && npm run test:prettier && npm run test:api && npm run test:size",
+    "test": "npm run test:eslint && npm run test:prettier && npm run test:api",
     "test:eslint": "eslint --ext mjs,js .",
     "test:prettier": "prettier -c .",
     "test:api": "coverage-node test",
-    "test:size": "size-limit",
     "prepublishOnly": "npm test"
   }
 }

@@ -7,5 +7,6 @@ const tests = new TestDirector();
 require('./public/ReactNativeFile.test')(tests);
 require('./public/extractFiles.test')(tests);
 require('./public/isExtractableFile.test')(tests);
+require('./bundle.test')(tests);
 
 tests.run();
