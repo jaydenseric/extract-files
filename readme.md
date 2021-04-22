@@ -10,7 +10,7 @@ Used by [GraphQL multipart request spec client implementations](https://github.c
 
 Install with [npm](https://npmjs.com/get-npm):
 
-```shell
+```sh
 npm install extract-files
 ```
 
@@ -18,9 +18,9 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 
 ## Support
 
-- Node.js `^10.17.0 || ^12.0.0 || >= 13.7.0`
-- Browsers `> 0.5%, not OperaMini all, not IE > 0, not dead`
-- React Native
+- [Node.js](https://nodejs.org): `^10.17.0 || ^12.0.0 || >= 13.7.0`
+- [Browsers](https://npm.im/browserslist): `> 0.5%, not OperaMini all, not IE > 0, not dead`
+- [React Native](https://reactnative.dev)
 
 ## API
 
