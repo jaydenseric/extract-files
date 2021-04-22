@@ -2,6 +2,12 @@
 
 ## Next
 
+### Major
+
+- Stopped supporting Internet Explorer.
+- Removed Babel related dev dependencies, config, and scripts. Published modules now contain more modern ES syntax.
+- Published modules now contain JSDoc comments, which might affect TypeScript projects.
+
 ### Patch
 
 - Updated dev dependencies.

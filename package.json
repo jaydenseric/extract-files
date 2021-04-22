@@ -41,17 +41,14 @@
   "engines": {
     "node": "^10.17.0 || ^12.0.0 || >= 13.7.0"
   },
-  "browserslist": "Node 10.17 - 11 and Node < 11, Node 12 - 13 and Node < 13, Node >= 13.7, > 0.5%, not OperaMini all, not dead",
+  "browserslist": "Node 10.17 - 11 and Node < 11, Node 12 - 13 and Node < 13, Node >= 13.7, > 0.5%, not OperaMini all, not IE > 0, not dead",
   "devDependencies": {
-    "@babel/cli": "^7.13.16",
-    "@babel/core": "^7.13.16",
-    "@babel/eslint-parser": "^7.13.14",
-    "@babel/preset-env": "^7.13.15",
     "coverage-node": "^4.0.0",
     "esbuild": "^0.11.12",
     "eslint": "^7.24.0",
     "eslint-config-env": "^19.0.0",
     "eslint-config-prettier": "^8.2.0",
+    "eslint-plugin-compat": "^3.9.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsdoc": "^32.3.0",
     "eslint-plugin-node": "^11.1.0",
@@ -63,11 +60,9 @@
     "test-director": "^5.0.0"
   },
   "scripts": {
-    "prepare": "npm run prepare:clean && npm run prepare:babel && npm run prepare:jsdoc && npm run prepare:prettier",
-    "prepare:clean": "rm -rf public",
-    "prepare:babel": "babel src -d . --keep-file-extension",
+    "prepare": "npm run prepare:jsdoc && npm run prepare:prettier",
     "prepare:jsdoc": "jsdoc-md",
-    "prepare:prettier": "prettier --write public readme.md",
+    "prepare:prettier": "prettier --write readme.md",
     "test": "npm run test:eslint && npm run test:prettier && npm run test:api",
     "test:eslint": "eslint --ext mjs,js .",
     "test:prettier": "prettier -c .",
