@@ -233,7 +233,7 @@ What [`extractFiles`](#function-extractfiles) returns.
 | Property | Type | Description |
 | :-- | :-- | :-- |
 | `clone` | \* | Clone of the original input value with files recursively replaced with `null`. |
-| `files` | Map&lt;[ExtractableFile](#type-extractablefile), Array&lt;[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value. |
+| `files` | Map<[ExtractableFile](#type-extractablefile), Array<[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value. |
 
 ---
 

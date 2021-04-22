@@ -79,7 +79,7 @@ module.exports = function extractFiles(
    * Adds a file to the extracted files map.
    * @kind function
    * @name extractFiles~addFile
-   * @param {ObjectPath[]} paths File object paths.
+   * @param {Array<ObjectPath>} paths File object paths.
    * @param {ExtractableFile} file Extracted file.
    * @ignore
    */
