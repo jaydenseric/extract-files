@@ -1,16 +1,16 @@
-'use strict';
+import { strictEqual } from 'assert';
+import { fileURLToPath } from 'url';
+import esbuild from 'esbuild';
+import gzipSize from 'gzip-size';
 
-const { strictEqual } = require('assert');
-const { resolve } = require('path');
-const { build } = require('esbuild');
-const gzipSize = require('gzip-size');
-
-module.exports = (tests) => {
+export default (tests) => {
   tests.add('Bundle.', async () => {
     const {
       outputFiles: [bundle],
-    } = await build({
-      entryPoints: [resolve(__dirname, '../public/index.js')],
+    } = await esbuild.build({
+      entryPoints: [
+        fileURLToPath(new URL('../public/index.js', import.meta.url)),
+      ],
       write: false,
       bundle: true,
       minify: true,

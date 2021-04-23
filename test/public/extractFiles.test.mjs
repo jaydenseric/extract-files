@@ -1,11 +1,9 @@
-'use strict';
+import { deepStrictEqual, strictEqual } from 'assert';
+import revertableGlobals from 'revertable-globals';
+import ReactNativeFile from '../../public/ReactNativeFile.js';
+import extractFiles from '../../public/extractFiles.js';
 
-const { deepStrictEqual, strictEqual } = require('assert');
-const revertableGlobals = require('revertable-globals');
-const ReactNativeFile = require('../../public/ReactNativeFile');
-const extractFiles = require('../../public/extractFiles');
-
-module.exports = (tests) => {
+export default (tests) => {
   for (const [name, value] of [
     ['undefined', undefined],
     ['null', null],

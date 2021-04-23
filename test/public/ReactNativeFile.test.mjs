@@ -1,9 +1,7 @@
-'use strict';
+import { strictEqual } from 'assert';
+import ReactNativeFile from '../../public/ReactNativeFile.js';
 
-const { strictEqual } = require('assert');
-const ReactNativeFile = require('../../public/ReactNativeFile');
-
-module.exports = (tests) => {
+export default (tests) => {
   tests.add('`ReactNativeFile`.', () => {
     const uri = '<uri>';
     const name = 'a.jpg';

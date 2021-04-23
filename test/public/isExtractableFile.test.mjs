@@ -1,11 +1,9 @@
-'use strict';
+import { strictEqual } from 'assert';
+import revertableGlobals from 'revertable-globals';
+import ReactNativeFile from '../../public/ReactNativeFile.js';
+import isExtractableFile from '../../public/isExtractableFile.js';
 
-const { strictEqual } = require('assert');
-const revertableGlobals = require('revertable-globals');
-const ReactNativeFile = require('../../public/ReactNativeFile');
-const isExtractableFile = require('../../public/isExtractableFile');
-
-module.exports = (tests) => {
+export default (tests) => {
   tests.add('`isExtractableFile` with a `File` instance.', () => {
     class File {}
 
