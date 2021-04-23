@@ -18,7 +18,7 @@ See the [`extractFiles`](#function-extractfiles) documentation to get started.
 
 ## Support
 
-- [Node.js](https://nodejs.org): `^10.17.0 || ^12.0.0 || >= 13.7.0`
+- [Node.js](https://nodejs.org): `^12.20 || >= 14.13`
 - [Browsers](https://npm.im/browserslist): `> 0.5%, not OperaMini all, not IE > 0, not dead`
 - [React Native](https://reactnative.dev)
 
@@ -62,7 +62,7 @@ _Ways to `require`._
 > ```
 >
 > ```js
-> const ReactNativeFile = require('extract-files/public/ReactNativeFile');
+> const ReactNativeFile = require('extract-files/public/ReactNativeFile.js');
 > ```
 
 _An extractable file in React Native._
@@ -110,7 +110,7 @@ _Ways to `require`._
 > ```
 >
 > ```js
-> const extractFiles = require('extract-files/public/extractFiles');
+> const extractFiles = require('extract-files/public/extractFiles.js');
 > ```
 
 _Extract files from an object._
@@ -181,7 +181,7 @@ _Ways to `require`._
 > ```
 >
 > ```js
-> const isExtractableFile = require('extract-files/public/isExtractableFile');
+> const isExtractableFile = require('extract-files/public/isExtractableFile.js');
 > ```
 
 ---

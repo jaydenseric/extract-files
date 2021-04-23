@@ -23,7 +23,7 @@ const ReactNativeFile = require('./ReactNativeFile');
  * ```
  *
  * ```js
- * const isExtractableFile = require('extract-files/public/isExtractableFile');
+ * const isExtractableFile = require('extract-files/public/isExtractableFile.js');
  * ```
  */
 module.exports = function isExtractableFile(value) {

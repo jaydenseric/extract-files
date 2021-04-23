@@ -31,7 +31,7 @@ const defaultIsExtractableFile = require('./isExtractableFile');
  * ```
  *
  * ```js
- * const extractFiles = require('extract-files/public/extractFiles');
+ * const extractFiles = require('extract-files/public/extractFiles.js');
  * ```
  * @example <caption>Extract files from an object.</caption>
  * For the following:

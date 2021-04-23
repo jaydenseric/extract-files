@@ -22,7 +22,7 @@
  * ```
  *
  * ```js
- * const ReactNativeFile = require('extract-files/public/ReactNativeFile');
+ * const ReactNativeFile = require('extract-files/public/ReactNativeFile.js');
  * ```
  * @example <caption>An extractable file in React Native.</caption>
  * ```js
