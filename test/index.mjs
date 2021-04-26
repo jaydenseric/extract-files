@@ -1,4 +1,4 @@
-import { TestDirector } from 'test-director';
+import TestDirector from 'test-director';
 import testBundle from './bundle.test.mjs';
 import testReactNativeFile from './public/ReactNativeFile.test.mjs';
 import testExtractFiles from './public/extractFiles.test.mjs';
