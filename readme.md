@@ -8,13 +8,13 @@ Used by [GraphQL multipart request spec client implementations](https://github.c
 
 ## Setup
 
-Install with [npm](https://npmjs.com/get-npm):
+To install with [npm](https://npmjs.com/get-npm), run:
 
 ```sh
 npm install extract-files
 ```
 
-See the [`extractFiles`](#function-extractfiles) documentation to get started.
+See the documentation for the function [`extractFiles`](#function-extractfiles) to get started.
 
 ## Support
 
