@@ -14,6 +14,7 @@ export default (tests) => {
       write: false,
       bundle: true,
       minify: true,
+      legalComments: 'none',
     });
 
     const kB = (await gzipSize(bundle.contents)) / 1000;
