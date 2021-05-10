@@ -1,6 +1,6 @@
 'use strict';
 
-const ReactNativeFile = require('./ReactNativeFile');
+const ReactNativeFile = require('./ReactNativeFile.js');
 
 /**
  * Checks if a value is an [extractable file]{@link ExtractableFile}.

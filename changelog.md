@@ -27,6 +27,7 @@
 - More specific package `main` field path.
 - Simplified JSDoc related package scripts now that [`jsdoc-md`](https://npm.im/jsdoc-md) v10 automatically generates a Prettier formatted readme.
 - Added a package `test:jsdoc` script that checks the readme API docs are up to date with the source JSDoc.
+- Use the `.js` file extension in internal `require` paths.
 - Improved documentation.
 - Updated URLs in the changelog entries for v3.1.0 and v5.0.1.
 
