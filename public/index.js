@@ -12,7 +12,8 @@ exports.isExtractableFile = require('./isExtractableFile');
  */
 
 /**
- * A function that checks if a value is an [extractable file]{@link ExtractableFile}.
+ * A function that checks if a value is an
+ * [extractable file]{@link ExtractableFile}.
  * @kind typedef
  * @name ExtractableFileMatcher
  * @type {Function}
@@ -51,8 +52,10 @@ exports.isExtractableFile = require('./isExtractableFile');
  */
 
 /**
- * A React Native [`File`](https://developer.mozilla.org/docs/web/api/file)
- * substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
+ * A [React Native](https://reactnative.dev)
+ * [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)
+ * substitute for when using
+ * [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
  * @kind typedef
  * @name ReactNativeFileSubstitute
  * @type {object}

@@ -4,12 +4,12 @@ const defaultIsExtractableFile = require('./isExtractableFile');
 
 /**
  * Clones a value, recursively extracting
- * [`File`](https://developer.mozilla.org/docs/web/api/file),
- * [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and
+ * [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File),
+ * [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and
  * [`ReactNativeFile`]{@link ReactNativeFile} instances with their
  * [object paths]{@link ObjectPath}, replacing them with `null`.
- * [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances
- * are treated as [`File`](https://developer.mozilla.org/docs/web/api/file)
+ * [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances
+ * are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File)
  * instance arrays.
  * @kind function
  * @name extractFiles
@@ -37,8 +37,6 @@ const defaultIsExtractableFile = require('./isExtractableFile');
  * For the following:
  *
  * ```js
- * import { extractFiles } from 'extract-files';
- *
  * const file1 = new File(['1'], '1.txt', { type: 'text/plain' });
  * const file2 = new File(['2'], '2.txt', { type: 'text/plain' });
  * const value = {
@@ -60,7 +58,7 @@ const defaultIsExtractableFile = require('./isExtractableFile');
  * }
  * ```
  *
- * `files` is a [`Map`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
+ * `files` is a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
  *
  * | Key     | Value                        |
  * | :------ | :--------------------------- |

@@ -2,7 +2,7 @@
 
 [![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![CI status](https://github.com/jaydenseric/extract-files/workflows/CI/badge.svg)](https://github.com/jaydenseric/extract-files/actions)
 
-Clones a value, recursively extracting [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
+Clones a value, recursively extracting [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays.
 
 Used by [GraphQL multipart request spec client implementations](https://github.com/jaydenseric/graphql-multipart-request-spec#implementations) such as [`graphql-react`](https://npm.im/graphql-react) and [`apollo-upload-client`](https://npm.im/apollo-upload-client).
 
@@ -41,7 +41,7 @@ Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute)
 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
-| `file` | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute. |
+| `file` | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute. |
 
 #### Examples
 
@@ -65,11 +65,9 @@ _Ways to `require`._
 > const ReactNativeFile = require('extract-files/public/ReactNativeFile.js');
 > ```
 
-_An extractable file in React Native._
+_An extractable file in [React Native](https://reactnative.dev)._
 
 > ```js
-> import { ReactNativeFile } from 'extract-files';
->
 > const file = new ReactNativeFile({
 >   uri: uriFromCameraRoll,
 >   name: 'a.jpg',
@@ -81,7 +79,7 @@ _An extractable file in React Native._
 
 ### function extractFiles
 
-Clones a value, recursively extracting [`File`](https://developer.mozilla.org/docs/web/api/file), [`Blob`](https://developer.mozilla.org/docs/web/api/blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/docs/web/api/filelist) instances are treated as [`File`](https://developer.mozilla.org/docs/web/api/file) instance arrays.
+Clones a value, recursively extracting [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays.
 
 | Parameter | Type | Description |
 | :-- | :-- | :-- |
@@ -118,8 +116,6 @@ _Extract files from an object._
 > For the following:
 >
 > ```js
-> import { extractFiles } from 'extract-files';
->
 > const file1 = new File(['1'], '1.txt', { type: 'text/plain' });
 > const file2 = new File(['2'], '2.txt', { type: 'text/plain' });
 > const value = {
@@ -141,7 +137,7 @@ _Extract files from an object._
 > }
 > ```
 >
-> `files` is a [`Map`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
+> `files` is a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
 >
 > | Key     | Value                        |
 > | :------ | :--------------------------- |
@@ -257,7 +253,7 @@ _Object path is property `a`, array index `0`, object property `b`._
 
 ### type ReactNativeFileSubstitute
 
-A React Native [`File`](https://developer.mozilla.org/docs/web/api/file) substitute for when using [`FormData`](https://developer.mozilla.org/docs/web/api/formdata).
+A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute for when using [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
 
 **Type:** object
 
