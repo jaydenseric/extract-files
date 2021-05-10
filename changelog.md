@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 10.0.0
 
 ### Major
 
