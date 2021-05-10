@@ -28,6 +28,7 @@
 - Simplified JSDoc related package scripts now that [`jsdoc-md`](https://npm.im/jsdoc-md) v10 automatically generates a Prettier formatted readme.
 - Added a package `test:jsdoc` script that checks the readme API docs are up to date with the source JSDoc.
 - Improved documentation.
+- Updated URLs in the changelog entries for v3.1.0 and v5.0.1.
 
 ## 9.0.0
 
@@ -158,7 +159,7 @@
 ### Patch
 
 - Updated dev dependencies.
-- Instance (e.g. [`new Date()`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date)) references are copied to the clone instead of recursed as objects; fixing [jaydenseric/apollo-upload-client#138](https://github.com/jaydenseric/apollo-upload-client/issues/138) via [#9](https://github.com/jaydenseric/extract-files/pull/9).
+- Instance (e.g. [`new Date()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date)) references are copied to the clone instead of recursed as objects; fixing [jaydenseric/apollo-upload-client#138](https://github.com/jaydenseric/apollo-upload-client/issues/138) via [#9](https://github.com/jaydenseric/extract-files/pull/9).
 - Test more types of input.
 
 ## 5.0.0
@@ -236,7 +237,7 @@
 
 ### Minor
 
-- Added support for [`Blob`](https://developer.mozilla.org/en/docs/Web/API/Blob) types, via [#5](https://github.com/jaydenseric/extract-files/pull/5).
+- Added support for [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) types, via [#5](https://github.com/jaydenseric/extract-files/pull/5).
 
 ### Patch
 
