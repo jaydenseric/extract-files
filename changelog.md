@@ -10,7 +10,7 @@
 - Replaced the the `package.json` `exports` field public [subpath folder mapping](https://nodejs.org/api/packages.html#packages_subpath_folder_mappings) (deprecated by Node.js) with a [subpath pattern](https://nodejs.org/api/packages.html#packages_subpath_patterns), fixing [#17](https://github.com/jaydenseric/extract-files/issues/17). Deep `require` paths within `extract-files/public/` must now include the file extension.
 - Removed Babel related dev dependencies, config, and scripts. Published modules now contain more modern ES syntax.
 - Published modules now contain JSDoc comments, which might affect TypeScript projects.
-- Converted tests from CJS to ESM.
+- The tests are now ESM in `.mjs` files instead of CJS in `.js` files.
 
 ### Patch
 
