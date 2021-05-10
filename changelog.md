@@ -20,7 +20,7 @@
 - Removed `npm-debug.log` from the `.gitignore` file as npm [v4.2.0](https://github.com/npm/npm/releases/tag/v4.2.0)+ doesn’t create it in the current working directory.
 - Fixed a test of `extractFiles` with an `undefined` value.
 - Updated GitHub Actions CI config:
-  - Also run tests with Node.js v15 and v16.
+  - Run tests with Node.js v12, v14, v16.
   - Updated `actions/checkout` to v2.
   - Updated `actions/setup-node` to v2.
   - Don’t specify the `CI` environment variable as it’s set by default.
