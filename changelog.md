@@ -6,6 +6,7 @@
 
 - Updated Node.js support to `^12.20 || >= 14.13`.
 - Stopped supporting Internet Explorer.
+- Updated dev dependencies, some of which require newer Node.js versions than previously supported.
 - Replaced the the `package.json` `exports` field public [subpath folder mapping](https://nodejs.org/api/packages.html#packages_subpath_folder_mappings) (deprecated by Node.js) with a [subpath pattern](https://nodejs.org/api/packages.html#packages_subpath_patterns), fixing [#17](https://github.com/jaydenseric/extract-files/issues/17). Deep `require` paths within `extract-files/public/` must now include the file extension.
 - Removed Babel related dev dependencies, config, and scripts. Published modules now contain more modern ES syntax.
 - Published modules now contain JSDoc comments, which might affect TypeScript projects.
@@ -13,7 +14,6 @@
 
 ### Patch
 
-- Updated dev dependencies.
 - Stop using [`hard-rejection`](https://npm.im/hard-rejection) to detect unhandled `Promise` rejections in tests, as Node.js v15+ does this natively.
 - Used [`revertable-globals`](https://npm.im/revertable-globals) to define globals per-test.
 - Test the bundle size manually using [`esbuild`](https://npm.im/esbuild) and [`gzip-size`](https://npm.im/gzip-size), removing [`size-limit`](https://npm.im/size-limit) related dev dependencies, config, and scripts.
