@@ -1,14 +1,14 @@
 import TestDirector from 'test-director';
-import testBundle from './bundle.test.mjs';
-import testReactNativeFile from './public/ReactNativeFile.test.mjs';
-import testExtractFiles from './public/extractFiles.test.mjs';
-import testIsExtractableFile from './public/isExtractableFile.test.mjs';
+import test_bundle from './bundle.test.mjs';
+import test_ReactNativeFile from './public/ReactNativeFile.test.mjs';
+import test_extractFiles from './public/extractFiles.test.mjs';
+import test_isExtractableFile from './public/isExtractableFile.test.mjs';
 
 const tests = new TestDirector();
 
-testReactNativeFile(tests);
-testExtractFiles(tests);
-testIsExtractableFile(tests);
-testBundle(tests);
+test_ReactNativeFile(tests);
+test_extractFiles(tests);
+test_isExtractableFile(tests);
+test_bundle(tests);
 
 tests.run();

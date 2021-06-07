@@ -6,6 +6,7 @@
 
 - Updated dev dependencies.
 - Reverted the more specific package `main` field path.
+- Renamed imports in the test index module.
 - Amended the changelog entries for v8.0.0 and v9.0.0.
 
 ## 10.0.0
