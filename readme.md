@@ -24,8 +24,6 @@ See the documentation for the function [`extractFiles`](#function-extractfiles) 
 
 ## API
 
-### Table of contents
-
 - [class ReactNativeFile](#class-reactnativefile)
 - [function extractFiles](#function-extractfiles)
 - [function isExtractableFile](#function-isextractablefile)
