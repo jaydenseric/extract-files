@@ -2,10 +2,16 @@
 
 ## Next
 
+### Major
+
+- The function `extractFiles` now deeply clones an input value containing multiple references of an object or array with a mirrored reference structure instead of creating multiple objects or arrays. This change shouldn’t affect typical `JSON.stringify` use with cloned values.
+- The function `extractFiles` now uses `for…of` to iterate `FileList` instances.
+
 ### Patch
 
 - Updated dev dependencies.
 - Reverted the more specific package `main` field path.
+- The function `extractFiles` now correctly handles circular references within the input value by recreating the circular references in the returned clone instead of infinitely recursing to the point of a `Maximum call stack size exceeded` error, fixing [#14](https://github.com/jaydenseric/extract-files/issues/14).
 - Renamed imports in the test index module.
 - Refactored `extractFiles` tests to use `Object.freeze` with input objects and arrays to ensure input isn’t mutated.
 - Updated a code example to use a deep import.
