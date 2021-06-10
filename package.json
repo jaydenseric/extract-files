@@ -44,7 +44,7 @@
   "browserslist": "Node 12.20 - 13 and Node < 13, Node >= 14.13, > 0.5%, not OperaMini all, not IE > 0, not dead",
   "devDependencies": {
     "coverage-node": "^5.0.1",
-    "esbuild": "^0.12.6",
+    "esbuild": "^0.12.8",
     "eslint": "^7.28.0",
     "eslint-config-env": "^20.0.1",
     "eslint-config-prettier": "^8.3.0",
