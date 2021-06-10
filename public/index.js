@@ -22,7 +22,7 @@ exports.isExtractableFile = require('./isExtractableFile.js');
  * @see [`isExtractableFile`]{@link isExtractableFile} is the default extractable file matcher.
  * @example <caption>How to check for the default exactable files, as well as a custom type of file.</caption>
  * ```js
- * import { isExtractableFile } from 'extract-files';
+ * import isExtractableFile from 'extract-files/public/isExtractableFile.js';
  *
  * const isExtractableFileEnhanced = (value) =>
  *   isExtractableFile(value) ||

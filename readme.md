@@ -209,7 +209,7 @@ A function that checks if a value is an [extractable file](#type-extractablefile
 _How to check for the default exactable files, as well as a custom type of file._
 
 > ```js
-> import { isExtractableFile } from 'extract-files';
+> import isExtractableFile from 'extract-files/public/isExtractableFile.js';
 >
 > const isExtractableFileEnhanced = (value) =>
 >   isExtractableFile(value) ||
