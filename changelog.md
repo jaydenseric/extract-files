@@ -1,5 +1,11 @@
 # extract-files changelog
 
+## Next
+
+### Patch
+
+- Amended the changelog entry for v10.0.0.
+
 ## 11.0.0
 
 ### Major
@@ -46,6 +52,7 @@
 - Added a package `test:jsdoc` script that checks the readme API docs are up to date with the source JSDoc.
 - Use the `.js` file extension in internal `require` paths.
 - Improved documentation.
+- The file `changelog.md` is no longer published.
 - Updated URLs in the changelog entries for v3.1.0 and v5.0.1.
 
 ## 9.0.0
