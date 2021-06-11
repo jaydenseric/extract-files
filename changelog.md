@@ -1,6 +1,6 @@
 # extract-files changelog
 
-## Next
+## 11.0.0
 
 ### Major
 
