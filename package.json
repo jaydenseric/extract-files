@@ -39,7 +39,7 @@
     "./package.json": "./package.json"
   },
   "engines": {
-    "node": "^12.20 || >= 14.13"
+    "node": "^12.20 || >= 14.0"
   },
   "browserslist": "Node 12.20 - 13 and Node < 13, Node >= 14.13, > 0.5%, not OperaMini all, not IE > 0, not dead",
   "devDependencies": {
