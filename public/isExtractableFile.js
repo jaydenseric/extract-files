@@ -30,6 +30,7 @@ module.exports = function isExtractableFile(value) {
   return (
     (typeof File !== 'undefined' && value instanceof File) ||
     (typeof Blob !== 'undefined' && value instanceof Blob) ||
+    (typeof Buffer !== 'undefined' && value instanceof Buffer) ||
     value instanceof ReactNativeFile
   );
 };
