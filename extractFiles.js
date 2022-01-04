@@ -19,11 +19,11 @@ const defaultIsExtractableFile = require("./isExtractableFile.js");
  * @returns {ExtractFilesResult} Result.
  * @example <caption>How to `import`.</caption>
  * ```js
- * import extractFiles from "extract-files/public/extractFiles.js";
+ * import extractFiles from "extract-files/extractFiles.js";
  * ```
  * @example <caption>How to `require`.</caption>
  * ```js
- * const extractFiles = require("extract-files/public/extractFiles.js");
+ * const extractFiles = require("extract-files/extractFiles.js");
  * ```
  * @example <caption>Extract files from an object.</caption>
  * For the following:

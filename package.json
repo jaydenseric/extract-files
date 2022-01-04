@@ -25,12 +25,16 @@
     "mjs"
   ],
   "files": [
-    "public"
+    "extractFiles.js",
+    "isExtractableFile.js",
+    "ReactNativeFile.js"
   ],
   "sideEffects": false,
   "exports": {
-    "./public/*": "./public/*",
-    "./package.json": "./package.json"
+    "./extractFiles.js": "./extractFiles.js",
+    "./isExtractableFile.js": "./isExtractableFile.js",
+    "./package.json": "./package.json",
+    "./ReactNativeFile.js": "./ReactNativeFile.js"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >= 16.0.0"
@@ -58,7 +62,7 @@
     "docs-check": "jsdoc-md -c",
     "eslint": "eslint .",
     "prettier": "prettier -c .",
-    "tests": "coverage-node test/index.mjs",
+    "tests": "coverage-node test.mjs",
     "test": "npm run eslint && npm run prettier && npm run docs-check && npm run tests",
     "prepublishOnly": "npm test"
   }

@@ -46,13 +46,13 @@ Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute)
 _How to `import`._
 
 > ```js
-> import ReactNativeFile from "extract-files/public/ReactNativeFile.js";
+> import ReactNativeFile from "extract-files/ReactNativeFile.js";
 > ```
 
 _How to `require`._
 
 > ```js
-> const ReactNativeFile = require("extract-files/public/ReactNativeFile.js");
+> const ReactNativeFile = require("extract-files/ReactNativeFile.js");
 > ```
 
 _An extractable file in [React Native](https://reactnative.dev)._
@@ -84,13 +84,13 @@ Clones a value, recursively extracting [`File`](https://developer.mozilla.org/en
 _How to `import`._
 
 > ```js
-> import extractFiles from "extract-files/public/extractFiles.js";
+> import extractFiles from "extract-files/extractFiles.js";
 > ```
 
 _How to `require`._
 
 > ```js
-> const extractFiles = require("extract-files/public/extractFiles.js");
+> const extractFiles = require("extract-files/extractFiles.js");
 > ```
 
 _Extract files from an object._
@@ -145,13 +145,13 @@ Checks if a value is an [extractable file](#type-extractablefile).
 _How to `import`._
 
 > ```js
-> import isExtractableFile from "extract-files/public/isExtractableFile.js";
+> import isExtractableFile from "extract-files/isExtractableFile.js";
 > ```
 
 _How to `require`._
 
 > ```js
-> const isExtractableFile = require("extract-files/public/isExtractableFile.js");
+> const isExtractableFile = require("extract-files/isExtractableFile.js");
 > ```
 
 ---
@@ -185,7 +185,7 @@ A function that checks if a value is an [extractable file](#type-extractablefile
 _How to check for the default exactable files, as well as a custom type of file._
 
 > ```js
-> import isExtractableFile from "extract-files/public/isExtractableFile.js";
+> import isExtractableFile from "extract-files/isExtractableFile.js";
 >
 > const isExtractableFileEnhanced = (value) =>
 >   isExtractableFile(value) ||

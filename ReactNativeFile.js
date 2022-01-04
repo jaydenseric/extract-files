@@ -11,11 +11,11 @@
  * @param {ReactNativeFileSubstitute} file A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute.
  * @example <caption>How to `import`.</caption>
  * ```js
- * import ReactNativeFile from "extract-files/public/ReactNativeFile.js";
+ * import ReactNativeFile from "extract-files/ReactNativeFile.js";
  * ```
  * @example <caption>How to `require`.</caption>
  * ```js
- * const ReactNativeFile = require("extract-files/public/ReactNativeFile.js");
+ * const ReactNativeFile = require("extract-files/ReactNativeFile.js");
  * ```
  * @example <caption>An extractable file in [React Native](https://reactnative.dev).</caption>
  * ```js
