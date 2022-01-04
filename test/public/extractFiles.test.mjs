@@ -2,8 +2,16 @@ import { deepStrictEqual, strictEqual } from "assert";
 import revertableGlobals from "revertable-globals";
 import ReactNativeFile from "../../public/ReactNativeFile.js";
 import extractFiles from "../../public/extractFiles.js";
+import assertBundleSize from "../assertBundleSize.mjs";
 
 export default (tests) => {
+  tests.add("`extractFiles` bundle size.", async () => {
+    await assertBundleSize(
+      new URL("../../public/extractFiles.js", import.meta.url),
+      520
+    );
+  });
+
   for (const [name, value] of [
     ["undefined", undefined],
     ["null", null],

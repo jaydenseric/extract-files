@@ -1,8 +1,16 @@
 import { strictEqual } from "assert";
 import ReactNativeFile from "../../public/ReactNativeFile.js";
+import assertBundleSize from "../assertBundleSize.mjs";
 
 export default (tests) => {
-  tests.add("`ReactNativeFile`.", () => {
+  tests.add("`ReactNativeFile` bundle size.", async () => {
+    await assertBundleSize(
+      new URL("../../public/ReactNativeFile.js", import.meta.url),
+      120
+    );
+  });
+
+  tests.add("`ReactNativeFile` constructor.", () => {
     const uri = "<uri>";
     const name = "a.jpg";
     const type = "image/jpeg";
