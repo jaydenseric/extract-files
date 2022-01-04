@@ -11,6 +11,7 @@
 ### Patch
 
 - Also run GitHub Actions CI with Node.js v17.
+- Simplified package scripts.
 - Configured Prettier option `singleQuote` to the default, `false`.
 - Amended the changelog entry for v10.0.0.
 
