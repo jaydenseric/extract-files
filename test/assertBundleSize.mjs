@@ -26,7 +26,7 @@ export default async function assertBundleSize(moduleUrl, limit) {
     bundle: true,
     minify: true,
     legalComments: "none",
-    format: "cjs",
+    format: "esm",
   });
 
   const gzippedSize = await gzipSize(bundle.text);

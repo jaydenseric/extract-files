@@ -1,11 +1,11 @@
 import { strictEqual } from "assert";
-import ReactNativeFile from "./ReactNativeFile.js";
+import ReactNativeFile from "./ReactNativeFile.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
 
 export default (tests) => {
   tests.add("`ReactNativeFile` bundle size.", async () => {
     await assertBundleSize(
-      new URL("./ReactNativeFile.js", import.meta.url),
+      new URL("./ReactNativeFile.mjs", import.meta.url),
       120
     );
   });

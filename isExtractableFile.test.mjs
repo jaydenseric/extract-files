@@ -1,14 +1,14 @@
 import { strictEqual } from "assert";
 import revertableGlobals from "revertable-globals";
-import ReactNativeFile from "./ReactNativeFile.js";
-import isExtractableFile from "./isExtractableFile.js";
+import ReactNativeFile from "./ReactNativeFile.mjs";
+import isExtractableFile from "./isExtractableFile.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
 
 export default (tests) => {
   tests.add("`isExtractableFile` bundle size.", async () => {
     await assertBundleSize(
-      new URL("./isExtractableFile.js", import.meta.url),
-      250
+      new URL("./isExtractableFile.mjs", import.meta.url),
+      180
     );
   });
 

@@ -1,6 +1,4 @@
-"use strict";
-
-const defaultIsExtractableFile = require("./isExtractableFile.js");
+import defaultIsExtractableFile from "./isExtractableFile.mjs";
 
 /**
  * Clones a value, recursively extracting
@@ -17,13 +15,9 @@ const defaultIsExtractableFile = require("./isExtractableFile.js");
  * @param {ObjectPath} [path=""] Prefix for object paths for extracted files.
  * @param {ExtractableFileMatcher} [isExtractableFile=isExtractableFile] The function used to identify extractable files.
  * @returns {ExtractFilesResult} Result.
- * @example <caption>How to `import`.</caption>
+ * @example <caption>How to import.</caption>
  * ```js
- * import extractFiles from "extract-files/extractFiles.js";
- * ```
- * @example <caption>How to `require`.</caption>
- * ```js
- * const extractFiles = require("extract-files/extractFiles.js");
+ * import extractFiles from "extract-files/extractFiles.mjs";
  * ```
  * @example <caption>Extract files from an object.</caption>
  * For the following:
@@ -57,7 +51,7 @@ const defaultIsExtractableFile = require("./isExtractableFile.js");
  * | `file1` | `["prefix.a", "prefix.b.0"]` |
  * | `file2` | `["prefix.b.1"]`             |
  */
-module.exports = function extractFiles(
+export default function extractFiles(
   value,
   path = "",
   isExtractableFile = defaultIsExtractableFile
@@ -142,4 +136,4 @@ module.exports = function extractFiles(
     clone: recurse(value, path, new Set()),
     files,
   };
-};
+}

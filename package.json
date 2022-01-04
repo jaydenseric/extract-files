@@ -25,16 +25,16 @@
     "mjs"
   ],
   "files": [
-    "extractFiles.js",
-    "isExtractableFile.js",
-    "ReactNativeFile.js"
+    "extractFiles.mjs",
+    "isExtractableFile.mjs",
+    "ReactNativeFile.mjs"
   ],
   "sideEffects": false,
   "exports": {
-    "./extractFiles.js": "./extractFiles.js",
-    "./isExtractableFile.js": "./isExtractableFile.js",
+    "./extractFiles.mjs": "./extractFiles.mjs",
+    "./isExtractableFile.mjs": "./isExtractableFile.mjs",
     "./package.json": "./package.json",
-    "./ReactNativeFile.js": "./ReactNativeFile.js"
+    "./ReactNativeFile.mjs": "./ReactNativeFile.mjs"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >= 16.0.0"

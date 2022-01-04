@@ -1,6 +1,4 @@
-"use strict";
-
-const ReactNativeFile = require("./ReactNativeFile.js");
+import ReactNativeFile from "./ReactNativeFile.mjs";
 
 /**
  * Checks if a value is an [extractable file]{@link ExtractableFile}.
@@ -9,19 +7,15 @@ const ReactNativeFile = require("./ReactNativeFile.js");
  * @type {ExtractableFileMatcher}
  * @param {*} value Value to check.
  * @returns {boolean} Is the value an [extractable file]{@link ExtractableFile}.
- * @example <caption>How to `import`.</caption>
+ * @example <caption>How to import.</caption>
  * ```js
- * import isExtractableFile from "extract-files/isExtractableFile.js";
- * ```
- * @example <caption>How to `require`.</caption>
- * ```js
- * const isExtractableFile = require("extract-files/isExtractableFile.js");
+ * import isExtractableFile from "extract-files/isExtractableFile.mjs";
  * ```
  */
-module.exports = function isExtractableFile(value) {
+export default function isExtractableFile(value) {
   return (
     (typeof File !== "undefined" && value instanceof File) ||
     (typeof Blob !== "undefined" && value instanceof Blob) ||
     value instanceof ReactNativeFile
   );
-};
+}
