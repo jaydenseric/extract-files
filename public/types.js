@@ -1,9 +1,5 @@
 "use strict";
 
-exports.ReactNativeFile = require("./ReactNativeFile.js");
-exports.extractFiles = require("./extractFiles.js");
-exports.isExtractableFile = require("./isExtractableFile.js");
-
 /**
  * An extractable file.
  * @kind typedef
