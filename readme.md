@@ -46,21 +46,21 @@ Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute)
 _Ways to `import`._
 
 > ```js
-> import { ReactNativeFile } from 'extract-files';
+> import { ReactNativeFile } from "extract-files";
 > ```
 >
 > ```js
-> import ReactNativeFile from 'extract-files/public/ReactNativeFile.js';
+> import ReactNativeFile from "extract-files/public/ReactNativeFile.js";
 > ```
 
 _Ways to `require`._
 
 > ```js
-> const { ReactNativeFile } = require('extract-files');
+> const { ReactNativeFile } = require("extract-files");
 > ```
 >
 > ```js
-> const ReactNativeFile = require('extract-files/public/ReactNativeFile.js');
+> const ReactNativeFile = require("extract-files/public/ReactNativeFile.js");
 > ```
 
 _An extractable file in [React Native](https://reactnative.dev)._
@@ -68,8 +68,8 @@ _An extractable file in [React Native](https://reactnative.dev)._
 > ```js
 > const file = new ReactNativeFile({
 >   uri: uriFromCameraRoll,
->   name: 'a.jpg',
->   type: 'image/jpeg',
+>   name: "a.jpg",
+>   type: "image/jpeg",
 > });
 > ```
 
@@ -92,21 +92,21 @@ Clones a value, recursively extracting [`File`](https://developer.mozilla.org/en
 _Ways to `import`._
 
 > ```js
-> import { extractFiles } from 'extract-files';
+> import { extractFiles } from "extract-files";
 > ```
 >
 > ```js
-> import extractFiles from 'extract-files/public/extractFiles.js';
+> import extractFiles from "extract-files/public/extractFiles.js";
 > ```
 
 _Ways to `require`._
 
 > ```js
-> const { extractFiles } = require('extract-files');
+> const { extractFiles } = require("extract-files");
 > ```
 >
 > ```js
-> const extractFiles = require('extract-files/public/extractFiles.js');
+> const extractFiles = require("extract-files/public/extractFiles.js");
 > ```
 
 _Extract files from an object._
@@ -114,14 +114,14 @@ _Extract files from an object._
 > For the following:
 >
 > ```js
-> const file1 = new File(['1'], '1.txt', { type: 'text/plain' });
-> const file2 = new File(['2'], '2.txt', { type: 'text/plain' });
+> const file1 = new File(["1"], "1.txt", { type: "text/plain" });
+> const file2 = new File(["2"], "2.txt", { type: "text/plain" });
 > const value = {
 >   a: file1,
 >   b: [file1, file2],
 > };
 >
-> const { clone, files } = extractFiles(value, 'prefix');
+> const { clone, files } = extractFiles(value, "prefix");
 > ```
 >
 > `value` remains the same.
@@ -139,8 +139,8 @@ _Extract files from an object._
 >
 > | Key     | Value                        |
 > | :------ | :--------------------------- |
-> | `file1` | `['prefix.a', 'prefix.b.0']` |
-> | `file2` | `['prefix.b.1']`             |
+> | `file1` | `["prefix.a", "prefix.b.0"]` |
+> | `file2` | `["prefix.b.1"]`             |
 
 ---
 
@@ -161,21 +161,21 @@ Checks if a value is an [extractable file](#type-extractablefile).
 _Ways to `import`._
 
 > ```js
-> import { isExtractableFile } from 'extract-files';
+> import { isExtractableFile } from "extract-files";
 > ```
 >
 > ```js
-> import isExtractableFile from 'extract-files/public/isExtractableFile.js';
+> import isExtractableFile from "extract-files/public/isExtractableFile.js";
 > ```
 
 _Ways to `require`._
 
 > ```js
-> const { isExtractableFile } = require('extract-files');
+> const { isExtractableFile } = require("extract-files");
 > ```
 >
 > ```js
-> const isExtractableFile = require('extract-files/public/isExtractableFile.js');
+> const isExtractableFile = require("extract-files/public/isExtractableFile.js");
 > ```
 
 ---
@@ -209,11 +209,11 @@ A function that checks if a value is an [extractable file](#type-extractablefile
 _How to check for the default exactable files, as well as a custom type of file._
 
 > ```js
-> import isExtractableFile from 'extract-files/public/isExtractableFile.js';
+> import isExtractableFile from "extract-files/public/isExtractableFile.js";
 >
 > const isExtractableFileEnhanced = (value) =>
 >   isExtractableFile(value) ||
->   (typeof CustomFile !== 'undefined' && value instanceof CustomFile);
+>   (typeof CustomFile !== "undefined" && value instanceof CustomFile);
 > ```
 
 ---
@@ -272,7 +272,7 @@ _A camera roll file._
 > ```js
 > const fileSubstitute = {
 >   uri: uriFromCameraRoll,
->   name: 'a.jpg',
->   type: 'image/jpeg',
+>   name: "a.jpg",
+>   type: "image/jpeg",
 > };
 > ```

@@ -10,6 +10,7 @@
 ### Patch
 
 - Also run GitHub Actions CI with Node.js v17.
+- Configured Prettier option `singleQuote` to the default, `false`.
 - Amended the changelog entry for v10.0.0.
 
 ## 11.0.0
@@ -91,22 +92,22 @@
   - Deep imports to specific files are now allowed, e.g.
 
     ```js
-    import extractFiles from 'extract-files/lib/extractFiles.js';
+    import extractFiles from "extract-files/lib/extractFiles.js";
     ```
 
     ```js
-    const extractFiles = require('extract-files/lib/extractFiles');
+    const extractFiles = require("extract-files/lib/extractFiles");
     ```
 
   - The `package.json` can now be required, e.g.
 
     ```js
-    const pkg = require('extract-files/package.json');
+    const pkg = require("extract-files/package.json");
     ```
 
     ```js
     // With Node.js --experimental-json-modules flag.
-    import pkg from 'extract-files/package.json';
+    import pkg from "extract-files/package.json";
     ```
 
 ### Patch

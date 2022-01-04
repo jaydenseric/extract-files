@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const defaultIsExtractableFile = require('./isExtractableFile.js');
+const defaultIsExtractableFile = require("./isExtractableFile.js");
 
 /**
  * Clones a value, recursively extracting
@@ -14,37 +14,37 @@ const defaultIsExtractableFile = require('./isExtractableFile.js');
  * @kind function
  * @name extractFiles
  * @param {*} value Value (typically an object tree) to extract files from.
- * @param {ObjectPath} [path=''] Prefix for object paths for extracted files.
+ * @param {ObjectPath} [path=""] Prefix for object paths for extracted files.
  * @param {ExtractableFileMatcher} [isExtractableFile=isExtractableFile] The function used to identify extractable files.
  * @returns {ExtractFilesResult} Result.
  * @example <caption>Ways to `import`.</caption>
  * ```js
- * import { extractFiles } from 'extract-files';
+ * import { extractFiles } from "extract-files";
  * ```
  *
  * ```js
- * import extractFiles from 'extract-files/public/extractFiles.js';
+ * import extractFiles from "extract-files/public/extractFiles.js";
  * ```
  * @example <caption>Ways to `require`.</caption>
  * ```js
- * const { extractFiles } = require('extract-files');
+ * const { extractFiles } = require("extract-files");
  * ```
  *
  * ```js
- * const extractFiles = require('extract-files/public/extractFiles.js');
+ * const extractFiles = require("extract-files/public/extractFiles.js");
  * ```
  * @example <caption>Extract files from an object.</caption>
  * For the following:
  *
  * ```js
- * const file1 = new File(['1'], '1.txt', { type: 'text/plain' });
- * const file2 = new File(['2'], '2.txt', { type: 'text/plain' });
+ * const file1 = new File(["1"], "1.txt", { type: "text/plain" });
+ * const file2 = new File(["2"], "2.txt", { type: "text/plain" });
  * const value = {
  *   a: file1,
  *   b: [file1, file2],
  * };
  *
- * const { clone, files } = extractFiles(value, 'prefix');
+ * const { clone, files } = extractFiles(value, "prefix");
  * ```
  *
  * `value` remains the same.
@@ -62,12 +62,12 @@ const defaultIsExtractableFile = require('./isExtractableFile.js');
  *
  * | Key     | Value                        |
  * | :------ | :--------------------------- |
- * | `file1` | `['prefix.a', 'prefix.b.0']` |
- * | `file2` | `['prefix.b.1']`             |
+ * | `file1` | `["prefix.a", "prefix.b.0"]` |
+ * | `file2` | `["prefix.b.1"]`             |
  */
 module.exports = function extractFiles(
   value,
-  path = '',
+  path = "",
   isExtractableFile = defaultIsExtractableFile
 ) {
   // Map of extracted files and their object paths within the input value.
@@ -100,7 +100,7 @@ module.exports = function extractFiles(
     } else {
       const isList =
         Array.isArray(value) ||
-        (typeof FileList !== 'undefined' && value instanceof FileList);
+        (typeof FileList !== "undefined" && value instanceof FileList);
       const isObject = value && value.constructor === Object;
 
       if (isList || isObject) {
@@ -114,7 +114,7 @@ module.exports = function extractFiles(
         }
 
         if (!recursed.has(value)) {
-          const pathPrefix = path ? `${path}.` : '';
+          const pathPrefix = path ? `${path}.` : "";
           const recursedDeeper = new Set(recursed).add(value);
 
           if (isList) {

@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
-exports.ReactNativeFile = require('./ReactNativeFile.js');
-exports.extractFiles = require('./extractFiles.js');
-exports.isExtractableFile = require('./isExtractableFile.js');
+exports.ReactNativeFile = require("./ReactNativeFile.js");
+exports.extractFiles = require("./extractFiles.js");
+exports.isExtractableFile = require("./isExtractableFile.js");
 
 /**
  * An extractable file.
@@ -22,11 +22,11 @@ exports.isExtractableFile = require('./isExtractableFile.js');
  * @see [`isExtractableFile`]{@link isExtractableFile} is the default extractable file matcher.
  * @example <caption>How to check for the default exactable files, as well as a custom type of file.</caption>
  * ```js
- * import isExtractableFile from 'extract-files/public/isExtractableFile.js';
+ * import isExtractableFile from "extract-files/public/isExtractableFile.js";
  *
  * const isExtractableFileEnhanced = (value) =>
  *   isExtractableFile(value) ||
- *   (typeof CustomFile !== 'undefined' && value instanceof CustomFile);
+ *   (typeof CustomFile !== "undefined" && value instanceof CustomFile);
  * ```
  */
 
@@ -67,8 +67,8 @@ exports.isExtractableFile = require('./isExtractableFile.js');
  * ```js
  * const fileSubstitute = {
  *   uri: uriFromCameraRoll,
- *   name: 'a.jpg',
- *   type: 'image/jpeg',
+ *   name: "a.jpg",
+ *   type: "image/jpeg",
  * };
  * ```
  */
