@@ -23,6 +23,7 @@
   - Errors when the surplus is greater than 25% of the limit, suggesting the limit should be reduced.
   - Resolves the minified bundle and its gzipped size for debugging in tests.
 - Fixed an `extractFiles` function test bug.
+- Added an `extractFiles` function test clarifying that object properties with `Symbol` keys don’t get cloned.
 - Configured Prettier option `singleQuote` to the default, `false`.
 - Documentation tweaks.
 - Amended the changelog entry for v10.0.0.

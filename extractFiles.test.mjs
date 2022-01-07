@@ -257,6 +257,24 @@ export default (tests) => {
     });
   });
 
+  tests.add("`extractFiles` with an object with a `Symbol` key.", () => {
+    const symbol = Symbol();
+    const withoutSymbol = { b: 2 };
+
+    deepStrictEqual(
+      extractFiles(
+        Object.freeze({
+          [symbol]: 1,
+          ...withoutSymbol,
+        })
+      ),
+      {
+        clone: withoutSymbol,
+        files: new Map(),
+      }
+    );
+  });
+
   tests.add("`extractFiles` with a second `path` parameter, file.", () => {
     const file = new ReactNativeFile({ uri: "", name: "", type: "" });
 
