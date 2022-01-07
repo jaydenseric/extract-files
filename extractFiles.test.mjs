@@ -206,7 +206,7 @@ export default (tests) => {
       clone: { a: expectedRepeatedObject, b: expectedRepeatedObject },
       files: new Map([[file, ["a.a", "b.a"]]]),
     });
-    strictEqual(result.a, result.b);
+    strictEqual(result.clone.a, result.clone.b);
   });
 
   tests.add("`extractFiles` with an array referenced multiple times.", () => {
