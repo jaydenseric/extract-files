@@ -1,3 +1,5 @@
+// @ts-check
+
 import TestDirector from "test-director";
 import test_ReactNativeFile from "./ReactNativeFile.test.mjs";
 import test_extractFiles from "./extractFiles.test.mjs";

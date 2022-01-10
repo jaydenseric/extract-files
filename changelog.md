@@ -5,17 +5,22 @@
 ### Major
 
 - Updated Node.js support to `^12.22.0 || ^14.17.0 || >= 16.0.0`.
+- Added a new [`is-plain-obj`](https://npm.im/is-plain-obj) dependency that is ESM.
 - Updated dev dependencies, some of which require newer Node.js versions than previously supported.
 - Public modules are now individually listed in the package `files` and `exports` fields.
 - Removed `./package` from the package `exports` field; the full `package.json` filename must be used in a `require` path.
 - Removed the package main index module; deep imports must be used.
 - Shortened public module deep import paths, removing the `/public/`.
 - The API is now ESM in `.mjs` files instead of CJS in `.js` files, [accessible via `import` but not `require`](https://nodejs.org/dist/latest/docs/api/esm.html#require).
+- Implemented TypeScript types via JSDoc and `@deno-types` comments.
+- The function `extractFiles` now also deep clones “plain” objects that aren’t `Object` instances (e.g. `Object.create(null)`).
 
 ### Patch
 
 - Also run GitHub Actions CI with Node.js v17.
 - Simplified package scripts.
+- Check TypeScript types via a new package `types` script.
+- Removed the [`jsdoc-md`](https://npm.im/jsdoc-md) dev dependency and the related package scripts, replacing the readme “API” section with a manually written “Exports” section.
 - Reorganized the test file structure.
 - Test the bundle sizes for public modules individually.
 - Use a new `assertBundleSize` function to assert module bundle size in tests:
@@ -25,6 +30,7 @@
 - Fixed an `extractFiles` function test bug.
 - Added an `extractFiles` function test clarifying that object properties with `Symbol` keys don’t get cloned.
 - Configured Prettier option `singleQuote` to the default, `false`.
+- Updated the package description.
 - Documentation tweaks.
 - Amended the changelog entry for v10.0.0.
 

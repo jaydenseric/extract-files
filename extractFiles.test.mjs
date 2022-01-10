@@ -1,9 +1,15 @@
-import { deepStrictEqual, strictEqual } from "assert";
+// @ts-check
+
+import { deepStrictEqual, notStrictEqual, strictEqual } from "assert";
 import revertableGlobals from "revertable-globals";
 import ReactNativeFile from "./ReactNativeFile.mjs";
 import extractFiles from "./extractFiles.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
 
+/**
+ * Adds `extractFiles` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add("`extractFiles` bundle size.", async () => {
     await assertBundleSize(new URL("./extractFiles.mjs", import.meta.url), 520);
@@ -14,52 +20,91 @@ export default (tests) => {
     ["null", null],
     ["false", false],
     ["true", true],
-    ["a falsy string", ""],
-    ["a truthy string", "a"],
-    ["a falsy number", 0],
-    ["a truthy number", 1],
-    ["an empty object", {}],
-    ["an empty array", []],
+    ["a string, falsy", ""],
+    ["a string, truthy", "a"],
+    ["a number, falsy", 0],
+    ["a number, truthy", 1],
+    ["a number, NaN", Number.NaN],
+    ["a number, `Number` instance", new Number(1)],
+    ["a regex", /./u],
+    ["an object, `Object` instance", { a: 1 }],
+    [
+      "an object, non `Object` instance",
+      Object.assign(Object.create(null), { a: 1 }),
+    ],
+    ["an object, intrinsic", Math],
+    ["an array", [1, 2]],
     ["a function", () => {}],
-    ["an `Object` instance", new Object()],
-    ["a `Number` instance", new Number(1)],
-    ["a `Date` instance", new Date(2019, 0, 20)],
-  ])
-    tests.add(`\`extractFiles\` with ${name}.`, () => {
+    ["a class instance", new Date()],
+  ]) {
+    const label = `\`extractFiles\` with ${name},`;
+
+    tests.add(`${label} directly.`, () => {
       deepStrictEqual(extractFiles(value), {
         clone: value,
         files: new Map(),
       });
-      deepStrictEqual(extractFiles(Object.freeze({ a: value })), {
-        clone: { a: value },
-        files: new Map(),
-      });
-      deepStrictEqual(extractFiles(Object.freeze([value])), {
-        clone: [value],
-        files: new Map(),
-      });
     });
+
+    tests.add(`${label} in an object, \`Object\` instance.`, () => {
+      const object = Object.freeze({ a: value });
+      const result = extractFiles(object);
+
+      deepStrictEqual(result, {
+        clone: object,
+        files: new Map(),
+      });
+      notStrictEqual(result.clone, object);
+    });
+
+    tests.add(`${label} in an object, non \`Object\` instance.`, () => {
+      const object = Object.freeze(
+        Object.assign(Object.create(null), { a: value })
+      );
+      const result = extractFiles(object);
+
+      deepStrictEqual(result, {
+        clone: object,
+        files: new Map(),
+      });
+      notStrictEqual(result.clone, object);
+    });
+
+    tests.add(`${label} in an array.`, () => {
+      const array = Object.freeze([value]);
+      const result = extractFiles(array);
+
+      deepStrictEqual(result, {
+        clone: array,
+        files: new Map(),
+      });
+      notStrictEqual(result.clone, array);
+    });
+  }
 
   tests.add("`extractFiles` with a `FileList` instance.", () => {
     class File {}
     class FileList {
+      #files;
+
+      /**
+       * @param {Array<File>} files Files.
+       * @this {{
+       *   #files: Array<File>,
+       *   [index: number]: File,
+       *   [Symbol.iterator](): IterableIterator<File>,
+       *   length: number
+       * }}
+       */
       constructor(files) {
-        files.forEach((file, i) => {
-          this[i] = file;
+        this.#files = files;
+
+        files.forEach((file, index) => {
+          this[index] = file;
         });
 
-        this.length = files.length;
-      }
-
-      [Symbol.iterator]() {
-        let index = 0;
-
-        return {
-          next: () =>
-            index < this.length
-              ? { done: false, value: this[index++] }
-              : { done: true },
-        };
+        this[Symbol.iterator] = this.#files[Symbol.iterator];
+        this.length = this.#files.length;
       }
     }
 
@@ -227,12 +272,17 @@ export default (tests) => {
 
   tests.add("`extractFiles` with an object with circular references.", () => {
     const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+
+    /** @type {Record<string, any>} */
     const input = { a: file };
+
     input.b = input;
 
     Object.freeze(input);
 
+    /** @type {Record<string, any>} */
     const clone = { a: null };
+
     clone.b = clone;
 
     deepStrictEqual(extractFiles(input), {
@@ -243,12 +293,17 @@ export default (tests) => {
 
   tests.add("`extractFiles` with an array with circular references.", () => {
     const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+
+    /** @type {Array<any>} */
     const input = [file];
+
     input[1] = input;
 
     Object.freeze(input);
 
+    /** @type {Array<any>} */
     const clone = [null];
+
     clone[1] = clone;
 
     deepStrictEqual(extractFiles(input), {

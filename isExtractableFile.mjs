@@ -1,16 +1,13 @@
+// @ts-check
+
 import ReactNativeFile from "./ReactNativeFile.mjs";
 
 /**
- * Checks if a value is an [extractable file]{@link ExtractableFile}.
- * @kind function
- * @name isExtractableFile
- * @type {ExtractableFileMatcher}
- * @param {*} value Value to check.
- * @returns {boolean} Is the value an [extractable file]{@link ExtractableFile}.
- * @example <caption>How to import.</caption>
- * ```js
- * import isExtractableFile from "extract-files/isExtractableFile.mjs";
- * ```
+ * Checks if a value is an {@link ExtractableFile extractable file}.
+ * @type {import("./extractFiles.mjs").ExtractableFileMatcher}
+ * @param {unknown} value Value to check.
+ * @returns {value is ExtractableFile} Is the value an
+ *   {@link ExtractableFile extractable file}.
  */
 export default function isExtractableFile(value) {
   return (
@@ -19,3 +16,8 @@ export default function isExtractableFile(value) {
     value instanceof ReactNativeFile
   );
 }
+
+/**
+ * An extractable file.
+ * @typedef {File | Blob | ReactNativeFile} ExtractableFile
+ */

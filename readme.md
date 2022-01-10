@@ -2,7 +2,7 @@
 
 [![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![CI status](https://github.com/jaydenseric/extract-files/workflows/CI/badge.svg)](https://github.com/jaydenseric/extract-files/actions)
 
-Clones a value, recursively extracting [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays.
+A function to recursively extract files and their object paths within a value, replacing them with `null` in a deep clone without mutating the original value. By default, “files” are [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob), and [`ReactNativeFile`](#class-reactnativefile) instances. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays.
 
 Used by [GraphQL multipart request spec client implementations](https://github.com/jaydenseric/graphql-multipart-request-spec#implementations) such as [`graphql-react`](https://npm.im/graphql-react) and [`apollo-upload-client`](https://npm.im/apollo-upload-client).
 
@@ -14,7 +14,7 @@ To install with [npm](https://npmjs.com/get-npm), run:
 npm install extract-files
 ```
 
-See the documentation for the function [`extractFiles`](#function-extractfiles) to get started.
+See the documentation for the function [`extractFiles`](#exports-extractFiles.mjs-export-default) to get started.
 
 ## Requirements
 
@@ -22,215 +22,176 @@ See the documentation for the function [`extractFiles`](#function-extractfiles) 
 - [Browsers](https://npm.im/browserslist): `> 0.5%, not OperaMini all, not IE > 0, not dead`
 - [React Native](https://reactnative.dev)
 
-## API
+## Exports
 
-- [class ReactNativeFile](#class-reactnativefile)
-- [function extractFiles](#function-extractfiles)
-- [function isExtractableFile](#function-isextractablefile)
-- [type ExtractableFile](#type-extractablefile)
-- [type ExtractableFileMatcher](#type-extractablefilematcher)
-- [type ExtractFilesResult](#type-extractfilesresult)
-- [type ObjectPath](#type-objectpath)
-- [type ReactNativeFileSubstitute](#type-reactnativefilesubstitute)
+These ECMAScript modules are published to [npm](https://npmjs.com) and exported via the [`package.json`](./package.json) `exports` field:
 
-### class ReactNativeFile
+- [`extractFiles.mjs`](#exports-extractFiles.mjs)
+- [`isExtractableFile.mjs`](#exports-isExtractableFile.mjs)
+- [`ReactNativeFile.mjs`](#exports-ReactNativeFile.mjs)
 
-Used to mark a [React Native `File` substitute](#type-reactnativefilesubstitute) in an object tree for [`extractFiles`](#function-extractfiles). It’s too risky to assume all objects with `uri`, `type` and `name` properties are files to extract.
+### <span id="exports-extractFiles.mjs">[`extractFiles.mjs`](./extractFiles.mjs)</span>
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| `file` | [ReactNativeFileSubstitute](#type-reactnativefilesubstitute) | A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute. |
+#### <span id="exports-extractFiles.mjs-export-default">Export `default`</span>
 
-#### Examples
+Function `extractFiles` — Recursively extracts files and their [object paths](#exports-extractFiles.mjs-type-ObjectPath) within a value, replacing them with `null` in a deep clone without mutating the original value. By default, “files” are [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob), and [`ReactNativeFile`](#exports-ReactNativeFile.mjs-export-default) instances. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays.
 
-_How to import._
+##### <span id="exports-extractFiles.mjs-export-default-parameters">Parameters</span>
 
-> ```js
-> import ReactNativeFile from "extract-files/ReactNativeFile.mjs";
-> ```
+1. `value`: `unknown` — Value (typically an object tree) to extract files from.
+2. `path` `?`: [`ObjectPath`](#exports-extractFiles.mjs-type-ObjectPath) — Prefix for object paths for extracted files. Defaults to `""`.
+3. `isExtractableFile` `?`: [`ExtractableFileMatcher`](#exports-extractFiles.mjs-type-ExtractableFileMatcher) — Function that matches extractable files. Defaults to [`isExtractableFile`](#exports-isExtractableFile.mjs-export-default).
 
-_An extractable file in [React Native](https://reactnative.dev)._
+##### <span id="exports-extractFiles.mjs-export-default-returns">Returns</span>
 
-> ```js
-> const file = new ReactNativeFile({
->   uri: uriFromCameraRoll,
->   name: "a.jpg",
->   type: "image/jpeg",
-> });
-> ```
+[`ExtractFilesResult`](#exports-extractFiles.mjs-type-ExtractFilesResult) — Result.
 
----
+##### <span id="exports-extractFiles.mjs-export-default-example-1">Example 1</span>
 
-### function extractFiles
+Extracting files from an object.
 
-Clones a value, recursively extracting [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) and [`ReactNativeFile`](#class-reactnativefile) instances with their [object paths](#type-objectpath), replacing them with `null`. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays.
+For the following:
 
-| Parameter | Type | Description |
-| :-- | :-- | :-- |
-| `value` | \* | Value (typically an object tree) to extract files from. |
-| `path` | [ObjectPath](#type-objectpath)? = `''` | Prefix for object paths for extracted files. |
-| `isExtractableFile` | [ExtractableFileMatcher](#type-extractablefilematcher)? = [isExtractableFile](#function-isextractablefile) | The function used to identify extractable files. |
+```js
+const file1 = new File(["1"], "1.txt", { type: "text/plain" });
+const file2 = new File(["2"], "2.txt", { type: "text/plain" });
+const value = {
+  a: file1,
+  b: [file1, file2],
+};
 
-**Returns:** [ExtractFilesResult](#type-extractfilesresult) — Result.
+const { clone, files } = extractFiles(value, "prefix");
+```
 
-#### Examples
+`value` remains the same.
 
-_How to import._
+`clone` is:
 
-> ```js
-> import extractFiles from "extract-files/extractFiles.mjs";
-> ```
+```json
+{
+  "a": null,
+  "b": [null, null]
+}
+```
 
-_Extract files from an object._
+`files` is a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
 
-> For the following:
->
-> ```js
-> const file1 = new File(["1"], "1.txt", { type: "text/plain" });
-> const file2 = new File(["2"], "2.txt", { type: "text/plain" });
-> const value = {
->   a: file1,
->   b: [file1, file2],
-> };
->
-> const { clone, files } = extractFiles(value, "prefix");
-> ```
->
-> `value` remains the same.
->
-> `clone` is:
->
-> ```json
-> {
->   "a": null,
->   "b": [null, null]
-> }
-> ```
->
-> `files` is a [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) instance containing:
->
-> | Key     | Value                        |
-> | :------ | :--------------------------- |
-> | `file1` | `["prefix.a", "prefix.b.0"]` |
-> | `file2` | `["prefix.b.1"]`             |
+| Key     | Value                        |
+| :------ | :--------------------------- |
+| `file1` | `["prefix.a", "prefix.b.0"]` |
+| `file2` | `["prefix.b.1"]`             |
 
----
+#### <span id="exports-extractFiles.mjs-type-ExtractableFileMatcher">Type `ExtractableFileMatcher`</span>
 
-### function isExtractableFile
+Function — A function that checks if a value is an extractable file.
 
-Checks if a value is an [extractable file](#type-extractablefile).
+##### <span id="exports-extractFiles.mjs-type-ExtractableFileMatcher-returns">Returns</span>
 
-**Type:** [ExtractableFileMatcher](#type-extractablefilematcher)
+`boolean` — Is the value an extractable file.
 
-| Parameter | Type | Description     |
-| :-------- | :--- | :-------------- |
-| `value`   | \*   | Value to check. |
+##### <span id="exports-extractFiles.mjs-type-ExtractableFileMatcher-see">See</span>
 
-**Returns:** boolean — Is the value an [extractable file](#type-extractablefile).
+- [`isExtractableFile`](#exports-isExtractableFile.mjs-export-default), the default extractable file matcher for [`extractFiles`](#exports-extractFiles.mjs-export-default).
 
-#### Examples
+##### <span id="exports-extractFiles.mjs-type-ExtractableFileMatcher-example-1">Example 1</span>
 
-_How to import._
+How to check for the default exactable files, as well as a custom type of file:
 
-> ```js
-> import isExtractableFile from "extract-files/isExtractableFile.mjs";
-> ```
+```js
+import isExtractableFile from "extract-files/isExtractableFile.mjs";
 
----
+const isExtractableFileEnhanced = (value) =>
+  isExtractableFile(value) ||
+  (typeof CustomFile !== "undefined" && value instanceof CustomFile);
+```
 
-### type ExtractableFile
+#### <span id="exports-extractFiles.mjs-type-ExtractFilesResult">Type `ExtractFilesResult`</span>
 
-An extractable file.
+`object` — What [`extractFiles`](#exports-extractFiles.mjs-export-default) returns.
 
-**Type:** File | Blob | [ReactNativeFile](#class-reactnativefile)
+##### <span id="exports-extractFiles.mjs-type-ExtractFilesResult-properties">Properties</span>
 
----
+- `clone`: `unknown` — Clone of the original input value with files recursively replaced with `null`.
+- `files`: `Map`<`unknown`, `Array`<[`ObjectPath`](#exports-extractFiles.mjs-type-ObjectPath)>> — Extracted files and their object paths within the input value.
 
-### type ExtractableFileMatcher
+#### <span id="exports-extractFiles.mjs-type-ObjectPath">Type `ObjectPath`</span>
 
-A function that checks if a value is an [extractable file](#type-extractablefile).
+`string` — String notation for the path to a node in an object tree.
 
-**Type:** Function
-
-| Parameter | Type | Description     |
-| :-------- | :--- | :-------------- |
-| `value`   | \*   | Value to check. |
-
-**Returns:** boolean — Is the value an [extractable file](#type-extractablefile).
-
-#### See
-
-- [`isExtractableFile`](#function-isextractablefile) is the default extractable file matcher.
-
-#### Examples
-
-_How to check for the default exactable files, as well as a custom type of file._
-
-> ```js
-> import isExtractableFile from "extract-files/isExtractableFile.mjs";
->
-> const isExtractableFileEnhanced = (value) =>
->   isExtractableFile(value) ||
->   (typeof CustomFile !== "undefined" && value instanceof CustomFile);
-> ```
-
----
-
-### type ExtractFilesResult
-
-What [`extractFiles`](#function-extractfiles) returns.
-
-**Type:** object
-
-| Property | Type | Description |
-| :-- | :-- | :-- |
-| `clone` | \* | Clone of the original input value with files recursively replaced with `null`. |
-| `files` | Map<[ExtractableFile](#type-extractablefile), Array<[ObjectPath](#type-objectpath)>> | Extracted files and their locations within the original value. |
-
----
-
-### type ObjectPath
-
-String notation for the path to a node in an object tree.
-
-**Type:** string
-
-#### See
+##### <span id="exports-extractFiles.mjs-type-ObjectPath-see">See</span>
 
 - [`object-path` on npm](https://npm.im/object-path).
 
-#### Examples
+##### <span id="exports-waterfallRender.mjs-type-ObjectPath-example-1">Example 1</span>
 
-_Object path is property `a`, array index `0`, object property `b`._
+An object path for object property `a`, array index `0`, object property `b`:
 
->     a.0.b
+```
+a.0.b
+```
 
----
+### <span id="exports-isExtractableFile.mjs">[`isExtractableFile.mjs`](./isExtractableFile.mjs)</span>
 
-### type ReactNativeFileSubstitute
+#### <span id="exports-isExtractableFile.mjs-export-default">Export `default`</span>
 
-A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute for when using [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+[`ExtractableFileMatcher`](#exports-extractFiles.mjs-type-ExtractableFileMatcher) `isExtractableFile` — Checks if a value is an [extractable file](#exports-isExtractableFile.mjs-type-ExtractableFile).
 
-**Type:** object
+##### <span id="exports-isExtractableFile.mjs-export-default-parameters">Parameters</span>
 
-| Property | Type    | Description        |
-| :------- | :------ | :----------------- |
-| `uri`    | string  | Filesystem path.   |
-| `name`   | string? | File name.         |
-| `type`   | string? | File content type. |
+1. `value`: `unknown` — Value to check.
 
-#### See
+##### <span id="exports-isExtractableFile.mjs-export-default-returns">Returns</span>
 
-- [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.45.1/Libraries/Network/FormData.js#L34).
+`value is` [`ExtractableFile`](#exports-isExtractableFile.mjs-type-ExtractableFile) — Is the value an [extractable file](#exports-isExtractableFile.mjs-type-ExtractableFile).
 
-#### Examples
+#### <span id="exports-isExtractableFile.mjs-type-ExtractableFile">Type `ExtractableFile`</span>
 
-_A camera roll file._
+[`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) | [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) | [`ReactNativeFile`](#exports-ReactNativeFile.mjs-export-default) — An extractable file.
 
-> ```js
-> const fileSubstitute = {
->   uri: uriFromCameraRoll,
->   name: "a.jpg",
->   type: "image/jpeg",
-> };
-> ```
+### <span id="exports-ReactNativeFile.mjs">[`ReactNativeFile.mjs`](./ReactNativeFile.mjs)</span>
+
+#### <span id="exports-ReactNativeFile.mjs-export-default">Export `default`</span>
+
+Class `ReactNativeFile` — A [React Native `File` substitute](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute) that can be accurately matched as such using `instanceof`. It can’t be assumed that all objects with `uri`, `type` and `name` properties are files.
+
+##### <span id="exports-ReactNativeFile.mjs-export-default-parameters">Parameters</span>
+
+1. `file`: [`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute) — A [React Native `File` substitute](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute).
+
+##### <span id="exports-ReactNativeFile.mjs-export-default-instance-property-uri">Instance property `uri`</span>
+
+[`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties)`["uri"]` — Filesystem path.
+
+##### <span id="exports-ReactNativeFile.mjs-export-default-instance-property-name">Instance property `name`</span>
+
+[`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties)`["name"]` — File name.
+
+##### <span id="exports-ReactNativeFile.mjs-export-default-instance-property-type">Instance property `type`</span>
+
+[`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties)`["type"]` — File content type.
+
+#### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute">Type `ReactNativeFileSubstitute`</span>
+
+`object` — A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute for use with [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
+
+##### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties">Properties</span>
+
+- `uri`: `string` — Filesystem path.
+- `name` `?`: `string` — File name.
+- `type` `?`: `string` — File content type.
+
+##### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-see">See</span>
+
+- [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.66.4/Libraries/Network/FormData.js#L37-L41).
+
+##### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-example-1">Example 1</span>
+
+A camera roll file:
+
+```js
+const fileSubstitute = {
+  uri: uriFromCameraRoll,
+  name: "a.jpg",
+  type: "image/jpeg",
+};
+```

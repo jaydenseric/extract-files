@@ -1,3 +1,5 @@
+// @ts-check
+
 import { fail } from "assert";
 import { fileURLToPath } from "url";
 import esbuild from "esbuild";
@@ -9,7 +11,6 @@ import { gzipSize } from "gzip-size";
  * @param {number} limit Minified and gzipped bundle size limit (bytes).
  * @returns {Promise<{ bundle: string, gzippedSize: number }>} Resolves the
  *   minified bundle and its gzipped size (bytes).
- * @ignore
  */
 export default async function assertBundleSize(moduleUrl, limit) {
   if (!(moduleUrl instanceof URL))

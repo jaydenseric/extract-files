@@ -1,7 +1,13 @@
+// @ts-check
+
 import { strictEqual } from "assert";
 import ReactNativeFile from "./ReactNativeFile.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
 
+/**
+ * Adds `ReactNativeFile` tests.
+ * @param {import("test-director").default} tests Test director.
+ */
 export default (tests) => {
   tests.add("`ReactNativeFile` bundle size.", async () => {
     await assertBundleSize(
