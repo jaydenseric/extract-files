@@ -4,7 +4,6 @@ import ReactNativeFile from "./ReactNativeFile.mjs";
 
 /**
  * Checks if a value is an {@link ExtractableFile extractable file}.
- * @type {import("./extractFiles.mjs").ExtractableFileMatcher}
  * @param {unknown} value Value to check.
  * @returns {value is ExtractableFile} Is the value an
  *   {@link ExtractableFile extractable file}.

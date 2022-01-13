@@ -13,6 +13,8 @@
 - Shortened public module deep import paths, removing the `/public/`.
 - The API is now ESM in `.mjs` files instead of CJS in `.js` files, [accessible via `import` but not `require`](https://nodejs.org/dist/latest/docs/api/esm.html#require).
 - Implemented TypeScript types via JSDoc and `@deno-types` comments.
+- Changed the function `extractFiles` parameters. The previously third `isExtractableFile` parameter has been renamed `isExtractable`, is now the second parameter, and no longer defaults to the function `isExtractableFile` to avoid a redundant import when a custom function is specified.
+- The function `extractFiles` now does basic runtime argument type validation.
 - The function `extractFiles` now also deep clones “plain” objects that aren’t `Object` instances (e.g. `Object.create(null)`).
 
 ### Patch

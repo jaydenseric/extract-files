@@ -2,35 +2,37 @@
 
 // @deno-types="is-plain-obj/index.d.ts"
 import isPlainObject from "is-plain-obj";
-import defaultIsExtractableFile from "./isExtractableFile.mjs";
 
-/** @typedef {import("./ReactNativeFile.mjs").default} ReactNativeFile */
+/** @typedef {import("./isExtractableFile.mjs").default} isExtractableFile */
 
 /**
  * Recursively extracts files and their {@link ObjectPath object paths} within a
  * value, replacing them with `null` in a deep clone without mutating the
- * original value. By default, “files” are
- * [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File),
- * [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob), and
- * {@linkcode ReactNativeFile} instances.
+ * original value.
  * [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist)
  * instances are treated as
  * [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance
  * arrays.
- * @param {unknown} value Value (typically an object tree) to extract files
- *   from.
+ * @template [Extractable=unknown] Extractable file type.
+ * @param {unknown} value Value to extract files from. Typically an object tree.
+ * @param {(
+ *   (value: unknown) => value is Extractable
+ * ) | (
+ *   (value: unknown) => boolean
+ * )} isExtractable Matches extractable files. Typically
+ *   {@linkcode isExtractableFile}.
  * @param {ObjectPath} [path] Prefix for object paths for extracted files.
  *   Defaults to `""`.
- * @param {ExtractableFileMatcher} [isExtractableFile] Function that matches
- *   extractable files. Defaults to
- *   {@link defaultIsExtractableFile `isExtractableFile`}.
- * @returns {ExtractFilesResult} Result.
+ * @returns {Extraction<Extractable>} Extraction result.
  * @example
  * Extracting files from an object.
  *
  * For the following:
  *
  * ```js
+ * import extractFiles from "extract-files/extractFiles.mjs";
+ * import isExtractableFile from "extract-files/isExtractableFile.mjs";
+ *
  * const file1 = new File(["1"], "1.txt", { type: "text/plain" });
  * const file2 = new File(["2"], "2.txt", { type: "text/plain" });
  * const value = {
@@ -38,7 +40,7 @@ import defaultIsExtractableFile from "./isExtractableFile.mjs";
  *   b: [file1, file2],
  * };
  *
- * const { clone, files } = extractFiles(value, "prefix");
+ * const { clone, files } = extractFiles(value, isExtractableFile, "prefix");
  * ```
  *
  * `value` remains the same.
@@ -61,11 +63,15 @@ import defaultIsExtractableFile from "./isExtractableFile.mjs";
  * | `file1` | `["prefix.a", "prefix.b.0"]` |
  * | `file2` | `["prefix.b.1"]`             |
  */
-export default function extractFiles(
-  value,
-  path = "",
-  isExtractableFile = defaultIsExtractableFile
-) {
+export default function extractFiles(value, isExtractable, path = "") {
+  if (!arguments.length) throw new TypeError("Argument 1 `value` is required.");
+
+  if (typeof isExtractable !== "function")
+    throw new TypeError("Argument 2 `isExtractable` must be a function.");
+
+  if (typeof path !== "string")
+    throw new TypeError("Argument 3 `path` must be a string.");
+
   /**
    * Deeply clonable value.
    * @typedef {Array<unknown> | FileList | Record<PropertyKey, unknown>} Cloneable
@@ -77,17 +83,17 @@ export default function extractFiles(
    */
 
   /**
-   * Extracted files and their object paths within the input value.
-   * @type {ExtractFilesResult["files"]}
-   */
-  const files = new Map();
-
-  /**
    * Map of values recursed within the input value and their clones, for reusing
    * clones of values that are referenced multiple times within the input value.
    * @type {Map<Cloneable, Clone>}
    */
   const clones = new Map();
+
+  /**
+   * Extracted files and their object paths within the input value.
+   * @type {Extraction<Extractable>["files"]}
+   */
+  const files = new Map();
 
   /**
    * Recursively clones the value, extracting files.
@@ -98,7 +104,7 @@ export default function extractFiles(
    * @returns {unknown} Clone of the value with files replaced with `null`.
    */
   function recurse(value, path, recursed) {
-    if (isExtractableFile(value)) {
+    if (isExtractable(value)) {
       const filePaths = files.get(value);
 
       filePaths ? filePaths.push(path) : files.set(value, [path]);
@@ -170,32 +176,13 @@ export default function extractFiles(
 }
 
 /**
- * A function that checks if a value is an extractable file.
- * @callback ExtractableFileMatcher
- * @param {unknown} value Value to check.
- * @returns {boolean} Is the value an extractable file.
- * @see {@link isExtractableFile `isExtractableFile`}, the default extractable
- *   file matcher for {@linkcode extractFiles}.
- * @example
- * How to check for the default exactable files, as well as a custom type of
- * file:
- *
- * ```js
- * import isExtractableFile from "extract-files/isExtractableFile.mjs";
- *
- * const isExtractableFileEnhanced = (value) =>
- *   isExtractableFile(value) ||
- *   (typeof CustomFile !== "undefined" && value instanceof CustomFile);
- * ```
- */
-
-/**
- * What {@linkcode extractFiles} returns.
- * @typedef {object} ExtractFilesResult
- * @prop {unknown} clone Clone of the original input value with files
+ * An extraction result.
+ * @template [Extractable=unknown] Extractable file type.
+ * @typedef {object} Extraction
+ * @prop {unknown} clone Clone of the original value with extracted files
  *   recursively replaced with `null`.
- * @prop {Map<unknown, Array<ObjectPath>>} files Extracted files and their
- *   object paths within the input value.
+ * @prop {Map<Extractable, Array<ObjectPath>>} files Extracted files and their
+ *   object paths within the original value.
  */
 
 /**

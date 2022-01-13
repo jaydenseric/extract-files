@@ -1,7 +1,7 @@
 {
   "name": "extract-files",
   "version": "11.0.0",
-  "description": "A function to recursively extract files and their object paths within a value, replacing them with null in a deep clone without mutating the original value. By default, “files” are File, Blob, and ReactNativeFile instances. FileList instances are treated as File instance arrays.",
+  "description": "A function to recursively extract files and their object paths within a value, replacing them with null in a deep clone without mutating the original value. FileList instances are treated as File instance arrays. Files are typically File, Blob, and ReactNativeFile instances.",
   "license": "MIT",
   "author": {
     "name": "Jayden Seric",
