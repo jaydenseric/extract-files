@@ -2,10 +2,21 @@
 
 import { deepStrictEqual, notStrictEqual, strictEqual, throws } from "assert";
 import revertableGlobals from "revertable-globals";
-import ReactNativeFile from "./ReactNativeFile.mjs";
 import extractFiles from "./extractFiles.mjs";
 import isExtractableFile from "./isExtractableFile.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
+
+/** A custom “file” for testing. */
+class CustomFile {}
+
+/**
+ * Checks if a value is a {@linkcode CustomFile}.
+ * @param {unknown} value Value to check.
+ * @returns {value is CustomFile} Is the value a {@linkcode CustomFile}.
+ */
+function isCustomFile(value) {
+  return value instanceof CustomFile;
+}
 
 /**
  * Adds `extractFiles` tests.
@@ -48,16 +59,7 @@ export default (tests) => {
   });
 
   tests.add("`extractFiles` return type.", () => {
-    class CustomFile {}
-
     const file = new CustomFile();
-
-    /**
-     * Checks if a value is a {@linkcode CustomFile}.
-     * @param {unknown} value Value to check.
-     * @returns {value is CustomFile} Is the value a {@linkcode CustomFile}.
-     */
-    const isCustomFile = (value) => value instanceof CustomFile;
 
     /** @type {import("./extractFiles.mjs").Extraction<CustomFile>} */
     const extraction = extractFiles(file, isCustomFile);
@@ -69,9 +71,9 @@ export default (tests) => {
   });
 
   tests.add("`extractFiles` with argument 3 `path` specified, file.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
 
-    deepStrictEqual(extractFiles(file, isExtractableFile, "prefix"), {
+    deepStrictEqual(extractFiles(file, isCustomFile, "prefix"), {
       clone: null,
       files: new Map([[file, ["prefix"]]]),
     });
@@ -80,15 +82,12 @@ export default (tests) => {
   tests.add(
     "`extractFiles` with argument 3 `path` specified, file nested in an object and array.",
     () => {
-      const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+      const file = new CustomFile();
 
-      deepStrictEqual(
-        extractFiles({ a: [file] }, isExtractableFile, "prefix"),
-        {
-          clone: { a: [null] },
-          files: new Map([[file, ["prefix.a.0"]]]),
-        }
-      );
+      deepStrictEqual(extractFiles({ a: [file] }, isCustomFile, "prefix"), {
+        clone: { a: [null] },
+        files: new Map([[file, ["prefix.a.0"]]]),
+      });
     }
   );
 
@@ -238,21 +237,12 @@ export default (tests) => {
     }
   });
 
-  tests.add("`extractFiles` with a `ReactNativeFile` instance.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
-
-    deepStrictEqual(extractFiles(file, isExtractableFile), {
-      clone: null,
-      files: new Map([[file, [""]]]),
-    });
-  });
-
   tests.add("`extractFiles` with an object containing multiple files.", () => {
-    const fileA = new ReactNativeFile({ uri: "", name: "", type: "" });
-    const fileB = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const fileA = new CustomFile();
+    const fileB = new CustomFile();
 
     deepStrictEqual(
-      extractFiles(Object.freeze({ a: fileA, b: fileB }), isExtractableFile),
+      extractFiles(Object.freeze({ a: fileA, b: fileB }), isCustomFile),
       {
         clone: { a: null, b: null },
         files: new Map([
@@ -264,28 +254,25 @@ export default (tests) => {
   });
 
   tests.add("`extractFiles` with an array containing multiple files.", () => {
-    const file0 = new ReactNativeFile({ uri: "", name: "", type: "" });
-    const file1 = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file0 = new CustomFile();
+    const file1 = new CustomFile();
 
-    deepStrictEqual(
-      extractFiles(Object.freeze([file0, file1]), isExtractableFile),
-      {
-        clone: [null, null],
-        files: new Map([
-          [file0, ["0"]],
-          [file1, ["1"]],
-        ]),
-      }
-    );
+    deepStrictEqual(extractFiles(Object.freeze([file0, file1]), isCustomFile), {
+      clone: [null, null],
+      files: new Map([
+        [file0, ["0"]],
+        [file1, ["1"]],
+      ]),
+    });
   });
 
   tests.add("`extractFiles` with a nested object containing a file.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
 
     deepStrictEqual(
       extractFiles(
         Object.freeze({ a: Object.freeze({ a: file }) }),
-        isExtractableFile
+        isCustomFile
       ),
       {
         clone: { a: { a: null } },
@@ -295,10 +282,10 @@ export default (tests) => {
   });
 
   tests.add("`extractFiles` with a nested array containing a file.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
 
     deepStrictEqual(
-      extractFiles(Object.freeze([Object.freeze([file])]), isExtractableFile),
+      extractFiles(Object.freeze([Object.freeze([file])]), isCustomFile),
       {
         clone: [[null]],
         files: new Map([[file, ["0.0"]]]),
@@ -309,10 +296,10 @@ export default (tests) => {
   tests.add(
     "`extractFiles` with an object containing multiple references of a file.",
     () => {
-      const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+      const file = new CustomFile();
 
       deepStrictEqual(
-        extractFiles(Object.freeze({ a: file, b: file }), isExtractableFile),
+        extractFiles(Object.freeze({ a: file, b: file }), isCustomFile),
         {
           clone: { a: null, b: null },
           files: new Map([[file, ["a", "b"]]]),
@@ -324,24 +311,21 @@ export default (tests) => {
   tests.add(
     "`extractFiles` with an array containing multiple references of a file.",
     () => {
-      const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+      const file = new CustomFile();
 
-      deepStrictEqual(
-        extractFiles(Object.freeze([file, file]), isExtractableFile),
-        {
-          clone: [null, null],
-          files: new Map([[file, ["0", "1"]]]),
-        }
-      );
+      deepStrictEqual(extractFiles(Object.freeze([file, file]), isCustomFile), {
+        clone: [null, null],
+        files: new Map([[file, ["0", "1"]]]),
+      });
     }
   );
 
   tests.add("`extractFiles` with an object referenced multiple times.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
     const inputA = Object.freeze({ a: file });
     const extraction = extractFiles(
       Object.freeze({ a: inputA, b: inputA }),
-      isExtractableFile
+      isCustomFile
     );
     const expectedRepeatedObject = { a: null };
 
@@ -353,11 +337,11 @@ export default (tests) => {
   });
 
   tests.add("`extractFiles` with an array referenced multiple times.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
     const array = Object.freeze([file]);
     const extraction = extractFiles(
       Object.freeze({ a: array, b: array }),
-      isExtractableFile
+      isCustomFile
     );
     const expectedRepeatedArray = [null];
 
@@ -372,7 +356,7 @@ export default (tests) => {
   });
 
   tests.add("`extractFiles` with an object with circular references.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
 
     /** @type {Record<string, any>} */
     const input = { a: file };
@@ -386,14 +370,14 @@ export default (tests) => {
 
     clone.b = clone;
 
-    deepStrictEqual(extractFiles(input, isExtractableFile), {
+    deepStrictEqual(extractFiles(input, isCustomFile), {
       clone,
       files: new Map([[file, ["a"]]]),
     });
   });
 
   tests.add("`extractFiles` with an array with circular references.", () => {
-    const file = new ReactNativeFile({ uri: "", name: "", type: "" });
+    const file = new CustomFile();
 
     /** @type {Array<any>} */
     const input = [file];
@@ -407,7 +391,7 @@ export default (tests) => {
 
     clone[1] = clone;
 
-    deepStrictEqual(extractFiles(input, isExtractableFile), {
+    deepStrictEqual(extractFiles(input, isCustomFile), {
       clone,
       files: new Map([[file, ["0"]]]),
     });

@@ -2,7 +2,7 @@
 
 [![npm version](https://badgen.net/npm/v/extract-files)](https://npm.im/extract-files) [![CI status](https://github.com/jaydenseric/extract-files/workflows/CI/badge.svg)](https://github.com/jaydenseric/extract-files/actions)
 
-A function to recursively extract files and their object paths within a value, replacing them with `null` in a deep clone without mutating the original value. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays. Files are typically [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File), [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob), and [`ReactNativeFile`](#class-reactnativefile) instances.
+A function to recursively extract files and their object paths within a value, replacing them with `null` in a deep clone without mutating the original value. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays. Files are typically [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) and [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) instances.
 
 Used by [GraphQL multipart request spec client implementations](https://github.com/jaydenseric/graphql-multipart-request-spec#implementations) such as [`graphql-react`](https://npm.im/graphql-react) and [`apollo-upload-client`](https://npm.im/apollo-upload-client).
 
@@ -20,7 +20,6 @@ See the documentation for the function [`extractFiles`](#exports-extractFiles.mj
 
 - [Node.js](https://nodejs.org): `^12.22.0 || ^14.17.0 || >= 16.0.0`
 - [Browsers](https://npm.im/browserslist): `> 0.5%, not OperaMini all, not IE > 0, not dead`
-- [React Native](https://reactnative.dev)
 
 ## Exports
 
@@ -28,7 +27,6 @@ These ECMAScript modules are published to [npm](https://npmjs.com) and exported 
 
 - [`extractFiles.mjs`](#exports-extractFiles.mjs)
 - [`isExtractableFile.mjs`](#exports-isExtractableFile.mjs)
-- [`ReactNativeFile.mjs`](#exports-ReactNativeFile.mjs)
 
 ### <span id="exports-extractFiles.mjs">[`extractFiles.mjs`](./extractFiles.mjs)</span>
 
@@ -133,52 +131,4 @@ Function `isExtractableFile` — Checks if a value is an [extractable file](#exp
 
 #### <span id="exports-isExtractableFile.mjs-type-ExtractableFile">Type `ExtractableFile`</span>
 
-[`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) | [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) | [`ReactNativeFile`](#exports-ReactNativeFile.mjs-export-default) — An extractable file.
-
-### <span id="exports-ReactNativeFile.mjs">[`ReactNativeFile.mjs`](./ReactNativeFile.mjs)</span>
-
-#### <span id="exports-ReactNativeFile.mjs-export-default">Export `default`</span>
-
-Class `ReactNativeFile` — A [React Native `File` substitute](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute) that can be accurately matched as such using `instanceof`. It can’t be assumed that all objects with `uri`, `type` and `name` properties are files.
-
-##### <span id="exports-ReactNativeFile.mjs-export-default-parameters">Parameters</span>
-
-1. `file`: [`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute) — A [React Native `File` substitute](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute).
-
-##### <span id="exports-ReactNativeFile.mjs-export-default-instance-property-uri">Instance property `uri`</span>
-
-[`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties)`["uri"]` — Filesystem path.
-
-##### <span id="exports-ReactNativeFile.mjs-export-default-instance-property-name">Instance property `name`</span>
-
-[`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties)`["name"]` — File name.
-
-##### <span id="exports-ReactNativeFile.mjs-export-default-instance-property-type">Instance property `type`</span>
-
-[`ReactNativeFileSubstitute`](#exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties)`["type"]` — File content type.
-
-#### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute">Type `ReactNativeFileSubstitute`</span>
-
-`object` — A [React Native](https://reactnative.dev) [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) substitute for use with [`FormData`](https://developer.mozilla.org/en-US/docs/Web/API/FormData).
-
-##### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-properties">Properties</span>
-
-- `uri`: `string` — Filesystem path.
-- `name` `?`: `string` — File name.
-- `type` `?`: `string` — File content type.
-
-##### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-see">See</span>
-
-- [React Native `FormData` polyfill source](https://github.com/facebook/react-native/blob/v0.66.4/Libraries/Network/FormData.js#L37-L41).
-
-##### <span id="exports-ReactNativeFile.mjs-type-ReactNativeFileSubstitute-example-1">Example 1</span>
-
-A camera roll file:
-
-```js
-const fileSubstitute = {
-  uri: uriFromCameraRoll,
-  name: "a.jpg",
-  type: "image/jpeg",
-};
-```
+[`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) | [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) — An extractable file.

@@ -1,7 +1,7 @@
 {
   "name": "extract-files",
   "version": "11.0.0",
-  "description": "A function to recursively extract files and their object paths within a value, replacing them with null in a deep clone without mutating the original value. FileList instances are treated as File instance arrays. Files are typically File, Blob, and ReactNativeFile instances.",
+  "description": "A function to recursively extract files and their object paths within a value, replacing them with null in a deep clone without mutating the original value. FileList instances are treated as File instance arrays. Files are typically File and Blob instances.",
   "license": "MIT",
   "author": {
     "name": "Jayden Seric",
@@ -19,22 +19,18 @@
     "File",
     "FileList",
     "Blob",
-    "react",
-    "native",
     "esm",
     "mjs"
   ],
   "files": [
     "extractFiles.mjs",
-    "isExtractableFile.mjs",
-    "ReactNativeFile.mjs"
+    "isExtractableFile.mjs"
   ],
   "sideEffects": false,
   "exports": {
     "./extractFiles.mjs": "./extractFiles.mjs",
     "./isExtractableFile.mjs": "./isExtractableFile.mjs",
-    "./package.json": "./package.json",
-    "./ReactNativeFile.mjs": "./ReactNativeFile.mjs"
+    "./package.json": "./package.json"
   },
   "engines": {
     "node": "^12.22.0 || ^14.17.0 || >= 16.0.0"

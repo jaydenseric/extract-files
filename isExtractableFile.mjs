@@ -1,7 +1,5 @@
 // @ts-check
 
-import ReactNativeFile from "./ReactNativeFile.mjs";
-
 /**
  * Checks if a value is an {@link ExtractableFile extractable file}.
  * @param {unknown} value Value to check.
@@ -11,12 +9,11 @@ import ReactNativeFile from "./ReactNativeFile.mjs";
 export default function isExtractableFile(value) {
   return (
     (typeof File !== "undefined" && value instanceof File) ||
-    (typeof Blob !== "undefined" && value instanceof Blob) ||
-    value instanceof ReactNativeFile
+    (typeof Blob !== "undefined" && value instanceof Blob)
   );
 }
 
 /**
  * An extractable file.
- * @typedef {File | Blob | ReactNativeFile} ExtractableFile
+ * @typedef {File | Blob} ExtractableFile
  */

@@ -16,6 +16,13 @@
 - Changed the function `extractFiles` parameters. The previously third `isExtractableFile` parameter has been renamed `isExtractable`, is now the second parameter, and no longer defaults to the function `isExtractableFile` to avoid a redundant import when a custom function is specified.
 - The function `extractFiles` now does basic runtime argument type validation.
 - The function `extractFiles` now also deep clones “plain” objects that aren’t `Object` instances (e.g. `Object.create(null)`).
+- Removed out of the box React Native support. The class `ReactNativeFile` is no longer exported, or matched by the function `isExtractableFile`.
+
+  This class was bloating non React Native environments with an extra module, increasing bundle sizes when building and adding an extra step to ESM loading waterfalls in browsers.
+
+  It’s the responsibility of Facebook to adhere to web standards and implement spec-complaint `File`, `Glob`, and `FormData` globals in the React Native environment.
+
+  In the meantime, React Native projects can manually implement a class `ReactNativeFile` and match it with a custom function `isReactNativeFile` for use with the function `extractFiles`.
 
 ### Patch
 

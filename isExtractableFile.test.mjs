@@ -2,7 +2,6 @@
 
 import { strictEqual } from "assert";
 import revertableGlobals from "revertable-globals";
-import ReactNativeFile from "./ReactNativeFile.mjs";
 import isExtractableFile from "./isExtractableFile.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
 
@@ -14,7 +13,7 @@ export default (tests) => {
   tests.add("`isExtractableFile` bundle size.", async () => {
     await assertBundleSize(
       new URL("./isExtractableFile.mjs", import.meta.url),
-      180
+      120
     );
   });
 
@@ -40,13 +39,6 @@ export default (tests) => {
     } finally {
       revertGlobals();
     }
-  });
-
-  tests.add("`isExtractableFile` with a `ReactNativeFile` instance.", () => {
-    strictEqual(
-      isExtractableFile(new ReactNativeFile({ uri: "", name: "", type: "" })),
-      true
-    );
   });
 
   tests.add("`isExtractableFile` with a non-file.", () => {
