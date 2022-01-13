@@ -13,13 +13,9 @@ import isPlainObject from "is-plain-obj";
  * instances are treated as
  * [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance
  * arrays.
- * @template [Extractable=unknown] Extractable file type.
+ * @template Extractable Extractable file type.
  * @param {unknown} value Value to extract files from. Typically an object tree.
- * @param {(
- *   (value: unknown) => value is Extractable
- * ) | (
- *   (value: unknown) => boolean
- * )} isExtractable Matches extractable files. Typically
+ * @param {(value: unknown) => value is Extractable} isExtractable Matches extractable files. Typically
  *   {@linkcode isExtractableFile}.
  * @param {ObjectPath} [path] Prefix for object paths for extracted files.
  *   Defaults to `""`.

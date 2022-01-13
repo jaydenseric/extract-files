@@ -43,7 +43,7 @@ Function `extractFiles` — Recursively extracts files and their [object paths](
 ##### <span id="exports-extractFiles.mjs-export-default-parameters">Parameters</span>
 
 1. `value`: `unknown` — Value to extract files from. Typically an object tree.
-2. `isExtractable`: `((value: unknown) => value is Extractable) | ((value: unknown) => boolean)` — Matches extractable files. Typically [`isExtractableFile`](#exports-isExtractableFile.mjs-export-default).
+2. `isExtractable`: `(value: unknown) => value is Extractable` — Matches extractable files. Typically [`isExtractableFile`](#exports-isExtractableFile.mjs-export-default).
 3. `path` `?`: [`ObjectPath`](#exports-extractFiles.mjs-type-ObjectPath) — Prefix for object paths for extracted files. Defaults to `""`.
 
 ##### <span id="exports-extractFiles.mjs-export-default-returns">Returns</span>

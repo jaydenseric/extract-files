@@ -47,49 +47,26 @@ export default (tests) => {
     }, new TypeError("Argument 3 `path` must be a string."));
   });
 
-  tests.add(
-    "`extractFiles` with argument 2 `isExtractable` returning a type predicate.",
-    () => {
-      class CustomFile {}
+  tests.add("`extractFiles` return type.", () => {
+    class CustomFile {}
 
-      const file = new CustomFile();
+    const file = new CustomFile();
 
-      /**
-       * Checks if a value is a {@linkcode CustomFile}.
-       * @param {unknown} value Value to check.
-       * @returns {value is CustomFile} Is the value a {@linkcode CustomFile}.
-       */
-      const isCustomFile = (value) => value instanceof CustomFile;
+    /**
+     * Checks if a value is a {@linkcode CustomFile}.
+     * @param {unknown} value Value to check.
+     * @returns {value is CustomFile} Is the value a {@linkcode CustomFile}.
+     */
+    const isCustomFile = (value) => value instanceof CustomFile;
 
-      /** @type {import("./extractFiles.mjs").Extraction<CustomFile>} */
-      const extraction = extractFiles(file, isCustomFile);
+    /** @type {import("./extractFiles.mjs").Extraction<CustomFile>} */
+    const extraction = extractFiles(file, isCustomFile);
 
-      deepStrictEqual(extraction, {
-        clone: null,
-        files: new Map([[file, [""]]]),
-      });
-    }
-  );
-
-  tests.add(
-    "`extractFiles` with argument 2 `isExtractable` returning a boolean.",
-    () => {
-      class CustomFile {}
-
-      const file = new CustomFile();
-
-      /** @type {import("./extractFiles.mjs").Extraction<unknown>} */
-      const extraction = extractFiles(
-        file,
-        (value) => value instanceof CustomFile
-      );
-
-      deepStrictEqual(extraction, {
-        clone: null,
-        files: new Map([[file, [""]]]),
-      });
-    }
-  );
+    deepStrictEqual(extraction, {
+      clone: null,
+      files: new Map([[file, [""]]]),
+    });
+  });
 
   tests.add("`extractFiles` with argument 3 `path` specified, file.", () => {
     const file = new ReactNativeFile({ uri: "", name: "", type: "" });
