@@ -41,6 +41,7 @@
 - Configured Prettier option `singleQuote` to the default, `false`.
 - Updated the package description.
 - Documentation tweaks.
+- Added a `license.md` MIT License file, fixing [#19](https://github.com/jaydenseric/extract-files/issues/19) via [#20](https://github.com/jaydenseric/extract-files/pull/20).
 - Amended the changelog entry for v10.0.0.
 
 ## 11.0.0
