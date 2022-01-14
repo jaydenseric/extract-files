@@ -36,7 +36,7 @@ Function `extractFiles` — Recursively extracts files and their [object paths](
 
 ##### <span id="exports-extractFiles.mjs-export-default-type-parameters">Type parameters</span>
 
-1. `Extractable` `?`: `any` — Extractable file type. Defaults to `unknown`.
+1. `Extractable`: `any` — Extractable file type.
 
 ##### <span id="exports-extractFiles.mjs-export-default-parameters">Parameters</span>
 
