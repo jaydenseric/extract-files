@@ -1,3 +1,14 @@
 {
-  "extends": ["env"]
+  "extends": ["env"],
+  "settings": {
+    "jsdoc": {
+      "mode": "typescript"
+    }
+  },
+  "rules": {
+    "jsdoc/check-tag-names": "off",
+    "jsdoc/require-description": "off",
+    "jsdoc/require-returns": "off",
+    "jsdoc/valid-types": "off"
+  }
 }

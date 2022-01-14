@@ -2,8 +2,45 @@
 
 ## Next
 
+### Major
+
+- Updated Node.js support to `^12.22.0 || ^14.17.0 || >= 16.0.0`.
+- Added a new [`is-plain-obj`](https://npm.im/is-plain-obj) dependency that is ESM.
+- Updated dev dependencies, some of which require newer Node.js versions than previously supported.
+- Public modules are now individually listed in the package `files` and `exports` fields.
+- Removed `./package` from the package `exports` field; the full `package.json` filename must be used in a `require` path.
+- Removed the package main index module; deep imports must be used.
+- Shortened public module deep import paths, removing the `/public/`.
+- The API is now ESM in `.mjs` files instead of CJS in `.js` files, [accessible via `import` but not `require`](https://nodejs.org/dist/latest/docs/api/esm.html#require).
+- Implemented TypeScript types via JSDoc and `@deno-types` comments.
+- Changed the function `extractFiles` parameters. The previously third `isExtractableFile` parameter has been renamed `isExtractable`, is now the second parameter, and no longer defaults to the function `isExtractableFile` to avoid a redundant import when a custom function is specified.
+- The function `extractFiles` now does basic runtime argument type validation.
+- The function `extractFiles` now also deep clones “plain” objects that aren’t `Object` instances (e.g. `Object.create(null)`).
+- Removed out of the box React Native support. The class `ReactNativeFile` is no longer exported, or matched by the function `isExtractableFile`.
+
+  This class was bloating non React Native environments with an extra module, increasing bundle sizes when building and adding an extra step to ESM loading waterfalls in browsers.
+
+  It’s the responsibility of Facebook to adhere to web standards and implement spec-complaint `File`, `Glob`, and `FormData` globals in the React Native environment.
+
+  In the meantime, React Native projects can manually implement a class `ReactNativeFile` and match it with a custom function `isReactNativeFile` for use with the function `extractFiles`.
+
 ### Patch
 
+- Also run GitHub Actions CI with Node.js v17.
+- Simplified package scripts.
+- Check TypeScript types via a new package `types` script.
+- Removed the [`jsdoc-md`](https://npm.im/jsdoc-md) dev dependency and the related package scripts, replacing the readme “API” section with a manually written “Exports” section.
+- Reorganized the test file structure.
+- Test the bundle sizes for public modules individually.
+- Use a new `assertBundleSize` function to assert module bundle size in tests:
+  - Failure message contains details about the bundle size and how much the limit was exceeded.
+  - Errors when the surplus is greater than 25% of the limit, suggesting the limit should be reduced.
+  - Resolves the minified bundle and its gzipped size for debugging in tests.
+- Fixed an `extractFiles` function test bug.
+- Added an `extractFiles` function test clarifying that object properties with `Symbol` keys don’t get cloned.
+- Configured Prettier option `singleQuote` to the default, `false`.
+- Updated the package description.
+- Documentation tweaks.
 - Amended the changelog entry for v10.0.0.
 
 ## 11.0.0
@@ -85,22 +122,22 @@
   - Deep imports to specific files are now allowed, e.g.
 
     ```js
-    import extractFiles from 'extract-files/lib/extractFiles.js';
+    import extractFiles from "extract-files/lib/extractFiles.js";
     ```
 
     ```js
-    const extractFiles = require('extract-files/lib/extractFiles');
+    const extractFiles = require("extract-files/lib/extractFiles");
     ```
 
   - The `package.json` can now be required, e.g.
 
     ```js
-    const pkg = require('extract-files/package.json');
+    const pkg = require("extract-files/package.json");
     ```
 
     ```js
     // With Node.js --experimental-json-modules flag.
-    import pkg from 'extract-files/package.json';
+    import pkg from "extract-files/package.json";
     ```
 
 ### Patch
