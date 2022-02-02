@@ -4,6 +4,7 @@
 
 ### Patch
 
+- Updated dev dependencies.
 - Simplified dev dependencies and config for ESLint.
 
 ## 12.0.0
