@@ -2,6 +2,7 @@
 
 import { strictEqual } from "assert";
 import revertableGlobals from "revertable-globals";
+
 import isExtractableFile from "./isExtractableFile.mjs";
 import assertBundleSize from "./test/assertBundleSize.mjs";
 

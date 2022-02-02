@@ -1,5 +1,11 @@
 # extract-files changelog
 
+## Next
+
+### Patch
+
+- Simplified dev dependencies and config for ESLint.
+
 ## 12.0.0
 
 ### Major
