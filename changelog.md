@@ -17,6 +17,7 @@
 - Updated `jsconfig.json`:
   - Set `compilerOptions.maxNodeModuleJsDepth` to `10`.
   - Set `compilerOptions.module` to `nodenext`.
+- Removed the now redundant `not IE > 0` from the Browserslist query.
 
 ## 12.0.0
 
