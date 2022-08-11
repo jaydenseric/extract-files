@@ -8,12 +8,15 @@
 
 ### Patch
 
-- Updated dev dependencies.
+- Updated dependencies.
 - Simplified dev dependencies and config for ESLint.
 - Updated GitHub Actions CI config:
   - Run tests with Node.js v14, v16, v18.
   - Updated `actions/checkout` to v3.
   - Updated `actions/setup-node` to v3.
+- Updated `jsconfig.json`:
+  - Set `compilerOptions.maxNodeModuleJsDepth` to `10`.
+  - Set `compilerOptions.module` to `nodenext`.
 
 ## 12.0.0
 
