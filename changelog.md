@@ -18,6 +18,7 @@
   - Set `compilerOptions.maxNodeModuleJsDepth` to `10`.
   - Set `compilerOptions.module` to `nodenext`.
 - Removed the now redundant `not IE > 0` from the Browserslist query.
+- Tweaked formatting of a JSDoc comment.
 
 ## 12.0.0
 

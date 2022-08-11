@@ -15,8 +15,8 @@ import isPlainObject from "is-plain-obj";
  * arrays.
  * @template Extractable Extractable file type.
  * @param {unknown} value Value to extract files from. Typically an object tree.
- * @param {(value: unknown) => value is Extractable} isExtractable Matches extractable files. Typically
- *   {@linkcode isExtractableFile}.
+ * @param {(value: unknown) => value is Extractable} isExtractable Matches
+ *   extractable files. Typically {@linkcode isExtractableFile}.
  * @param {ObjectPath} [path] Prefix for object paths for extracted files.
  *   Defaults to `""`.
  * @returns {Extraction<Extractable>} Extraction result.
