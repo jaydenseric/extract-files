@@ -22,6 +22,7 @@
 - Revamped the readme:
   - Removed the badges.
   - Removed the detailed API docs. The JSDoc comments and TypeScript types in the exported modules are now the primary documentation.
+  - Added [Browserslist](https://browsersl.ist) links.
   - Added information about Deno, import maps, TypeScript config, and [optimal JavaScript module design](https://jaydenseric.com/blog/optimal-javascript-module-design).
 
 ## 12.0.0
