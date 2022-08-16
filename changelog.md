@@ -19,6 +19,10 @@
   - Set `compilerOptions.module` to `nodenext`.
 - Removed the now redundant `not IE > 0` from the Browserslist query.
 - Tweaked formatting of a JSDoc comment.
+- Revamped the readme:
+  - Removed the badges.
+  - Removed the detailed API docs. The JSDoc comments and TypeScript types in the exported modules are now the primary documentation.
+  - Added information about Deno, import maps, TypeScript config, and [optimal JavaScript module design](https://jaydenseric.com/blog/optimal-javascript-module-design).
 
 ## 12.0.0
 
