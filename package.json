@@ -40,10 +40,10 @@
     "is-plain-obj": "^4.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.7.1",
+    "@types/node": "^18.7.5",
     "coverage-node": "^6.1.0",
-    "esbuild": "^0.15.1",
-    "eslint": "^8.21.0",
+    "esbuild": "^0.15.3",
+    "eslint": "^8.22.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "gzip-size": "^7.0.0",
     "prettier": "^2.7.1",
