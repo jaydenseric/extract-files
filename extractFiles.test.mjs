@@ -1,6 +1,11 @@
 // @ts-check
 
-import { deepStrictEqual, notStrictEqual, strictEqual, throws } from "assert";
+import {
+  deepStrictEqual,
+  notStrictEqual,
+  strictEqual,
+  throws,
+} from "node:assert";
 import revertableGlobals from "revertable-globals";
 
 import extractFiles from "./extractFiles.mjs";

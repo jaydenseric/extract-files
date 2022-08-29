@@ -1,6 +1,6 @@
 // @ts-check
 
-import { strictEqual } from "assert";
+import { strictEqual } from "node:assert";
 import revertableGlobals from "revertable-globals";
 
 import isExtractableFile from "./isExtractableFile.mjs";
