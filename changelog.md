@@ -20,6 +20,7 @@
   - Set `compilerOptions.maxNodeModuleJsDepth` to `10`.
   - Set `compilerOptions.module` to `nodenext`.
 - Removed the now redundant `not IE > 0` from the Browserslist query.
+- Replaced TypeScript `Record` types with index signatures.
 - Tweaked formatting of a JSDoc comment.
 - Revamped the readme:
   - Removed the badges.

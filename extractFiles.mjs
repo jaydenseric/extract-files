@@ -70,7 +70,9 @@ export default function extractFiles(value, isExtractable, path = "") {
 
   /**
    * Deeply clonable value.
-   * @typedef {Array<unknown> | FileList | Record<PropertyKey, unknown>} Cloneable
+   * @typedef {Array<unknown> | FileList | {
+   *   [key: PropertyKey]: unknown
+   * }} Cloneable
    */
 
   /**
@@ -154,7 +156,7 @@ export default function extractFiles(value, isExtractable, path = "") {
             );
 
             if (uncloned)
-              /** @type {Record<PropertyKey, unknown>} */ (clone)[key] =
+              /** @type {{ [key: PropertyKey]: unknown }} */ (clone)[key] =
                 propertyClone;
           }
       }

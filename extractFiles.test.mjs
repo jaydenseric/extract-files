@@ -364,14 +364,14 @@ export default (tests) => {
   tests.add("`extractFiles` with an object with circular references.", () => {
     const file = new CustomFile();
 
-    /** @type {Record<string, any>} */
+    /** @type {{ [key: string]: any }} */
     const input = { a: file };
 
     input.b = input;
 
     Object.freeze(input);
 
-    /** @type {Record<string, any>} */
+    /** @type {{ [key: string]: any }} */
     const clone = { a: null };
 
     clone.b = clone;
