@@ -1,6 +1,6 @@
 {
   "name": "extract-files",
-  "version": "12.0.0",
+  "version": "13.0.0",
   "description": "A function to recursively extract files and their object paths within a value, replacing them with null in a deep clone without mutating the original value. FileList instances are treated as File instance arrays. Files are typically File and Blob instances.",
   "license": "MIT",
   "author": {

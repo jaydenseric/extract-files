@@ -17,7 +17,7 @@ For [Deno](https://deno.land) and browsers, an example import map:
 ```json
 {
   "imports": {
-    "extract-files/": "https://unpkg.com/extract-files@12.0.0/",
+    "extract-files/": "https://unpkg.com/extract-files@13.0.0/",
     "is-plain-obj": "https://unpkg.com/is-plain-obj@4.1.0/index.js",
     "is-plain-obj/": "https://unpkg.com/is-plain-obj@4.1.0/"
   }
