@@ -1,13 +1,9 @@
 {
   "extends": ["eslint:recommended"],
   "env": {
-    "es2021": true,
-    "shared-node-browser": true
-  },
-  "globals": {
-    "Blob": "readonly",
-    "File": "readonly",
-    "FileList": "readonly"
+    "es2022": true,
+    "node": true,
+    "browser": true
   },
   "parserOptions": {
     "ecmaVersion": "latest"
