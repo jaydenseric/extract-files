@@ -47,10 +47,10 @@ export default (tests) => {
         extractFiles(
           null,
           // @ts-expect-error Testing invalid.
-          true
+          true,
         );
       }, new TypeError("Argument 2 `isExtractable` must be a function."));
-    }
+    },
   );
 
   tests.add("`extractFiles` with argument 3 `path` not a string.", () => {
@@ -59,7 +59,7 @@ export default (tests) => {
         null,
         isExtractableFile,
         // @ts-expect-error Testing invalid.
-        true
+        true,
       );
     }, new TypeError("Argument 3 `path` must be a string."));
   });
@@ -94,7 +94,7 @@ export default (tests) => {
         clone: { a: [null] },
         files: new Map([[file, ["prefix.a.0"]]]),
       });
-    }
+    },
   );
 
   for (const [name, value] of [
@@ -141,7 +141,7 @@ export default (tests) => {
 
     tests.add(`${label} in an object, non \`Object\` instance.`, () => {
       const object = Object.freeze(
-        Object.assign(Object.create(null), { a: value })
+        Object.assign(Object.create(null), { a: value }),
       );
       const extraction = extractFiles(object, isExtractableFile);
 
@@ -255,7 +255,7 @@ export default (tests) => {
           [fileA, ["a"]],
           [fileB, ["b"]],
         ]),
-      }
+      },
     );
   });
 
@@ -278,12 +278,12 @@ export default (tests) => {
     deepStrictEqual(
       extractFiles(
         Object.freeze({ a: Object.freeze({ a: file }) }),
-        isCustomFile
+        isCustomFile,
       ),
       {
         clone: { a: { a: null } },
         files: new Map([[file, ["a.a"]]]),
-      }
+      },
     );
   });
 
@@ -295,7 +295,7 @@ export default (tests) => {
       {
         clone: [[null]],
         files: new Map([[file, ["0.0"]]]),
-      }
+      },
     );
   });
 
@@ -309,9 +309,9 @@ export default (tests) => {
         {
           clone: { a: null, b: null },
           files: new Map([[file, ["a", "b"]]]),
-        }
+        },
       );
-    }
+    },
   );
 
   tests.add(
@@ -323,7 +323,7 @@ export default (tests) => {
         clone: [null, null],
         files: new Map([[file, ["0", "1"]]]),
       });
-    }
+    },
   );
 
   tests.add("`extractFiles` with an object referenced multiple times.", () => {
@@ -331,7 +331,7 @@ export default (tests) => {
     const inputA = Object.freeze({ a: file });
     const extraction = extractFiles(
       Object.freeze({ a: inputA, b: inputA }),
-      isCustomFile
+      isCustomFile,
     );
     const expectedRepeatedObject = { a: null };
 
@@ -347,7 +347,7 @@ export default (tests) => {
     const array = Object.freeze([file]);
     const extraction = extractFiles(
       Object.freeze({ a: array, b: array }),
-      isCustomFile
+      isCustomFile,
     );
     const expectedRepeatedArray = [null];
 
@@ -413,12 +413,12 @@ export default (tests) => {
           [symbol]: 1,
           ...withoutSymbol,
         }),
-        isExtractableFile
+        isExtractableFile,
       ),
       {
         clone: withoutSymbol,
         files: new Map(),
-      }
+      },
     );
   });
 };

@@ -8,8 +8,10 @@
 
 ### Patch
 
+- Updated dev dependencies.
 - Updated package scripts.
 - Updated GitHub Actions CI config.
+- Updated Prettier formatting.
 
 ## 13.0.0
 

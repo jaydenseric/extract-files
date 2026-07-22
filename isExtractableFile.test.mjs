@@ -14,7 +14,7 @@ export default (tests) => {
   tests.add("`isExtractableFile` bundle size.", async () => {
     await assertBundleSize(
       new URL("./isExtractableFile.mjs", import.meta.url),
-      120
+      120,
     );
   });
 

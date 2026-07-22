@@ -124,9 +124,9 @@ export default function extractFiles(value, isExtractable, path = "") {
         clone = valueIsList
           ? []
           : // Replicate if the plain object is an `Object` instance.
-          value instanceof /** @type {any} */ (Object)
-          ? {}
-          : Object.create(null);
+            value instanceof /** @type {any} */ (Object)
+            ? {}
+            : Object.create(null);
 
         clones.set(value, /** @type {Clone} */ (clone));
       }
@@ -142,7 +142,7 @@ export default function extractFiles(value, isExtractable, path = "") {
             const itemClone = recurse(
               item,
               pathPrefix + index++,
-              recursedDeeper
+              recursedDeeper,
             );
 
             if (uncloned) /** @type {Array<unknown>} */ (clone).push(itemClone);
@@ -152,7 +152,7 @@ export default function extractFiles(value, isExtractable, path = "") {
             const propertyClone = recurse(
               value[key],
               pathPrefix + key,
-              recursedDeeper
+              recursedDeeper,
             );
 
             if (uncloned)
