@@ -41,21 +41,19 @@
   },
   "devDependencies": {
     "@types/node": "^26.1.1",
-    "coverage-node": "^8.0.0",
     "esbuild": "^0.15.5",
     "eslint": "^8.23.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "gzip-size": "^7.0.0",
     "prettier": "^3.9.6",
     "revertable-globals": "^4.0.0",
-    "test-director": "^10.0.0",
     "typescript": "^7.0.2"
   },
   "scripts": {
     "prettier": "prettier -c .",
     "eslint": "eslint .",
     "types": "tsc -p jsconfig.json",
-    "test": "coverage-node test.mjs",
+    "test": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-exclude='**/*.test.*' --test-coverage-exclude='test-helpers/**' --test-reporter=spec",
     "check": "node --run prettier && node --run eslint && node --run types && node --run test",
     "prepublishOnly": "node --run check"
   }

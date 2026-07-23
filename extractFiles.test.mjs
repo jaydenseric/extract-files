@@ -1,9 +1,6 @@
 // @ts-check
 
-/**
- * @import TestDirector from "test-director"
- * @import { Extraction } from "./extractFiles.mjs"
- */
+/** @import { Extraction } from "./extractFiles.mjs" */
 
 import {
   deepStrictEqual,
@@ -11,11 +8,12 @@ import {
   strictEqual,
   throws,
 } from "node:assert";
+import { describe, it } from "node:test";
 import revertableGlobals from "revertable-globals";
 
 import extractFiles from "./extractFiles.mjs";
 import isExtractableFile from "./isExtractableFile.mjs";
-import assertBundleSize from "./test/assertBundleSize.mjs";
+import assertBundleSize from "./test-helpers/assertBundleSize.mjs";
 
 /** A custom “file” for testing. */
 class CustomFile {}
@@ -29,25 +27,27 @@ function isCustomFile(value) {
   return value instanceof CustomFile;
 }
 
-/**
- * Adds `extractFiles` tests.
- * @param {TestDirector} tests Test director.
- */
-export default (tests) => {
-  tests.add("`extractFiles` bundle size.", async () => {
-    await assertBundleSize(new URL("./extractFiles.mjs", import.meta.url), 550);
-  });
+describe(
+  "Function `extractFiles`.",
+  {
+    concurrency: true,
+  },
+  () => {
+    it("Bundle size.", async () => {
+      await assertBundleSize(
+        new URL("./extractFiles.mjs", import.meta.url),
+        550,
+      );
+    });
 
-  tests.add("`extractFiles` with argument 1 `value` missing.", () => {
-    throws(() => {
-      // @ts-expect-error Testing invalid.
-      extractFiles();
-    }, new TypeError("Argument 1 `value` is required."));
-  });
+    it("Argument 1 `value` missing.", () => {
+      throws(() => {
+        // @ts-expect-error Testing invalid.
+        extractFiles();
+      }, new TypeError("Argument 1 `value` is required."));
+    });
 
-  tests.add(
-    "`extractFiles` with argument 2 `isExtractable` not a function.",
-    () => {
+    it("Argument 2 `isExtractable` not a function.", () => {
       throws(() => {
         extractFiles(
           null,
@@ -55,253 +55,250 @@ export default (tests) => {
           true,
         );
       }, new TypeError("Argument 2 `isExtractable` must be a function."));
-    },
-  );
-
-  tests.add("`extractFiles` with argument 3 `path` not a string.", () => {
-    throws(() => {
-      extractFiles(
-        null,
-        isExtractableFile,
-        // @ts-expect-error Testing invalid.
-        true,
-      );
-    }, new TypeError("Argument 3 `path` must be a string."));
-  });
-
-  tests.add("`extractFiles` return type.", () => {
-    const file = new CustomFile();
-
-    /** @type {Extraction<CustomFile>} */
-    const extraction = extractFiles(file, isCustomFile);
-
-    deepStrictEqual(extraction, {
-      clone: null,
-      files: new Map([[file, [""]]]),
     });
-  });
 
-  tests.add("`extractFiles` with argument 3 `path` specified, file.", () => {
-    const file = new CustomFile();
-
-    deepStrictEqual(extractFiles(file, isCustomFile, "prefix"), {
-      clone: null,
-      files: new Map([[file, ["prefix"]]]),
+    it("Argument 3 `path` not a string.", () => {
+      throws(() => {
+        extractFiles(
+          null,
+          isExtractableFile,
+          // @ts-expect-error Testing invalid.
+          true,
+        );
+      }, new TypeError("Argument 3 `path` must be a string."));
     });
-  });
 
-  tests.add(
-    "`extractFiles` with argument 3 `path` specified, file nested in an object and array.",
-    () => {
+    it("Return type.", () => {
+      const file = new CustomFile();
+
+      /** @type {Extraction<CustomFile>} */
+      const extraction = extractFiles(file, isCustomFile);
+
+      deepStrictEqual(extraction, {
+        clone: null,
+        files: new Map([[file, [""]]]),
+      });
+    });
+
+    it("Argument 3 `path` specified, file.", () => {
+      const file = new CustomFile();
+
+      deepStrictEqual(extractFiles(file, isCustomFile, "prefix"), {
+        clone: null,
+        files: new Map([[file, ["prefix"]]]),
+      });
+    });
+
+    it("Argument 3 `path` specified, file nested in an object and array.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(extractFiles({ a: [file] }, isCustomFile, "prefix"), {
         clone: { a: [null] },
         files: new Map([[file, ["prefix.a.0"]]]),
       });
-    },
-  );
-
-  for (const [name, value] of [
-    ["undefined", undefined],
-    ["null", null],
-    ["false", false],
-    ["true", true],
-    ["a string, falsy", ""],
-    ["a string, truthy", "a"],
-    ["a number, falsy", 0],
-    ["a number, truthy", 1],
-    ["a number, NaN", Number.NaN],
-    ["a number, `Number` instance", new Number(1)],
-    ["a regex", /./u],
-    ["an object, `Object` instance", { a: 1 }],
-    [
-      "an object, non `Object` instance",
-      Object.assign(Object.create(null), { a: 1 }),
-    ],
-    ["an object, intrinsic", Math],
-    ["an array", [1, 2]],
-    ["a function", () => {}],
-    ["a class instance", new Date()],
-  ]) {
-    const label = `\`extractFiles\` with ${name},`;
-
-    tests.add(`${label} directly.`, () => {
-      deepStrictEqual(extractFiles(value, isExtractableFile), {
-        clone: value,
-        files: new Map(),
-      });
     });
 
-    tests.add(`${label} in an object, \`Object\` instance.`, () => {
-      const object = Object.freeze({ a: value });
-      const extraction = extractFiles(object, isExtractableFile);
+    for (const [name, value] of [
+      ["undefined", undefined],
+      ["null", null],
+      ["false", false],
+      ["true", true],
+      ["a string, falsy", ""],
+      ["a string, truthy", "a"],
+      ["a number, falsy", 0],
+      ["a number, truthy", 1],
+      ["a number, NaN", Number.NaN],
+      ["a number, `Number` instance", new Number(1)],
+      ["a regex", /./u],
+      ["an object, `Object` instance", { a: 1 }],
+      [
+        "an object, non `Object` instance",
+        Object.assign(Object.create(null), { a: 1 }),
+      ],
+      ["an object, intrinsic", Math],
+      ["an array", [1, 2]],
+      ["a function", () => {}],
+      ["a class instance", new Date()],
+    ]) {
+      const label = `With ${name},`;
 
-      deepStrictEqual(extraction, {
-        clone: object,
-        files: new Map(),
+      it(`${label} directly.`, () => {
+        deepStrictEqual(extractFiles(value, isExtractableFile), {
+          clone: value,
+          files: new Map(),
+        });
       });
-      notStrictEqual(extraction.clone, object);
+
+      it(`${label} in an object, \`Object\` instance.`, () => {
+        const object = Object.freeze({ a: value });
+        const extraction = extractFiles(object, isExtractableFile);
+
+        deepStrictEqual(extraction, {
+          clone: object,
+          files: new Map(),
+        });
+        notStrictEqual(extraction.clone, object);
+      });
+
+      it(`${label} in an object, non \`Object\` instance.`, () => {
+        const object = Object.freeze(
+          Object.assign(Object.create(null), { a: value }),
+        );
+        const extraction = extractFiles(object, isExtractableFile);
+
+        deepStrictEqual(extraction, {
+          clone: object,
+          files: new Map(),
+        });
+        notStrictEqual(extraction.clone, object);
+      });
+
+      it(`${label} in an array.`, () => {
+        const array = Object.freeze([value]);
+        const extraction = extractFiles(array, isExtractableFile);
+
+        deepStrictEqual(extraction, {
+          clone: array,
+          files: new Map(),
+        });
+        notStrictEqual(extraction.clone, array);
+      });
+    }
+
+    it("With a `FileList` instance.", () => {
+      class File {}
+      class FileList {
+        /** @type {Array<File>} */
+        #files;
+
+        /** @type {number} */
+        length;
+
+        /** @param {Array<File>} files Files. */
+        constructor(files) {
+          this.#files = files;
+          Object.assign(this, files);
+          this.length = files.length;
+        }
+
+        [Symbol.iterator]() {
+          return this.#files[Symbol.iterator]();
+        }
+      }
+
+      const revertGlobals = revertableGlobals({ File, FileList });
+
+      try {
+        const file0 = new File();
+        const file1 = new File();
+        const fileList = new FileList([file0, file1]);
+
+        deepStrictEqual(extractFiles(fileList, isExtractableFile), {
+          clone: [null, null],
+          files: new Map([
+            [file0, ["0"]],
+            [file1, ["1"]],
+          ]),
+        });
+      } finally {
+        revertGlobals();
+      }
     });
 
-    tests.add(`${label} in an object, non \`Object\` instance.`, () => {
-      const object = Object.freeze(
-        Object.assign(Object.create(null), { a: value }),
+    it("With a `File` instance.", () => {
+      class File {}
+
+      const revertGlobals = revertableGlobals({ File });
+
+      try {
+        const file = new File();
+
+        deepStrictEqual(extractFiles(file, isExtractableFile), {
+          clone: null,
+          files: new Map([[file, [""]]]),
+        });
+      } finally {
+        revertGlobals();
+      }
+    });
+
+    it("With a `Blob` instance.", () => {
+      class Blob {}
+
+      const revertGlobals = revertableGlobals({ Blob });
+
+      try {
+        const file = new Blob();
+
+        deepStrictEqual(extractFiles(file, isExtractableFile), {
+          clone: null,
+          files: new Map([[file, [""]]]),
+        });
+      } finally {
+        revertGlobals();
+      }
+    });
+
+    it("With an object containing multiple files.", () => {
+      const fileA = new CustomFile();
+      const fileB = new CustomFile();
+
+      deepStrictEqual(
+        extractFiles(Object.freeze({ a: fileA, b: fileB }), isCustomFile),
+        {
+          clone: { a: null, b: null },
+          files: new Map([
+            [fileA, ["a"]],
+            [fileB, ["b"]],
+          ]),
+        },
       );
-      const extraction = extractFiles(object, isExtractableFile);
-
-      deepStrictEqual(extraction, {
-        clone: object,
-        files: new Map(),
-      });
-      notStrictEqual(extraction.clone, object);
     });
 
-    tests.add(`${label} in an array.`, () => {
-      const array = Object.freeze([value]);
-      const extraction = extractFiles(array, isExtractableFile);
+    it("With an array containing multiple files.", () => {
+      const file0 = new CustomFile();
+      const file1 = new CustomFile();
 
-      deepStrictEqual(extraction, {
-        clone: array,
-        files: new Map(),
-      });
-      notStrictEqual(extraction.clone, array);
+      deepStrictEqual(
+        extractFiles(Object.freeze([file0, file1]), isCustomFile),
+        {
+          clone: [null, null],
+          files: new Map([
+            [file0, ["0"]],
+            [file1, ["1"]],
+          ]),
+        },
+      );
     });
-  }
 
-  tests.add("`extractFiles` with a `FileList` instance.", () => {
-    class File {}
-    class FileList {
-      /** @type {Array<File>} */
-      #files;
+    it("With a nested object containing a file.", () => {
+      const file = new CustomFile();
 
-      /** @type {number} */
-      length;
-
-      /** @param {Array<File>} files Files. */
-      constructor(files) {
-        this.#files = files;
-        Object.assign(this, files);
-        this.length = files.length;
-      }
-
-      [Symbol.iterator]() {
-        return this.#files[Symbol.iterator]();
-      }
-    }
-
-    const revertGlobals = revertableGlobals({ File, FileList });
-
-    try {
-      const file0 = new File();
-      const file1 = new File();
-      const fileList = new FileList([file0, file1]);
-
-      deepStrictEqual(extractFiles(fileList, isExtractableFile), {
-        clone: [null, null],
-        files: new Map([
-          [file0, ["0"]],
-          [file1, ["1"]],
-        ]),
-      });
-    } finally {
-      revertGlobals();
-    }
-  });
-
-  tests.add("`extractFiles` with a `File` instance.", () => {
-    class File {}
-
-    const revertGlobals = revertableGlobals({ File });
-
-    try {
-      const file = new File();
-
-      deepStrictEqual(extractFiles(file, isExtractableFile), {
-        clone: null,
-        files: new Map([[file, [""]]]),
-      });
-    } finally {
-      revertGlobals();
-    }
-  });
-
-  tests.add("`extractFiles` with a `Blob` instance.", () => {
-    class Blob {}
-
-    const revertGlobals = revertableGlobals({ Blob });
-
-    try {
-      const file = new Blob();
-
-      deepStrictEqual(extractFiles(file, isExtractableFile), {
-        clone: null,
-        files: new Map([[file, [""]]]),
-      });
-    } finally {
-      revertGlobals();
-    }
-  });
-
-  tests.add("`extractFiles` with an object containing multiple files.", () => {
-    const fileA = new CustomFile();
-    const fileB = new CustomFile();
-
-    deepStrictEqual(
-      extractFiles(Object.freeze({ a: fileA, b: fileB }), isCustomFile),
-      {
-        clone: { a: null, b: null },
-        files: new Map([
-          [fileA, ["a"]],
-          [fileB, ["b"]],
-        ]),
-      },
-    );
-  });
-
-  tests.add("`extractFiles` with an array containing multiple files.", () => {
-    const file0 = new CustomFile();
-    const file1 = new CustomFile();
-
-    deepStrictEqual(extractFiles(Object.freeze([file0, file1]), isCustomFile), {
-      clone: [null, null],
-      files: new Map([
-        [file0, ["0"]],
-        [file1, ["1"]],
-      ]),
+      deepStrictEqual(
+        extractFiles(
+          Object.freeze({ a: Object.freeze({ a: file }) }),
+          isCustomFile,
+        ),
+        {
+          clone: { a: { a: null } },
+          files: new Map([[file, ["a.a"]]]),
+        },
+      );
     });
-  });
 
-  tests.add("`extractFiles` with a nested object containing a file.", () => {
-    const file = new CustomFile();
+    it("With a nested array containing a file.", () => {
+      const file = new CustomFile();
 
-    deepStrictEqual(
-      extractFiles(
-        Object.freeze({ a: Object.freeze({ a: file }) }),
-        isCustomFile,
-      ),
-      {
-        clone: { a: { a: null } },
-        files: new Map([[file, ["a.a"]]]),
-      },
-    );
-  });
+      deepStrictEqual(
+        extractFiles(Object.freeze([Object.freeze([file])]), isCustomFile),
+        {
+          clone: [[null]],
+          files: new Map([[file, ["0.0"]]]),
+        },
+      );
+    });
 
-  tests.add("`extractFiles` with a nested array containing a file.", () => {
-    const file = new CustomFile();
-
-    deepStrictEqual(
-      extractFiles(Object.freeze([Object.freeze([file])]), isCustomFile),
-      {
-        clone: [[null]],
-        files: new Map([[file, ["0.0"]]]),
-      },
-    );
-  });
-
-  tests.add(
-    "`extractFiles` with an object containing multiple references of a file.",
-    () => {
+    it("With an object containing multiple references of a file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(
@@ -311,114 +308,111 @@ export default (tests) => {
           files: new Map([[file, ["a", "b"]]]),
         },
       );
-    },
-  );
+    });
 
-  tests.add(
-    "`extractFiles` with an array containing multiple references of a file.",
-    () => {
+    it("With an array containing multiple references of a file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(extractFiles(Object.freeze([file, file]), isCustomFile), {
         clone: [null, null],
         files: new Map([[file, ["0", "1"]]]),
       });
-    },
-  );
-
-  tests.add("`extractFiles` with an object referenced multiple times.", () => {
-    const file = new CustomFile();
-    const inputA = Object.freeze({ a: file });
-    const extraction = extractFiles(
-      Object.freeze({ a: inputA, b: inputA }),
-      isCustomFile,
-    );
-    const expectedRepeatedObject = { a: null };
-
-    deepStrictEqual(extraction, {
-      clone: { a: expectedRepeatedObject, b: expectedRepeatedObject },
-      files: new Map([[file, ["a.a", "b.a"]]]),
     });
-    strictEqual(extraction.clone.a, extraction.clone.b);
-  });
 
-  tests.add("`extractFiles` with an array referenced multiple times.", () => {
-    const file = new CustomFile();
-    const array = Object.freeze([file]);
-    const extraction = extractFiles(
-      Object.freeze({ a: array, b: array }),
-      isCustomFile,
-    );
-    const expectedRepeatedArray = [null];
+    it("With an object referenced multiple times.", () => {
+      const file = new CustomFile();
+      const inputA = Object.freeze({ a: file });
+      const extraction = extractFiles(
+        Object.freeze({ a: inputA, b: inputA }),
+        isCustomFile,
+      );
+      const expectedRepeatedObject = { a: null };
 
-    deepStrictEqual(extraction, {
-      clone: {
-        a: expectedRepeatedArray,
-        b: expectedRepeatedArray,
-      },
-      files: new Map([[file, ["a.0", "b.0"]]]),
+      deepStrictEqual(extraction, {
+        clone: { a: expectedRepeatedObject, b: expectedRepeatedObject },
+        files: new Map([[file, ["a.a", "b.a"]]]),
+      });
+      strictEqual(extraction.clone.a, extraction.clone.b);
     });
-    strictEqual(extraction.clone.a, extraction.clone.b);
-  });
 
-  tests.add("`extractFiles` with an object with circular references.", () => {
-    const file = new CustomFile();
+    it("With an array referenced multiple times.", () => {
+      const file = new CustomFile();
+      const array = Object.freeze([file]);
+      const extraction = extractFiles(
+        Object.freeze({ a: array, b: array }),
+        isCustomFile,
+      );
+      const expectedRepeatedArray = [null];
 
-    /** @type {{ [key: string]: any }} */
-    const input = { a: file };
-
-    input.b = input;
-
-    Object.freeze(input);
-
-    /** @type {{ [key: string]: any }} */
-    const clone = { a: null };
-
-    clone.b = clone;
-
-    deepStrictEqual(extractFiles(input, isCustomFile), {
-      clone,
-      files: new Map([[file, ["a"]]]),
+      deepStrictEqual(extraction, {
+        clone: {
+          a: expectedRepeatedArray,
+          b: expectedRepeatedArray,
+        },
+        files: new Map([[file, ["a.0", "b.0"]]]),
+      });
+      strictEqual(extraction.clone.a, extraction.clone.b);
     });
-  });
 
-  tests.add("`extractFiles` with an array with circular references.", () => {
-    const file = new CustomFile();
+    it("With an object with circular references.", () => {
+      const file = new CustomFile();
 
-    /** @type {Array<any>} */
-    const input = [file];
+      /** @type {{ [key: string]: any }} */
+      const input = { a: file };
 
-    input[1] = input;
+      input.b = input;
 
-    Object.freeze(input);
+      Object.freeze(input);
 
-    /** @type {Array<any>} */
-    const clone = [null];
+      /** @type {{ [key: string]: any }} */
+      const clone = { a: null };
 
-    clone[1] = clone;
+      clone.b = clone;
 
-    deepStrictEqual(extractFiles(input, isCustomFile), {
-      clone,
-      files: new Map([[file, ["0"]]]),
+      deepStrictEqual(extractFiles(input, isCustomFile), {
+        clone,
+        files: new Map([[file, ["a"]]]),
+      });
     });
-  });
 
-  tests.add("`extractFiles` with an object with a `Symbol` key.", () => {
-    const symbol = Symbol();
-    const withoutSymbol = { b: 2 };
+    it("With an array with circular references.", () => {
+      const file = new CustomFile();
 
-    deepStrictEqual(
-      extractFiles(
-        Object.freeze({
-          [symbol]: 1,
-          ...withoutSymbol,
-        }),
-        isExtractableFile,
-      ),
-      {
-        clone: withoutSymbol,
-        files: new Map(),
-      },
-    );
-  });
-};
+      /** @type {Array<any>} */
+      const input = [file];
+
+      input[1] = input;
+
+      Object.freeze(input);
+
+      /** @type {Array<any>} */
+      const clone = [null];
+
+      clone[1] = clone;
+
+      deepStrictEqual(extractFiles(input, isCustomFile), {
+        clone,
+        files: new Map([[file, ["0"]]]),
+      });
+    });
+
+    it("With an object with a `Symbol` key.", () => {
+      const symbol = Symbol();
+      const withoutSymbol = { b: 2 };
+
+      deepStrictEqual(
+        extractFiles(
+          Object.freeze({
+            [symbol]: 1,
+            ...withoutSymbol,
+          }),
+          isExtractableFile,
+        ),
+        {
+          clone: withoutSymbol,
+          files: new Map(),
+        },
+      );
+    });
+  },
+);
