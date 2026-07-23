@@ -1,5 +1,10 @@
 // @ts-check
 
+/**
+ * @import TestDirector from "test-director"
+ * @import { Extraction } from "./extractFiles.mjs"
+ */
+
 import {
   deepStrictEqual,
   notStrictEqual,
@@ -26,7 +31,7 @@ function isCustomFile(value) {
 
 /**
  * Adds `extractFiles` tests.
- * @param {import("test-director").default} tests Test director.
+ * @param {TestDirector} tests Test director.
  */
 export default (tests) => {
   tests.add("`extractFiles` bundle size.", async () => {
@@ -67,7 +72,7 @@ export default (tests) => {
   tests.add("`extractFiles` return type.", () => {
     const file = new CustomFile();
 
-    /** @type {import("./extractFiles.mjs").Extraction<CustomFile>} */
+    /** @type {Extraction<CustomFile>} */
     const extraction = extractFiles(file, isCustomFile);
 
     deepStrictEqual(extraction, {
@@ -167,26 +172,21 @@ export default (tests) => {
   tests.add("`extractFiles` with a `FileList` instance.", () => {
     class File {}
     class FileList {
+      /** @type {Array<File>} */
       #files;
 
-      /**
-       * @param {Array<File>} files Files.
-       * @this {{
-       *   #files: Array<File>,
-       *   [index: number]: File,
-       *   [Symbol.iterator](): IterableIterator<File>,
-       *   length: number
-       * }}
-       */
+      /** @type {number} */
+      length;
+
+      /** @param {Array<File>} files Files. */
       constructor(files) {
         this.#files = files;
+        Object.assign(this, files);
+        this.length = files.length;
+      }
 
-        files.forEach((file, index) => {
-          this[index] = file;
-        });
-
-        this[Symbol.iterator] = this.#files[Symbol.iterator];
-        this.length = this.#files.length;
+      [Symbol.iterator]() {
+        return this.#files[Symbol.iterator]();
       }
     }
 

@@ -1,5 +1,7 @@
 // @ts-check
 
+/** @import TestDirector from "test-director" */
+
 import { strictEqual } from "node:assert";
 import revertableGlobals from "revertable-globals";
 
@@ -8,7 +10,7 @@ import assertBundleSize from "./test/assertBundleSize.mjs";
 
 /**
  * Adds `isExtractableFile` tests.
- * @param {import("test-director").default} tests Test director.
+ * @param {TestDirector} tests Test director.
  */
 export default (tests) => {
   tests.add("`isExtractableFile` bundle size.", async () => {

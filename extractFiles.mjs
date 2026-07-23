@@ -1,9 +1,9 @@
 // @ts-check
 
+/** @import isExtractableFile from "./isExtractableFile.mjs" */
+
 // @deno-types="is-plain-obj/index.d.ts"
 import isPlainObject from "is-plain-obj";
-
-/** @typedef {import("./isExtractableFile.mjs").default} isExtractableFile */
 
 /**
  * Recursively extracts files and their {@link ObjectPath object paths} within a

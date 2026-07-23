@@ -5,13 +5,18 @@
 ### Major
 
 - Updated Node.js support to `^22.13.0 || ^24.0.0 || >=26.0.0`.
+- Use the JSDoc tag `@import` for type imports (requires TypeScript v5.5+).
+- The type `isExtractableFile` is no longer exported from `extract-files/extractFiles.mjs`.
 
 ### Patch
 
 - Updated dev dependencies.
 - Updated package scripts.
 - Updated GitHub Actions CI config.
+- Updated TypeScript config.
+- Updated VS Code workspace settings.
 - Updated Prettier formatting.
+- Fixed TypeScript v7 compatibility.
 
 ## 13.0.0
 
