@@ -8,7 +8,10 @@
     "email": "me@jaydenseric.com",
     "url": "https://jaydenseric.com"
   },
-  "repository": "github:jaydenseric/extract-files",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaydenseric/extract-files.git"
+  },
   "homepage": "https://github.com/jaydenseric/extract-files#readme",
   "bugs": "https://github.com/jaydenseric/extract-files/issues",
   "funding": "https://github.com/sponsors/jaydenseric",
