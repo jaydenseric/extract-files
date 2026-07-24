@@ -3,15 +3,14 @@
 import { fail } from "node:assert";
 import { fileURLToPath } from "node:url";
 
-import esbuild from "esbuild";
+import { build } from "esbuild";
 import { gzipSize } from "gzip-size";
 
 /**
  * Asserts the minified and gzipped bundle size of a module.
  * @param {URL} moduleUrl Module URL.
  * @param {number} limit Minified and gzipped bundle size limit (bytes).
- * @returns {Promise<{ bundle: string, gzippedSize: number }>} Resolves the
- *   minified bundle and its gzipped size (bytes).
+ * @returns Resolves the minified bundle and its gzipped size (bytes).
  */
 export default async function assertBundleSize(moduleUrl, limit) {
   if (!(moduleUrl instanceof URL))
@@ -22,13 +21,13 @@ export default async function assertBundleSize(moduleUrl, limit) {
 
   const {
     outputFiles: [bundle],
-  } = await esbuild.build({
-    entryPoints: [fileURLToPath(moduleUrl)],
-    write: false,
+  } = await build({
     bundle: true,
-    minify: true,
-    legalComments: "none",
+    entryPoints: [fileURLToPath(moduleUrl)],
     format: "esm",
+    legalComments: "none",
+    minify: true,
+    write: false,
   });
 
   const gzippedSize = await gzipSize(bundle.text);
@@ -44,10 +43,16 @@ export default async function assertBundleSize(moduleUrl, limit) {
 
   // Error if the surplus is greater than 25% of the limit.
   if (surplus > limit * 0.25)
-    throw new Error(
+    throw new RangeError(
       `${gzippedSize} B minified and gzipped bundle is under the ${limit} B limit by ${surplus} B; reduce the limit.`,
     );
 
   // For debugging in tests.
-  return { bundle: bundle.text, gzippedSize };
+  return {
+    /** The minified bundle. */
+    bundle: bundle.text,
+
+    /** The minified bundle’s gzipped size (bytes). */
+    gzippedSize,
+  };
 }
