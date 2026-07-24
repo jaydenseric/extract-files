@@ -8,7 +8,7 @@ import {
   strictEqual,
   throws,
 } from "node:assert";
-import { describe, it } from "node:test";
+import { suite, test } from "node:test";
 
 import revertableGlobals from "revertable-globals";
 
@@ -28,27 +28,27 @@ function isCustomFile(value) {
   return value instanceof CustomFile;
 }
 
-describe(
+suite(
   "Function `extractFiles`.",
   {
     concurrency: true,
   },
   () => {
-    it("Bundle size.", async () => {
+    test("Bundle size.", async () => {
       await assertBundleSize(
         new URL("./extractFiles.mjs", import.meta.url),
         550,
       );
     });
 
-    it("Argument 1 `value` missing.", () => {
+    test("Argument 1 `value` missing.", () => {
       throws(() => {
         // @ts-expect-error Testing invalid.
         extractFiles();
       }, new TypeError("Argument 1 `value` is required."));
     });
 
-    it("Argument 2 `isExtractable` not a function.", () => {
+    test("Argument 2 `isExtractable` not a function.", () => {
       throws(() => {
         extractFiles(
           null,
@@ -58,7 +58,7 @@ describe(
       }, new TypeError("Argument 2 `isExtractable` must be a function."));
     });
 
-    it("Argument 3 `path` not a string.", () => {
+    test("Argument 3 `path` not a string.", () => {
       throws(() => {
         extractFiles(
           null,
@@ -69,7 +69,7 @@ describe(
       }, new TypeError("Argument 3 `path` must be a string."));
     });
 
-    it("Return type.", () => {
+    test("Return type.", () => {
       const file = new CustomFile();
 
       /** @type {Extraction<CustomFile>} */
@@ -81,7 +81,7 @@ describe(
       });
     });
 
-    it("Argument 3 `path` specified, file.", () => {
+    test("Argument 3 `path` specified, file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(extractFiles(file, isCustomFile, "prefix"), {
@@ -90,7 +90,7 @@ describe(
       });
     });
 
-    it("Argument 3 `path` specified, file nested in an object and array.", () => {
+    test("Argument 3 `path` specified, file nested in an object and array.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(extractFiles({ a: [file] }, isCustomFile, "prefix"), {
@@ -123,14 +123,14 @@ describe(
     ]) {
       const label = `With ${name},`;
 
-      it(`${label} directly.`, () => {
+      test(`${label} directly.`, () => {
         deepStrictEqual(extractFiles(value, isExtractableFile), {
           clone: value,
           files: new Map(),
         });
       });
 
-      it(`${label} in an object, \`Object\` instance.`, () => {
+      test(`${label} in an object, \`Object\` instance.`, () => {
         const object = Object.freeze({ a: value });
         const extraction = extractFiles(object, isExtractableFile);
 
@@ -141,7 +141,7 @@ describe(
         notStrictEqual(extraction.clone, object);
       });
 
-      it(`${label} in an object, non \`Object\` instance.`, () => {
+      test(`${label} in an object, non \`Object\` instance.`, () => {
         const object = Object.freeze(
           Object.assign(Object.create(null), { a: value }),
         );
@@ -154,7 +154,7 @@ describe(
         notStrictEqual(extraction.clone, object);
       });
 
-      it(`${label} in an array.`, () => {
+      test(`${label} in an array.`, () => {
         const array = Object.freeze([value]);
         const extraction = extractFiles(array, isExtractableFile);
 
@@ -166,7 +166,7 @@ describe(
       });
     }
 
-    it("With a `FileList` instance.", () => {
+    test("With a `FileList` instance.", () => {
       class File {}
       class FileList {
         /** @type {Array<File>} */
@@ -206,7 +206,7 @@ describe(
       }
     });
 
-    it("With a `File` instance.", () => {
+    test("With a `File` instance.", () => {
       class File {}
 
       const revertGlobals = revertableGlobals({ File });
@@ -223,7 +223,7 @@ describe(
       }
     });
 
-    it("With a `Blob` instance.", () => {
+    test("With a `Blob` instance.", () => {
       class Blob {}
 
       const revertGlobals = revertableGlobals({ Blob });
@@ -240,7 +240,7 @@ describe(
       }
     });
 
-    it("With an object containing multiple files.", () => {
+    test("With an object containing multiple files.", () => {
       const fileA = new CustomFile();
       const fileB = new CustomFile();
 
@@ -256,7 +256,7 @@ describe(
       );
     });
 
-    it("With an array containing multiple files.", () => {
+    test("With an array containing multiple files.", () => {
       const file0 = new CustomFile();
       const file1 = new CustomFile();
 
@@ -272,7 +272,7 @@ describe(
       );
     });
 
-    it("With a nested object containing a file.", () => {
+    test("With a nested object containing a file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(
@@ -287,7 +287,7 @@ describe(
       );
     });
 
-    it("With a nested array containing a file.", () => {
+    test("With a nested array containing a file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(
@@ -299,7 +299,7 @@ describe(
       );
     });
 
-    it("With an object containing multiple references of a file.", () => {
+    test("With an object containing multiple references of a file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(
@@ -311,7 +311,7 @@ describe(
       );
     });
 
-    it("With an array containing multiple references of a file.", () => {
+    test("With an array containing multiple references of a file.", () => {
       const file = new CustomFile();
 
       deepStrictEqual(extractFiles(Object.freeze([file, file]), isCustomFile), {
@@ -320,7 +320,7 @@ describe(
       });
     });
 
-    it("With an object referenced multiple times.", () => {
+    test("With an object referenced multiple times.", () => {
       const file = new CustomFile();
       const inputA = Object.freeze({ a: file });
       const extraction = extractFiles(
@@ -336,7 +336,7 @@ describe(
       strictEqual(extraction.clone.a, extraction.clone.b);
     });
 
-    it("With an array referenced multiple times.", () => {
+    test("With an array referenced multiple times.", () => {
       const file = new CustomFile();
       const array = Object.freeze([file]);
       const extraction = extractFiles(
@@ -355,7 +355,7 @@ describe(
       strictEqual(extraction.clone.a, extraction.clone.b);
     });
 
-    it("With an object with circular references.", () => {
+    test("With an object with circular references.", () => {
       const file = new CustomFile();
 
       /** @type {{ [key: string]: any }} */
@@ -376,7 +376,7 @@ describe(
       });
     });
 
-    it("With an array with circular references.", () => {
+    test("With an array with circular references.", () => {
       const file = new CustomFile();
 
       /** @type {Array<any>} */
@@ -397,7 +397,7 @@ describe(
       });
     });
 
-    it("With an object with a `Symbol` key.", () => {
+    test("With an object with a `Symbol` key.", () => {
       const symbol = Symbol();
       const withoutSymbol = { b: 2 };
 

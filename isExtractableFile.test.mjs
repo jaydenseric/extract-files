@@ -1,27 +1,27 @@
 // @ts-check
 
 import { strictEqual } from "node:assert";
-import { describe, it } from "node:test";
+import { suite, test } from "node:test";
 
 import revertableGlobals from "revertable-globals";
 
 import isExtractableFile from "./isExtractableFile.mjs";
 import assertBundleSize from "./test-helpers/assertBundleSize.mjs";
 
-describe(
+suite(
   "Function `isExtractableFile`.",
   {
     concurrency: true,
   },
   () => {
-    it("Bundle size.", async () => {
+    test("Bundle size.", async () => {
       await assertBundleSize(
         new URL("./isExtractableFile.mjs", import.meta.url),
         120,
       );
     });
 
-    it("With a `File` instance.", () => {
+    test("With a `File` instance.", () => {
       class File {}
 
       const revertGlobals = revertableGlobals({ File });
@@ -33,7 +33,7 @@ describe(
       }
     });
 
-    it("With a `Blob` instance.", () => {
+    test("With a `Blob` instance.", () => {
       class Blob {}
 
       const revertGlobals = revertableGlobals({ Blob });
@@ -45,7 +45,7 @@ describe(
       }
     });
 
-    it("With a non-file.", () => {
+    test("With a non-file.", () => {
       strictEqual(isExtractableFile({}), false);
     });
   },
