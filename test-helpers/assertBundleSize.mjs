@@ -1,9 +1,10 @@
 // @ts-check
 
-import esbuild from "esbuild";
-import { gzipSize } from "gzip-size";
 import { fail } from "node:assert";
 import { fileURLToPath } from "node:url";
+
+import esbuild from "esbuild";
+import { gzipSize } from "gzip-size";
 
 /**
  * Asserts the minified and gzipped bundle size of a module.

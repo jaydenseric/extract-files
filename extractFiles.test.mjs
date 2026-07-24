@@ -9,6 +9,7 @@ import {
   throws,
 } from "node:assert";
 import { describe, it } from "node:test";
+
 import revertableGlobals from "revertable-globals";
 
 import extractFiles from "./extractFiles.mjs";

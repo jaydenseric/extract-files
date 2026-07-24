@@ -17,6 +17,7 @@
 - Updated VS Code workspace settings.
 - Updated Prettier formatting.
 - Fixed TypeScript v7 compatibility.
+- Migrated to ESLint v10 and the flat config system.
 - Switched to the Node.js test runner, removing the dev dependencies [`coverage-node`](https://npm.im/coverage-node) and [`test-director`](https://npm.im/test-director).
 - Updated the `package.json` field `repository` to conform to new npm requirements.
 

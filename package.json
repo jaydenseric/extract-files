@@ -43,10 +43,12 @@
     "is-plain-obj": "^4.1.0"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^26.1.1",
     "esbuild": "^0.28.1",
-    "eslint": "^8.23.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint": "^10.7.0",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "globals": "^17.7.0",
     "gzip-size": "^7.0.0",
     "prettier": "^3.9.6",
     "revertable-globals": "^4.0.0",
@@ -54,7 +56,7 @@
   },
   "scripts": {
     "prettier": "prettier -c .",
-    "eslint": "eslint .",
+    "eslint": "eslint",
     "types": "tsc -p jsconfig.json",
     "test": "node --test --experimental-test-coverage --test-coverage-lines=100 --test-coverage-branches=100 --test-coverage-functions=100 --test-coverage-exclude='**/*.test.*' --test-coverage-exclude='test-helpers/**' --test-reporter=spec",
     "check": "node --run prettier && node --run eslint && node --run types && node --run test",

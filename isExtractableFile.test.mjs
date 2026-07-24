@@ -2,6 +2,7 @@
 
 import { strictEqual } from "node:assert";
 import { describe, it } from "node:test";
+
 import revertableGlobals from "revertable-globals";
 
 import isExtractableFile from "./isExtractableFile.mjs";
