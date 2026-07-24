@@ -24,6 +24,7 @@
 - Updated the `package.json` field `repository` to conform to new npm requirements.
 - Sorted config in `.editorconfig`.
 - Added a `.gitattributes` file to enforce LF line endings.
+- Updated documentation links.
 
 ## 13.0.0
 

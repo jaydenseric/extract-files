@@ -1,12 +1,12 @@
 # extract-files
 
-A function to recursively extract files and their object paths within a value, replacing them with `null` in a deep clone without mutating the original value. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays. Files are typically [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) and [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) instances.
+A function to recursively extract files and their object paths within a value, replacing them with `null` in a deep clone without mutating the original value. [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/FileList) instances are treated as [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance arrays. Files are typically [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) and [`Blob`](https://developer.mozilla.org/en-US/docs/Web/API/Blob) instances.
 
 Used by [GraphQL multipart request spec client implementations](https://github.com/jaydenseric/graphql-multipart-request-spec#implementations) such as [`graphql-react`](https://npm.im/graphql-react) and [`apollo-upload-client`](https://npm.im/apollo-upload-client).
 
 ## Installation
 
-For [Node.js](https://nodejs.org), to install [`extract-files`](https://npm.im/extract-files) with [npm](https://npmjs.com/get-npm), run:
+For [Node.js](https://nodejs.org), to install [`extract-files`](https://npm.im/extract-files) with [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm), run:
 
 ```sh
 npm install extract-files

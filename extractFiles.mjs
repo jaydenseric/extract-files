@@ -9,7 +9,7 @@ import isPlainObject from "is-plain-obj";
  * Recursively extracts files and their {@link ObjectPath object paths} within a
  * value, replacing them with `null` in a deep clone without mutating the
  * original value.
- * [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/Filelist)
+ * [`FileList`](https://developer.mozilla.org/en-US/docs/Web/API/FileList)
  * instances are treated as
  * [`File`](https://developer.mozilla.org/en-US/docs/Web/API/File) instance
  * arrays.
