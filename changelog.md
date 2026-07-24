@@ -7,6 +7,7 @@
 - Updated Node.js support to `^22.13.0 || ^24.0.0 || >=26.0.0`.
 - Use the JSDoc tag `@import` for type imports (requires TypeScript v5.5+).
 - The type `isExtractableFile` is no longer exported from `extract-files/extractFiles.mjs`.
+- Replaced the comment directive `@deno-types` with `@ts-types` (requires Deno v1.43+).
 
 ### Patch
 

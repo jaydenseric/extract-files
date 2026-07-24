@@ -2,7 +2,7 @@
 
 /** @import isExtractableFile from "./isExtractableFile.mjs" */
 
-// @deno-types="is-plain-obj/index.d.ts"
+// @ts-types="is-plain-obj/index.d.ts"
 import isPlainObject from "is-plain-obj";
 
 /**
